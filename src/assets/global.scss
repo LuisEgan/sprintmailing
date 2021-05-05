@@ -10,3 +10,24 @@
 .dark .dark\:block {
   display: block !important;
 }
+
+.rs-modal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .rs-modal {
+    padding: 0 1rem !important;
+    margin: 0 !important;
+    max-width: 100%;
+
+    .rs-modal-dialog {
+      max-width: 100% !important;
+      max-height: 80vh;
+    }
+    .rs-modal-content {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
+}

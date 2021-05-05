@@ -40,11 +40,12 @@
     "react": "^16.13.1",
     "react-adal": "^0.5.2",
     "react-dom": "^16.13.1",
-    "react-hook-form": "^6.15.5",
+    "react-hook-form": "^7.4.0",
     "react-svg": "^13.0.2",
     "rsuite": "^4.9.3",
     "styled-components": "^5.2.3",
     "transform-loader": "^0.2.4",
+    "validator": "^13.6.0",
     "webpack-merge": "^5.7.3",
     "webpack-multiple-themes-compile": "^2.0.0"
   },

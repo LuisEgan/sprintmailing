@@ -4,7 +4,6 @@ import LogoDark from "assets/images/logo/dark/VerticalLogo.svg";
 import LogoLight from "assets/images/logo/light/VerticalLogo.svg";
 
 import { Button, Col, Icon, Row } from "rsuite";
-import { adalAuthContext, endpoint } from "../adalConfig";
 import { AuthContext } from "context/auth";
 import { useRouter } from "next/router";
 import { gqlUser } from "gql";
@@ -16,35 +15,21 @@ import {
 } from "gql/User/queries";
 import { APP_BASE_ROUTE } from "components/SideMenu/private-routes";
 import { useTheme } from "next-themes";
+import { useModal } from "context/modal/modal.provider";
+import { Login } from "modal-components/Login/Login";
+import { Register } from "modal-components/Register/Register";
 
 const Index = () => {
   const router = useRouter();
   const { theme } = useTheme();
-  const accessToken = adalAuthContext?.getCachedToken(endpoint as string);
+  const { openModal } = useModal();
 
   const { authenticate, isAuthenticated } = useContext(AuthContext);
-
-  const [loginWithAzureActiveDirectory, { loading: loadingAD }] = useMutation<
-    ILoginActiveDirectoryRes,
-    ILoginActiveDirectory
-  >(gqlUser.queries.LOGIN_ACTIVE_DIRECTORY, {
-    onCompleted({ loginWithAzureActiveDirectory }) {
-      const { accessToken } = loginWithAzureActiveDirectory;
-      localStorage.setItem("userToken", `${accessToken}`);
-      getUser({
-        variables: {
-          accessToken,
-        },
-      });
-    },
-  });
 
   const [
     getUser,
     { data: getUserData, loading: getUserLoading },
   ] = useLazyQuery(gqlUser.queries.GET_USER);
-
-  const [loginData, setLoginData] = useState({});
 
   useEffect(() => {
     if (getUserData) {
@@ -57,33 +42,19 @@ const Index = () => {
     }
   }, [getUserData, router.pathname, authenticate]);
 
-  const handleADLogin = () => {
-    if (adalAuthContext) {
-      adalAuthContext.callback = (errorDesc, token, error) => {
-        loginWithAzureActiveDirectory({
-          variables: {
-            activeDirectoryLogInInput: {
-              accessToken: token as string,
-            },
-          },
-        });
-      };
-
-      adalAuthContext?.login();
-    }
+  const handleLogin = () => {
+    openModal({
+      modalComponent: <Login />,
+      modalSize: "sm",
+    });
   };
 
-  useEffect(() => {
-    if (accessToken) {
-      loginWithAzureActiveDirectory({
-        variables: {
-          activeDirectoryLogInInput: {
-            accessToken,
-          },
-        },
-      });
-    }
-  }, [accessToken]);
+  const handleRegister = () => {
+    openModal({
+      modalComponent: <Register />,
+      modalSize: "sm",
+    });
+  };
 
   if (isAuthenticated()) router.push(APP_BASE_ROUTE.url);
 
@@ -119,10 +90,20 @@ const Index = () => {
           <Button
             appearance="primary"
             size="lg"
-            onClick={handleADLogin}
-            loading={loadingAD || getUserLoading}
+            onClick={handleLogin}
+            loading={getUserLoading}
           >
             Iniciar sesión
+          </Button>
+        </Col>
+        <Col size={24} className={"flex justify-center mt-5"}>
+          <Button
+            appearance="primary"
+            size="lg"
+            onClick={handleRegister}
+            loading={getUserLoading}
+          >
+            Regístrarse
           </Button>
         </Col>
         <Col size={24} className="text-center mt-4">

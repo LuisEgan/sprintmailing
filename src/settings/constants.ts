@@ -10,3 +10,5 @@ export const SIDEBAR_WIDTH = 300;
 
 export const LOGO_DARK = LogoDark;
 export const LOGO_LIGHT = LogoLight;
+
+export const AFTER_LOGIN_REDIRECT = "/app/home";
