@@ -19,6 +19,7 @@ import Tailwind from "components/Tailwind/Tailwind";
 
 import "assets/global.scss";
 import "animate.css/animate.css";
+import { PRIVATE_ROUTE } from "components/SideMenu/private-routes";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -30,26 +31,28 @@ export default function App({ Component, pageProps }: AppProps) {
         <ThemeProvider attribute="class">
           <Theme />
           <Tailwind />
-          <AuthProvider>
-            <NotificationProvider>
-              <ProfileProvider>
-                {pathname === "/" && <Component {...pageProps} />}
-                {pathname !== "/" && (
-                  <>
-                    <PrivateRoute>
-                      <ModalProvider>
-                        <DrawerProvider>
+          <ModalProvider>
+            <DrawerProvider>
+              <AuthProvider>
+                <NotificationProvider>
+                  <ProfileProvider>
+                    {!PRIVATE_ROUTE.some((item) => item.url === pathname) && (
+                      <Component {...pageProps} />
+                    )}{" "}
+                    {PRIVATE_ROUTE.some((item) => item.url === pathname) && (
+                      <>
+                        <PrivateRoute>
                           <ManagerLayout>
                             <Component {...pageProps} />
                           </ManagerLayout>
-                        </DrawerProvider>
-                      </ModalProvider>
-                    </PrivateRoute>
-                  </>
-                )}
-              </ProfileProvider>
-            </NotificationProvider>
-          </AuthProvider>
+                        </PrivateRoute>
+                      </>
+                    )}
+                  </ProfileProvider>
+                </NotificationProvider>
+              </AuthProvider>
+            </DrawerProvider>
+          </ModalProvider>
         </ThemeProvider>
       </ApolloProvider>
     </>

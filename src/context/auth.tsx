@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 import { USER_TOKEN_PERSIST } from "settings/constants";
 import { VENDOR_ID_PERSIST } from "settings/constants";
 import { USER_ID_PERSIST } from "settings/constants";
-import { adalAuthContext } from "../adalConfig";
+import { Router, useRouter } from "next/router";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -19,6 +19,7 @@ type AuthProps = {
 export const AuthContext = React.createContext({} as AuthProps);
 
 const AuthProvider = (props: any) => {
+  const router = useRouter();
   const client = useApolloClient();
 
   const isAuthenticated = (): boolean => {
@@ -44,7 +45,7 @@ const AuthProvider = (props: any) => {
       localStorage.removeItem(USER_TOKEN_PERSIST);
       localStorage.removeItem(VENDOR_ID_PERSIST);
       localStorage.removeItem(USER_ID_PERSIST);
-      adalAuthContext?.logOut();
+      router.push("/");
     } catch (error) {
       console.error("error: ", error);
     }

@@ -14,8 +14,6 @@ const GET_ACTIVE_USER = gql`
       id
       name
       lastname
-      currentCoins
-      jobTitle
     }
   }
 `;
@@ -37,7 +35,6 @@ const GET_FULL_USER = gql`
       profileImage
       name
       lastname
-      currentCoins
     }
   }
 `;
