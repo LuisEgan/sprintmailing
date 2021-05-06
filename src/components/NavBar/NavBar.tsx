@@ -73,13 +73,14 @@ const Navbar = (props: NavbarProps) => {
         </div>
         <ButtonToolbar>
           <Button appearance="link" className="mr-2" onClick={toggleTheme}>
-            <span>
+            <>
               {theme === "dark" && (
                 <Icon
                   icon="sun-o"
                   className={`text-white animate__animated animate__zoomIn`}
                   componentClass="span"
                   size="lg"
+                  onClick={toggleTheme}
                 />
               )}
               {theme === "light" && (
@@ -88,9 +89,10 @@ const Navbar = (props: NavbarProps) => {
                   className={`text-black animate__animated animate__zoomIn`}
                   componentClass="span"
                   size="lg"
+                  onClick={toggleTheme}
                 />
               )}
-            </span>
+            </>
           </Button>
           <Dropdown
             appearance="primary"

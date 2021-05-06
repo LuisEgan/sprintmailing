@@ -1,4 +1,3 @@
-import NavBar from "components/NavBar/NavBar";
 import React, { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
 import { MOBILE_VIEW, SIDEBAR_WIDTH } from "settings/constants";
@@ -6,7 +5,12 @@ import { LayoutMainContent, LayoutWrapper } from "./Layout.style";
 import { useWindowSize } from "utils/use-windows-size";
 import SideMenu from "components/SideMenu/SideMenu";
 import { useTheme } from "next-themes";
-import { Transition } from "react-transition-group";
+import dynamic from "next/dynamic";
+
+const NavBar = dynamic(() => import("components/NavBar/NavBar"), {
+  ssr: false,
+});
+
 const ManagerLayout = ({ children }: any) => {
   const { theme, setTheme } = useTheme();
   const [showSideBar, setShowSideBar] = useState<boolean>(false);

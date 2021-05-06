@@ -88,6 +88,7 @@ export const Login = (props: ILoginProps) => {
               name="email"
               control={loginControl}
               rules={{ required: true, validate: (value) => isEmail(value) }}
+              defaultValue={""}
               render={({ field }) => (
                 <Input
                   {...field}
@@ -108,6 +109,7 @@ export const Login = (props: ILoginProps) => {
               name="password"
               control={loginControl}
               rules={{ required: true }}
+              defaultValue={""}
               render={({ field }) => (
                 <Input
                   {...field}

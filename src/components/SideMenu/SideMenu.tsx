@@ -97,6 +97,7 @@ const SideMenu = (props: SideMenuProps) => {
           <Nav>
             {PRIVATE_ROUTE.map((item, index) => (
               <Nav.Item
+                key={item.url}
                 active={router.pathname === item.url}
                 icon={<Icon icon={item.icon} />}
                 onClick={() => {

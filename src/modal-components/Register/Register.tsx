@@ -123,6 +123,7 @@ export const Register = (props: IRegisterProps) => {
 
             <Controller
               name="email"
+              defaultValue={""}
               control={registerControl}
               rules={{ required: true, validate: (value) => isEmail(value) }}
               render={({ field }) => (
@@ -145,6 +146,7 @@ export const Register = (props: IRegisterProps) => {
 
             <Controller
               name="password"
+              defaultValue={""}
               control={registerControl}
               rules={{ required: true }}
               render={({ field }) => (
