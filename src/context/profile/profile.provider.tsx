@@ -3,6 +3,7 @@ import { ProfileContext } from "./profile.context";
 import { useQuery } from "@apollo/client";
 import { AuthContext } from "../auth";
 import { gqlUser } from "gql";
+import { IUser } from "lib/Types/User.types";
 
 type Action =
   | { type: "UPDATE_SELECTED_VENDOR"; payload: any }
@@ -26,15 +27,18 @@ export const ProfileProvider: React.FunctionComponent<ProfileProviderProps> = ({
   children,
 }) => {
   const { isAuthenticated } = useContext(AuthContext);
-  const { data, error } = useQuery(gqlUser.queries.GET_FULL_USER, {
-    skip: !isAuthenticated(),
-    variables: {
-      accessToken:
-        typeof window === "undefined"
-          ? ""
-          : localStorage.getItem("accessToken"),
-    },
-  });
+  const { data, error } = useQuery<{ user: IUser }, { accessToken: string }>(
+    gqlUser.queries.GET_FULL_USER,
+    {
+      skip: !isAuthenticated(),
+      variables: {
+        accessToken:
+          typeof window === "undefined"
+            ? ""
+            : localStorage.getItem("accessToken"),
+      },
+    }
+  );
 
   const [, dispatch] = useReducer(reducer, { data });
 
