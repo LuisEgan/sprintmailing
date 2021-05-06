@@ -27,34 +27,34 @@ export const ProfileProvider: React.FunctionComponent<ProfileProviderProps> = ({
   children,
 }) => {
   const { isAuthenticated } = useContext(AuthContext);
-  const { data, error } = useQuery<{ user: IUser }, { accessToken: string }>(
-    gqlUser.queries.GET_FULL_USER,
-    {
-      skip: !isAuthenticated(),
-      variables: {
-        accessToken:
-          typeof window === "undefined"
-            ? ""
-            : localStorage.getItem("accessToken"),
-      },
-    }
-  );
+  const { data: userData, error } = useQuery<
+    { user: IUser },
+    { accessToken: string }
+  >(gqlUser.queries.GET_FULL_USER, {
+    skip: !isAuthenticated(),
+    variables: {
+      accessToken:
+        typeof window === "undefined"
+          ? ""
+          : localStorage.getItem("accessToken"),
+    },
+  });
 
-  const [, dispatch] = useReducer(reducer, { data });
+  const [, dispatch] = useReducer(reducer, { userData });
 
   useEffect(() => {
-    if (data) {
+    if (userData) {
       dispatch({
         type: "SET_USER_DATA",
-        payload: data,
+        payload: userData,
       });
     }
-  }, [data]);
+  }, [userData]);
 
   if (error) return <div>{error.message}</div>;
 
   return (
-    <ProfileContext.Provider value={{ data, dispatch }}>
+    <ProfileContext.Provider value={{ user: userData?.user, dispatch }}>
       {children}
     </ProfileContext.Provider>
   );

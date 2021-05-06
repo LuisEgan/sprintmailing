@@ -1,10 +1,7 @@
 /*  ./components/Navbar.jsx     */
 import { AuthContext } from "context/auth";
 import { Button, ButtonToolbar, Dropdown, Icon } from "rsuite";
-import LogoDark from "assets/images/logo/dark/HorizontalLogo.svg";
-import LogoLight from "assets/images/logo/light/HorizontalLogo.svg";
-
-import { ProfileContext } from "context/profile/profile.context";
+import { useProfile } from "context/profile/profile.context";
 import React, { useContext } from "react";
 import { useTheme } from "next-themes";
 import { loadStyleSheet } from "components/Theme/Theme";
@@ -17,7 +14,7 @@ interface NavbarProps {
 }
 const Navbar = (props: NavbarProps) => {
   const { signout } = useContext(AuthContext);
-  const { data: userData } = useContext(ProfileContext);
+  const { user } = useProfile();
   const { theme, setTheme } = useTheme();
   const { showSideBar, setShowSideBar } = props;
 
@@ -96,7 +93,7 @@ const Navbar = (props: NavbarProps) => {
           </Button>
           <Dropdown
             appearance="primary"
-            title={userData?.user?.name}
+            title={user?.name}
             icon={<Icon icon="user-circle-o" />}
             placement="bottomEnd"
             className="text-black"

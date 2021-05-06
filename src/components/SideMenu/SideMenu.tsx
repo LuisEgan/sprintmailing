@@ -24,7 +24,7 @@ const SideMenu = (props: SideMenuProps) => {
   const { theme } = useTheme();
   const router = useRouter();
   const { showSideBar, setShowSideBar } = props;
-  const { data: userData } = useContext(ProfileContext);
+  const { user } = useContext(ProfileContext);
   const panelStyles = {
     padding: "15px 20px",
     color: "#aaa",
@@ -90,7 +90,7 @@ const SideMenu = (props: SideMenuProps) => {
             <AvatarImage className="bg-gray-900 dark:bg-white"></AvatarImage>
             <UserInfoContainer>
               <UserInfo>
-                {userData?.user?.name} {userData?.user?.lastname}
+                {user?.name} {user?.lastname}
               </UserInfo>
             </UserInfoContainer>
           </AvatarContainer>
