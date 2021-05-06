@@ -15,10 +15,7 @@ const ManagerLayout = ({ children }: any) => {
   const { theme, setTheme } = useTheme();
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
   const wSize = useWindowSize();
-  const [asdf, serasdf] = useState<boolean>(false);
-  useEffect(() => {
-    serasdf(!asdf);
-  }, [theme]);
+
   return (
     <LayoutWrapper>
       {wSize && wSize.width <= MOBILE_VIEW ? (

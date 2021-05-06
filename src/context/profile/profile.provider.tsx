@@ -3,7 +3,7 @@ import { ProfileContext } from "./profile.context";
 import { useQuery } from "@apollo/client";
 import { AuthContext } from "../auth";
 import { gqlUser } from "gql";
-import { IUser } from "lib/Types/User.types";
+import { IUser } from "utils/Types/User.types";
 
 type Action =
   | { type: "UPDATE_SELECTED_VENDOR"; payload: any }

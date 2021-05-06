@@ -113,6 +113,7 @@ export const Login = (props: ILoginProps) => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  type="password"
                   className="mt-2"
                   placeholder="Ingresa aquí tu contraseña"
                 />
