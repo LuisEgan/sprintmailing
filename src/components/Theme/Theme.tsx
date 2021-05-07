@@ -40,7 +40,7 @@ export const loadStyleSheet = (theme: string, setTheme: any) => {
   sheet.addEventListener("load", () => onLoad(theme, setTheme));
   sheet.href = `/themes/theme-${theme}.css`;
   sheet.id = `${theme}-theme`;
-  document.head.appendChild(sheet);
+  document.head.prepend(sheet);
 };
 
 const Theme = () => {
