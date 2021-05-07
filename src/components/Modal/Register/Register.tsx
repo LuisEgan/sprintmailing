@@ -46,7 +46,7 @@ export const Register = () => {
       closeModal();
       router.push(AFTER_LOGIN_REDIRECT);
     }
-  }, [getUserData, router.pathname]);
+  }, [getUserData, router.pathname, closeModal, router]);
 
   const handleRegister = async (data) => {
     if (typeof window !== "undefined") {

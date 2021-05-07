@@ -2,10 +2,13 @@ import { useApolloClient } from "@apollo/client";
 import React from "react";
 import jwt_decode from "jwt-decode";
 
-import { USER_TOKEN_PERSIST , VENDOR_ID_PERSIST , USER_ID_PERSIST } from "settings/constants";
+import {
+  USER_TOKEN_PERSIST,
+  VENDOR_ID_PERSIST,
+  USER_ID_PERSIST,
+} from "settings/constants";
 
-
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -18,7 +21,7 @@ type AuthProps = {
 
 export const AuthContext = React.createContext({} as AuthProps);
 
-const AuthProvider = (props: any) => {
+const AuthProvider = ({ children }) => {
   const router = useRouter();
   const client = useApolloClient();
 
@@ -33,7 +36,7 @@ const AuthProvider = (props: any) => {
     return decoded && decoded.role;
   };
 
-  const authenticate = ({ accessToken }, cb) => {
+  const authenticate = ({ accessToken }, cb: Function) => {
     localStorage.setItem(USER_TOKEN_PERSIST, accessToken);
     setTimeout(cb, 100);
   };
@@ -60,7 +63,7 @@ const AuthProvider = (props: any) => {
         signout,
       }}
     >
-      <>{props.children}</>
+      <>{children}</>
     </AuthContext.Provider>
   );
 };

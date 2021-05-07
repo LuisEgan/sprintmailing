@@ -10,8 +10,8 @@ import { ReactSVG } from "react-svg";
 
 import { APP_BASE_ROUTE } from "components/SideMenu/private-routes";
 import { useModal } from "context/modal/modal.provider";
-import { Login } from "components-modal/Login/Login";
-import { Register } from "components-modal/Register/Register";
+import { Login } from "components/Modal/Login/Login";
+import { Register } from "components/Modal/Register/Register";
 
 const Index = () => {
   const router = useRouter();
