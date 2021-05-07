@@ -33,6 +33,7 @@
     "React": "writable"
   },
   "rules": {
+    "jsx-a11y/label-has-associated-control": "off",
     "import/no-absolute-path": "off",
     "@typescript-eslint/no-shadow": "off",
     "import/prefer-default-export": "off",

@@ -23,7 +23,7 @@ const Navbar = (props: NavbarProps) => {
   };
 
   const toggleTheme = () => {
-    const newTheme = theme == "dark" ? "light" : "dark";
+    const newTheme = theme === "dark" ? "light" : "dark";
 
     loadStyleSheet(newTheme, setTheme);
   };
@@ -74,7 +74,7 @@ const Navbar = (props: NavbarProps) => {
               {theme === "dark" && (
                 <Icon
                   icon="sun-o"
-                  className={`text-white animate__animated animate__zoomIn`}
+                  className="text-white animate__animated animate__zoomIn"
                   componentClass="span"
                   size="lg"
                   onClick={toggleTheme}
@@ -83,7 +83,7 @@ const Navbar = (props: NavbarProps) => {
               {theme === "light" && (
                 <Icon
                   icon="moon-o"
-                  className={`text-black animate__animated animate__zoomIn`}
+                  className="text-black animate__animated animate__zoomIn"
                   componentClass="span"
                   size="lg"
                   onClick={toggleTheme}

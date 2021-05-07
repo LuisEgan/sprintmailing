@@ -9,6 +9,14 @@ import isEmail from "validator/lib/isEmail";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
 
 export const Register = () => {
+  const {
+    handleSubmit: handleRegisterSubmit,
+    control: registerControl,
+    formState: { errors },
+  } = useForm();
+  const router = useRouter();
+  const { closeModal } = useModal();
+
   const [
     getUser,
     { data: getUserData, loading: getUserLoading },
@@ -28,14 +36,6 @@ export const Register = () => {
       },
     },
   );
-
-  const {
-    handleSubmit: handleRegisterSubmit,
-    control: registerControl,
-    formState: { errors },
-  } = useForm();
-  const router = useRouter();
-  const { closeModal } = useModal();
 
   useEffect(() => {
     if (getUserData) {
@@ -58,7 +58,12 @@ export const Register = () => {
             },
           },
         });
-      } catch (error) {}
+      } catch (error) {
+        console.error(
+          "🚀 ~ file: Register.tsx ~ line 62 ~ handleRegister ~ error",
+          error,
+        );
+      }
     }
   };
 
@@ -78,11 +83,13 @@ export const Register = () => {
       <Row>
         <Col className="animate__animated animate__fadeIn">
           <form onSubmit={handleRegisterSubmit(handleRegister)}>
-            <label className="font-bold">¿Cómo te llamas?</label>
+            <label className="font-bold" htmlFor="name">
+              ¿Cómo te llamas?
+            </label>
 
             <Controller
               name="name"
-              defaultValue={""}
+              defaultValue=""
               control={registerControl}
               rules={{ required: true }}
               render={({ field }) => (
@@ -103,7 +110,7 @@ export const Register = () => {
             </label>
             <Controller
               name="lastname"
-              defaultValue={""}
+              defaultValue=""
               control={registerControl}
               rules={{ required: true }}
               render={({ field }) => (
@@ -122,7 +129,7 @@ export const Register = () => {
 
             <Controller
               name="email"
-              defaultValue={""}
+              defaultValue=""
               control={registerControl}
               rules={{ required: true, validate: (value) => isEmail(value) }}
               render={({ field }) => (
@@ -145,7 +152,7 @@ export const Register = () => {
 
             <Controller
               name="password"
-              defaultValue={""}
+              defaultValue=""
               control={registerControl}
               rules={{ required: true }}
               render={({ field }) => (

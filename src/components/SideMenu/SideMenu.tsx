@@ -1,5 +1,12 @@
-import { Dropdown, Icon, Nav, Sidenav } from "rsuite";
+import { Icon, Nav, Sidenav } from "rsuite";
+import React, { useContext } from "react";
+import { useRouter } from "next/router";
+import { ReactSVG } from "react-svg";
+
+import { ProfileContext } from "context/profile/profile.context";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
+import { PRIVATE_ROUTE } from "./private-routes";
+
 import {
   AvatarContainer,
   AvatarImage,
@@ -8,27 +15,15 @@ import {
   UserInfoContainer,
 } from "./SideMenu.style";
 
-import { ProfileContext } from "context/profile/profile.context";
-import React, { useContext } from "react";
-import { useRouter } from "next/router";
-import { ReactSVG } from "react-svg";
-import { PRIVATE_ROUTE } from "./private-routes";
-import { useTheme } from "next-themes";
-
 interface SideMenuProps {
   showSideBar: boolean;
   setShowSideBar: (showSideBar: boolean) => void;
 }
 
 const SideMenu = (props: SideMenuProps) => {
-  const { theme } = useTheme();
   const router = useRouter();
   const { showSideBar, setShowSideBar } = props;
   const { user } = useContext(ProfileContext);
-  const panelStyles = {
-    padding: "15px 20px",
-    color: "#aaa",
-  };
 
   const handleShowSideBar = () => {
     setShowSideBar(!showSideBar);
@@ -87,7 +82,7 @@ const SideMenu = (props: SideMenuProps) => {
         </Sidenav.Header>
         <Sidenav.Body className="pt-5">
           <AvatarContainer>
-            <AvatarImage className="bg-gray-900 dark:bg-white"></AvatarImage>
+            <AvatarImage className="bg-gray-900 dark:bg-white" />
             <UserInfoContainer>
               <UserInfo>
                 {user?.name} {user?.lastname}
@@ -95,7 +90,7 @@ const SideMenu = (props: SideMenuProps) => {
             </UserInfoContainer>
           </AvatarContainer>
           <Nav>
-            {PRIVATE_ROUTE.map((item, index) => (
+            {PRIVATE_ROUTE.map((item) => (
               <Nav.Item
                 key={item.url}
                 active={router.pathname === item.url}
