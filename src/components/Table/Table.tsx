@@ -2,9 +2,9 @@ import NoResult from "components/NoResult/NoResult";
 import React, { useEffect, useState } from "react";
 import { Table as RSTable, TableProps } from "rsuite";
 import TablePagination from "rsuite/lib/Table/TablePagination";
-import { ButtonCell, CustomCell, NormalCell } from "./Cells";
 import { Container } from "./Table.styles";
-import { TTable } from "./Table.types";
+import { ITableData, TTable } from "./Table.types";
+import { ButtonCell, CustomCell, NormalCell } from "./Cells";
 
 const { Column, HeaderCell } = RSTable;
 
@@ -13,10 +13,6 @@ const cellDefaultStyle = {
   justifyContent: "start",
   alignItems: "center",
 };
-
-export interface ITableData {
-  tableTimestamp?: string;
-}
 
 const Table = <TData extends {}>(props: TTable<TData>) => {
   const {
@@ -64,8 +60,8 @@ const Table = <TData extends {}>(props: TTable<TData>) => {
 
       if (sortColumn && sortType) {
         newTableData.sort((a, b) => {
-          let x = a[sortColumn];
-          let y = b[sortColumn];
+          const x = a[sortColumn];
+          const y = b[sortColumn];
 
           return sortType === "asc" ? (x > y ? 1 : -1) : x > y ? -1 : 1;
         });
@@ -108,27 +104,11 @@ const Table = <TData extends {}>(props: TTable<TData>) => {
     setSortType(sortType === "asc" ? "desc" : "asc");
   };
 
-  const handleScroll = (x: number, y: number) => {
-    // setXScroll(x);
-    // setYScroll(y);
-  };
-
-  // const handleDataUpdate = (
-  //   nextData: TData[],
-  //   scrollTo: (coord: { x: number; y: number }) => void
-  // ) => {
-  //   scrollTo({
-  //     x: 200,
-  //     y: yScroll,
-  //   });
-  // };
-
   if (!data) return null;
 
   return (
     <Container style={containerStyle} className={containerClassname}>
       <RSTable
-        onScroll={handleScroll}
         onSortColumn={handleSortColumn}
         // onDataUpdated={handleDataUpdate}
         renderEmpty={() => <NoResult />}

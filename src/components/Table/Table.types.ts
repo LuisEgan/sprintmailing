@@ -64,3 +64,7 @@ export interface TTable<TData> extends TableProps {
   containerStyle?: CSSProperties;
   containerClassname?: string;
 }
+
+export interface ITableData {
+  tableTimestamp?: string;
+}

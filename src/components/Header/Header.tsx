@@ -8,7 +8,7 @@ const Header = (props: HeaderProps) => {
   const { title, description } = props;
 
   return (
-    <HeaderWrapper className={"pb-5"}>
+    <HeaderWrapper className="pb-5">
       <HeaderTitle>{title}</HeaderTitle>
       <HeaderDescription>{description}</HeaderDescription>
     </HeaderWrapper>

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Drawer } from "rsuite";
 import { MOBILE_VIEW, SIDEBAR_WIDTH } from "settings/constants";
-import { LayoutMainContent, LayoutWrapper } from "./Layout.style";
+
 import { useWindowSize } from "utils/use-windows-size";
 import SideMenu from "components/SideMenu/SideMenu";
-import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
+import { LayoutMainContent, LayoutWrapper } from "./Layout.style";
 
 const NavBar = dynamic(() => import("components/NavBar/NavBar"), {
   ssr: false,
 });
 
 const ManagerLayout = ({ children }: any) => {
-  const { theme, setTheme } = useTheme();
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
   const wSize = useWindowSize();
 
@@ -22,9 +21,8 @@ const ManagerLayout = ({ children }: any) => {
         <Drawer
           show={showSideBar}
           placement="left"
-          size={"xs"}
+          size="xs"
           style={{ width: SIDEBAR_WIDTH }}
-          backdrop={true}
           onHide={() => {
             setShowSideBar(!showSideBar);
           }}

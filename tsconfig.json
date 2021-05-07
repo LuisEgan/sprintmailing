@@ -16,5 +16,5 @@
     "baseUrl": "src"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "custom.d.ts"]
+  "include": ["**/*.ts", "**/*.tsx", "custom.d.ts", "generate-styles.config.js"]
 }

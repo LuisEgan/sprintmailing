@@ -1,8 +1,5 @@
 import React, { useContext } from "react";
 
-import LogoDark from "assets/images/logo/dark/VerticalLogo.svg";
-import LogoLight from "assets/images/logo/light/VerticalLogo.svg";
-
 import { Button, Col, Icon, Row } from "rsuite";
 import { AuthContext } from "context/auth";
 import { useRouter } from "next/router";
@@ -12,6 +9,7 @@ import { APP_BASE_ROUTE } from "components/SideMenu/private-routes";
 import { useModal } from "context/modal/modal.provider";
 import { Login } from "components/Modal/Login/Login";
 import { Register } from "components/Modal/Register/Register";
+import { VERTICAL_LOGO_DARK, VERTICAL_LOGO_LIGHT } from "settings/constants";
 
 const Index = () => {
   const router = useRouter();
@@ -50,14 +48,14 @@ const Index = () => {
         <Col size={24}>
           <ReactSVG
             className="hidden dark:block"
-            src={LogoDark}
+            src={VERTICAL_LOGO_DARK}
             beforeInjection={(svg) => {
               svg.setAttribute("style", "width: 350px;");
             }}
           />
           <ReactSVG
             className="block dark:hidden"
-            src={LogoLight}
+            src={VERTICAL_LOGO_LIGHT}
             beforeInjection={(svg) => {
               svg.setAttribute("style", "width: 350px;");
             }}

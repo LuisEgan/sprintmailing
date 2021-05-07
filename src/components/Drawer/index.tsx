@@ -38,15 +38,13 @@ const AdminDrawer: React.FC<SpringModalProps> = ({
   onRequestClose,
   children,
   size,
-}) => {
-  return (
-    <Drawer show={isOpen} onHide={onRequestClose} size={size}>
-      <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
-        <Icon icon="close" />
-      </button>
-      <div className="p-5 w-100">{children}</div>
-    </Drawer>
-  );
-};
+}) => (
+  <Drawer show={isOpen} onHide={onRequestClose} size={size}>
+    <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
+      <Icon icon="close" />
+    </button>
+    <div className="p-5 w-100">{children}</div>
+  </Drawer>
+);
 
 export default AdminDrawer;

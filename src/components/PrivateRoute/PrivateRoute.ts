@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
     if (!isAuthenticated()) {
       Router.push("/");
     }
-  }, []);
+  }, [isAuthenticated]);
 
   return React.Children.map(children, (child) => {
     if (isValidElement(child)) {

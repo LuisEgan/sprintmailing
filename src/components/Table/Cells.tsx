@@ -1,10 +1,10 @@
 import React from "react";
 import { Button, Icon, Table } from "rsuite";
-import { ITableData } from "./Table";
 import {
   IButtonCell,
   ICustomCell,
   INormalCell,
+  ITableData,
   TRowBuilder,
 } from "./Table.types";
 
@@ -12,7 +12,7 @@ const { Cell } = Table;
 
 const getCellClassName = (
   cellClassName: TRowBuilder<ITableData, string> | string,
-  rowData: ITableData
+  rowData: ITableData,
 ): string => {
   //   let newTableRow =
   //     secondsBetweenDates(rowData.tableTimestamp) < 3 ? "newTableRow" : "";
@@ -36,7 +36,7 @@ export const CustomCell = <TData extends {}>(params: ICustomCell<TData>) => {
 
   const className = getCellClassName(
     cellClassName as string,
-    rowData as ITableData
+    rowData as ITableData,
   );
 
   return (

@@ -3,10 +3,11 @@ import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { Button, Col, Input, Row } from "rsuite";
+import { Button, Input } from "rsuite";
 import { useForm, Controller } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
+import Header from "components/Header/Header";
 
 export const Login = () => {
   const {
@@ -71,88 +72,76 @@ export const Login = () => {
 
   return (
     <div className="w-full p-5">
-      <h3
-        className="font-bold mt-3"
-        style={{ fontSize: "28px", lineHeight: "34px" }}
-      >
-        Bienvenido
-      </h3>
+      <Header {...{ title: "Bienvenido", description: "" }} />
+      <form onSubmit={handleLoginSubmit(handleLogin)}>
+        <label className="font-bold">Ingresa tu correo</label>
 
-      <Row>
-        <Col className="animate__animated animate__fadeIn">
-          <form onSubmit={handleLoginSubmit(handleLogin)}>
-            <label className="font-bold">Ingresa tu correo</label>
-
-            <Controller
-              name="email"
-              control={loginControl}
-              rules={{ required: true, validate: (value) => isEmail(value) }}
-              defaultValue=""
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  className="mt-2"
-                  placeholder="Ingresa aquí tu nombre"
-                />
-              )}
+        <Controller
+          name="email"
+          control={loginControl}
+          rules={{ required: true, validate: (value) => isEmail(value) }}
+          defaultValue=""
+          render={({ field }) => (
+            <Input
+              {...field}
+              className="mt-2"
+              placeholder="Ingresa aquí tu nombre"
             />
-            {errors && errors.email && (
-              <small className="w-full text-red-500">
-                Debes ingresar un e-mail válido
-              </small>
-            )}
-            <label className="font-bold mt-3 block">
-              Ingresa tu contraseña
-            </label>
-            <Controller
-              name="password"
-              control={loginControl}
-              rules={{ required: true }}
-              defaultValue=""
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  type="password"
-                  className="mt-2"
-                  placeholder="Ingresa aquí tu contraseña"
-                />
-              )}
+          )}
+        />
+        {errors && errors.email && (
+          <small className="w-full text-red-500">
+            Debes ingresar un e-mail válido
+          </small>
+        )}
+        <label className="font-bold mt-3 block">Ingresa tu contraseña</label>
+        <Controller
+          name="password"
+          control={loginControl}
+          rules={{ required: true }}
+          defaultValue=""
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="password"
+              className="mt-2"
+              placeholder="Ingresa aquí tu contraseña"
             />
-            {errors && errors.password && (
-              <small className="w-full text-red-500">
-                Debes ingresar una contraseña
-              </small>
-            )}
-            <div className="flex justify-end mt-3" style={{ color: "#5A27E7" }}>
-              ¿Olvidate tu contraseña?
-            </div>
-            <div className="flex justify-end mt-4">
-              <Button
-                appearance="default"
-                style={{ width: 150 }}
-                onClick={handleCloseModal}
-                className="rs-btn-big"
-              >
-                Cancelar
-              </Button>
-              <Button
-                appearance="primary"
-                style={{ width: 150 }}
-                className="ml-2 rs-btn-big"
-                loading={loginLoading || getUserLoading}
-                type="submit"
-              >
-                Acceder
-              </Button>
-            </div>
-            {loginError && (
-              <p className="w-full text-red-500 text-right mt-4">
-                {loginError.message}
-              </p>
-            )}
-          </form>
-        </Col>
-      </Row>
+          )}
+        />
+        {errors && errors.password && (
+          <small className="w-full text-red-500">
+            Debes ingresar una contraseña
+          </small>
+        )}
+        <div className="flex justify-end mt-3" style={{ color: "#5A27E7" }}>
+          ¿Olvidate tu contraseña?
+        </div>
+        <div className="flex justify-end mt-4">
+          <Button
+            appearance="default"
+            style={{ width: 150 }}
+            onClick={handleCloseModal}
+            className="rs-btn-big"
+          >
+            Cancelar
+          </Button>
+          <Button
+            appearance="primary"
+            style={{ width: 150 }}
+            className="ml-2 rs-btn-big"
+            loading={loginLoading || getUserLoading}
+            type="submit"
+          >
+            Acceder
+          </Button>
+        </div>
+        {loginError && (
+          <p className="w-full text-red-500 text-right mt-4">
+            {loginError.message}
+          </p>
+        )}
+      </form>
     </div>
   );
 };

@@ -1,7 +1,8 @@
-const path = require("path");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { merge } = require("webpack-merge");
 const multipleThemesCompile = require("webpack-multiple-themes-compile");
+const path = require("path");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const cssnano = require("cssnano");
 const themes = require("./themes.config");
 
 const commonConfig = {
@@ -22,7 +23,7 @@ const commonConfig = {
   optimization: {
     minimizer: [
       new OptimizeCSSAssetsPlugin({
-        cssProcessor: require("cssnano"),
+        cssProcessor: cssnano,
         cssProcessorOptions: {
           discardComments: { removeAll: true },
           zindex: {
