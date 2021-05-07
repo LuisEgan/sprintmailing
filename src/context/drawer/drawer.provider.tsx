@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { DrawerProps } from "rsuite";
-import AdminDrawer from "components/Drawer/Drawer";
+import AdminDrawer from "components/Drawer";
 import { IOpenDrawer, DrawerContext } from "./drawer.context";
 
 interface IDrawerProvider {}
@@ -18,10 +18,10 @@ const DrawerProvider: FC<IDrawerProvider> = (props) => {
   useEffect(() => {
     if (isOpen) {
       if (onOpen) onOpen();
-    } else {
-      if (onClose) onClose();
+    } else if (onClose) {
+      onClose();
     }
-  }, [isOpen]);
+  }, [isOpen, onClose, onOpen]);
 
   const closeDrawer = () => {
     setIsOpen(false);
@@ -58,7 +58,7 @@ const DrawerProvider: FC<IDrawerProvider> = (props) => {
       closeDrawer,
       setDrawerComponent,
     }),
-    []
+    [],
   );
 
   return (

@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { ModalProps } from "rsuite";
-import CenterModal from "components/Modal/CenterModal";
+import CenterModal from "components/Modal";
 import { IOpenModal, ModalContext } from "./modal.context";
 
 interface IModalProvider {}
@@ -18,10 +18,10 @@ const ModalProvider: FC<IModalProvider> = (props) => {
   useEffect(() => {
     if (isOpen) {
       if (onOpen) onOpen();
-    } else {
-      if (onClose) onClose();
+    } else if (onClose) {
+      onClose();
     }
-  }, [isOpen]);
+  }, [isOpen, onClose, onOpen]);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -53,7 +53,7 @@ const ModalProvider: FC<IModalProvider> = (props) => {
       closeModal,
       setModalComponent,
     }),
-    []
+    [],
   );
 
   return (

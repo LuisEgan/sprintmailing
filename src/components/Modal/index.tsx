@@ -38,21 +38,19 @@ const CenterModal: React.FC<SpringModalProps> = ({
   onRequestClose,
   children,
   size,
-}) => {
-  return (
-    <Modal
-      show={isOpen}
-      onHide={onRequestClose}
-      size={size}
-      style={{ padding: 0 }}
-      className="fodtureModal"
-    >
-      <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
-        <Icon icon="close" />
-      </button>
-      {children}
-    </Modal>
-  );
-};
+}) => (
+  <Modal
+    show={isOpen}
+    onHide={onRequestClose}
+    size={size}
+    style={{ padding: 0 }}
+    className="fodtureModal"
+  >
+    <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
+      <Icon icon="close" />
+    </button>
+    {children}
+  </Modal>
+);
 
 export default CenterModal;

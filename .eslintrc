@@ -33,6 +33,9 @@
     "React": "writable"
   },
   "rules": {
+    "import/no-absolute-path": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "import/prefer-default-export": "off",
     "react/require-default-props": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],

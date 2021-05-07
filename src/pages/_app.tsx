@@ -4,8 +4,6 @@ import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from "next/router";
 
-import client from "../settings/apollo";
-import AuthProvider from "../context/auth";
 import { ProfileProvider } from "context/profile/profile.provider";
 import ModalProvider from "context/modal/modal.provider";
 import DrawerProvider from "context/drawer/drawer.provider";
@@ -17,9 +15,11 @@ import ManagerLayout from "components/Layout/Layout";
 
 import Tailwind from "components/Tailwind/Tailwind";
 
-import "assets/global.scss";
+import "styles/global.scss";
 import "animate.css/animate.css";
 import { PRIVATE_ROUTE } from "components/SideMenu/private-routes";
+import AuthProvider from "../context/auth";
+import client from "../settings/apollo";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

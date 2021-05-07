@@ -18,7 +18,7 @@ const authLink = setContext((_, params) => {
 });
 
 const onErrorLink = onError((errorHandler) => {
-  let { response } = errorHandler;
+  const { response } = errorHandler;
   if (
     response &&
     response.errors &&

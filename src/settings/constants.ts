@@ -1,5 +1,5 @@
-import LogoDark from "assets/images/logo/dark/HorizontalLogo.svg";
-import LogoLight from "assets/images/logo/light/HorizontalLogo.svg";
+import LogoDark from "/images/logo/dark/HorizontalLogo.svg";
+import LogoLight from "/images/logo/light/HorizontalLogo.svg";
 
 export const USER_TOKEN_PERSIST = "userToken";
 export const VENDOR_ID_PERSIST = "selectedVendorId";

@@ -8,16 +8,12 @@ import { useForm, Controller } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
 
-interface IRegisterProps {}
+export const Register = () => {
+  const [
+    getUser,
+    { data: getUserData, loading: getUserLoading },
+  ] = useLazyQuery(gqlUser.queries.GET_USER);
 
-export const Register = (props: IRegisterProps) => {
-  const {
-    handleSubmit: handleRegisterSubmit,
-    control: registerControl,
-    formState: { errors },
-  } = useForm();
-  const router = useRouter();
-  const { closeModal } = useModal();
   const [signup, { loading: signupLoading, error: signupError }] = useMutation(
     gqlUser.mutations.SIGNUP,
     {
@@ -30,13 +26,16 @@ export const Register = (props: IRegisterProps) => {
           },
         });
       },
-    }
+    },
   );
 
-  const [
-    getUser,
-    { data: getUserData, loading: getUserLoading },
-  ] = useLazyQuery(gqlUser.queries.GET_USER);
+  const {
+    handleSubmit: handleRegisterSubmit,
+    control: registerControl,
+    formState: { errors },
+  } = useForm();
+  const router = useRouter();
+  const { closeModal } = useModal();
 
   useEffect(() => {
     if (getUserData) {

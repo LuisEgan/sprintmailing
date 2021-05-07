@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useReducer } from "react";
-import { ProfileContext } from "./profile.context";
 import { useQuery } from "@apollo/client";
-import { AuthContext } from "../auth";
 import { gqlUser } from "gql";
+
 import { IUser } from "utils/Types/User.types";
+import { ProfileContext } from "./profile.context";
+import { AuthContext } from "../auth";
 
 type Action =
   | { type: "UPDATE_SELECTED_VENDOR"; payload: any }
@@ -27,6 +28,7 @@ export const ProfileProvider: React.FunctionComponent<ProfileProviderProps> = ({
   children,
 }) => {
   const { isAuthenticated } = useContext(AuthContext);
+
   const { data: userData, error } = useQuery<
     { user: IUser },
     { accessToken: string }

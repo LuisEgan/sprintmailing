@@ -1,7 +1,6 @@
 import React from "react";
 import "tailwindcss/tailwind.css";
-const Tailwind = () => {
-  return <></>;
-};
+
+const Tailwind = () => <></>;
 
 export default Tailwind;

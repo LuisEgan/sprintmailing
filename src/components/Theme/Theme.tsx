@@ -10,7 +10,7 @@ export const loadStyleSheet = (theme: string, setTheme: any) => {
   if (!initialLoad) {
     const layout = document.getElementById("layoutMainContent");
     if (layout) {
-      layout.classList.add(`animate__fast`);
+      layout.classList.add("animate__fast");
       layout.classList.add(`${OutAnimation}`);
     }
   }

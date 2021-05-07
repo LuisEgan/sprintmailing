@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import LogoDark from "assets/images/logo/dark/VerticalLogo.svg";
 import LogoLight from "assets/images/logo/light/VerticalLogo.svg";
@@ -6,41 +6,18 @@ import LogoLight from "assets/images/logo/light/VerticalLogo.svg";
 import { Button, Col, Icon, Row } from "rsuite";
 import { AuthContext } from "context/auth";
 import { useRouter } from "next/router";
-import { gqlUser } from "gql";
-import { useLazyQuery, useMutation } from "@apollo/client";
 import { ReactSVG } from "react-svg";
-import {
-  ILoginActiveDirectory,
-  ILoginActiveDirectoryRes,
-} from "gql/User/queries";
+
 import { APP_BASE_ROUTE } from "components/SideMenu/private-routes";
-import { useTheme } from "next-themes";
 import { useModal } from "context/modal/modal.provider";
 import { Login } from "components-modal/Login/Login";
 import { Register } from "components-modal/Register/Register";
 
 const Index = () => {
   const router = useRouter();
-  const { theme } = useTheme();
   const { openModal } = useModal();
 
-  const { authenticate, isAuthenticated } = useContext(AuthContext);
-
-  const [
-    getUser,
-    { data: getUserData, loading: getUserLoading },
-  ] = useLazyQuery(gqlUser.queries.GET_USER);
-
-  useEffect(() => {
-    if (getUserData) {
-      const {
-        user: { id: userId },
-      } = getUserData;
-      localStorage.setItem("userId", `${userId}`);
-
-      authenticate({ accessToken: localStorage.getItem("userToken") });
-    }
-  }, [getUserData, router.pathname, authenticate]);
+  const { isAuthenticated } = useContext(AuthContext);
 
   const handleLogin = () => {
     openModal({
@@ -86,23 +63,13 @@ const Index = () => {
             }}
           />
         </Col>
-        <Col size={24} className={"flex justify-center mt-5"}>
-          <Button
-            appearance="primary"
-            size="lg"
-            onClick={handleLogin}
-            loading={getUserLoading}
-          >
+        <Col size={24} className="flex justify-center mt-5">
+          <Button appearance="primary" size="lg" onClick={handleLogin}>
             Iniciar sesión
           </Button>
         </Col>
-        <Col size={24} className={"flex justify-center mt-5"}>
-          <Button
-            appearance="primary"
-            size="lg"
-            onClick={handleRegister}
-            loading={getUserLoading}
-          >
+        <Col size={24} className="flex justify-center mt-5">
+          <Button appearance="primary" size="lg" onClick={handleRegister}>
             Regístrarse
           </Button>
         </Col>
