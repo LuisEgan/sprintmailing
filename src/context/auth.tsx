@@ -2,9 +2,9 @@ import { useApolloClient } from "@apollo/client";
 import React from "react";
 import jwt_decode from "jwt-decode";
 
-import { USER_TOKEN_PERSIST } from "settings/constants";
-import { VENDOR_ID_PERSIST } from "settings/constants";
-import { USER_ID_PERSIST } from "settings/constants";
+import { USER_TOKEN_PERSIST , VENDOR_ID_PERSIST , USER_ID_PERSIST } from "settings/constants";
+
+
 import { Router, useRouter } from "next/router";
 
 const isBrowser = typeof window !== "undefined";
@@ -30,7 +30,7 @@ const AuthProvider = (props: any) => {
   const getRoles = (): string => {
     const token = localStorage.getItem(USER_TOKEN_PERSIST);
     const decoded: any = token && jwt_decode(token);
-    return decoded && decoded["role"];
+    return decoded && decoded.role;
   };
 
   const authenticate = ({ accessToken }, cb) => {
@@ -66,4 +66,4 @@ const AuthProvider = (props: any) => {
 };
 
 export default AuthProvider;
-//dep
+// dep
