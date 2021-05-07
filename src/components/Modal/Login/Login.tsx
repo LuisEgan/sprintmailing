@@ -4,14 +4,11 @@ import { gqlUser } from "gql";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { Button, Col, Input, Row } from "rsuite";
-import { LoginTab } from "./Login.style";
 import { useForm, Controller } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
 
-interface ILoginProps {}
-
-export const Login = (props: ILoginProps) => {
+export const Login = () => {
   const {
     handleSubmit: handleLoginSubmit,
     control: loginControl,
@@ -20,6 +17,11 @@ export const Login = (props: ILoginProps) => {
 
   const router = useRouter();
   const { closeModal } = useModal();
+
+  const [
+    getUser,
+    { data: getUserData, loading: getUserLoading },
+  ] = useLazyQuery(gqlUser.queries.GET_USER);
 
   const [login, { loading: loginLoading, error: loginError }] = useMutation(
     gqlUser.queries.LOGIN,
@@ -34,13 +36,8 @@ export const Login = (props: ILoginProps) => {
         });
       },
       onError() {},
-    }
+    },
   );
-
-  const [
-    getUser,
-    { data: getUserData, loading: getUserLoading },
-  ] = useLazyQuery(gqlUser.queries.GET_USER);
 
   useEffect(() => {
     if (getUserData) {
@@ -51,7 +48,7 @@ export const Login = (props: ILoginProps) => {
       closeModal();
       router.push(AFTER_LOGIN_REDIRECT);
     }
-  }, [getUserData, router.pathname]);
+  }, [getUserData, router.pathname, closeModal, router]);
 
   const handleLogin = (data) => {
     try {
@@ -63,7 +60,9 @@ export const Login = (props: ILoginProps) => {
           },
         },
       });
-    } catch (e) {}
+    } catch (e) {
+      console.error("🚀 ~ file: Login.tsx ~ line 64 ~ handleLogin ~ e", e);
+    }
   };
 
   const handleCloseModal = () => {
@@ -88,7 +87,7 @@ export const Login = (props: ILoginProps) => {
               name="email"
               control={loginControl}
               rules={{ required: true, validate: (value) => isEmail(value) }}
-              defaultValue={""}
+              defaultValue=""
               render={({ field }) => (
                 <Input
                   {...field}
@@ -109,7 +108,7 @@ export const Login = (props: ILoginProps) => {
               name="password"
               control={loginControl}
               rules={{ required: true }}
-              defaultValue={""}
+              defaultValue=""
               render={({ field }) => (
                 <Input
                   {...field}

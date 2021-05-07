@@ -10,7 +10,7 @@ import { AuthContext } from "context/auth";
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useContext(AuthContext);
-  // * Redirect to home if not logged in
+  // * Redirect to home if not logged in2
   useEffect(() => {
     if (!isAuthenticated()) {
       Router.push("/");
