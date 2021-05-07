@@ -16,8 +16,8 @@ import {
 import { APP_BASE_ROUTE } from "components/SideMenu/private-routes";
 import { useTheme } from "next-themes";
 import { useModal } from "context/modal/modal.provider";
-import { Login } from "modal-components/Login/Login";
-import { Register } from "modal-components/Register/Register";
+import { Login } from "components-modal/Login/Login";
+import { Register } from "components-modal/Register/Register";
 
 const Index = () => {
   const router = useRouter();
