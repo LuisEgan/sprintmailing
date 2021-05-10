@@ -1,13 +1,14 @@
 import { useMutation } from "@apollo/client";
 import Header from "components/Header/Header";
 import { Login } from "components/Modal/Login/Login";
+import { PasswordInput } from "components/PasswordInput";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { IChangePasswordInput } from "gql/User/mutations";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Input } from "rsuite";
+import { Button } from "rsuite";
 import { IUser } from "utils/Types/User.types";
 
 const Recover = () => {
@@ -77,7 +78,7 @@ const Recover = () => {
               rules={{ required: true }}
               defaultValue=""
               render={({ field }) => (
-                <Input
+                <PasswordInput
                   {...field}
                   className="mt-2"
                   placeholder="Ingresa aquí tu nueva contraseña"
@@ -102,7 +103,7 @@ const Recover = () => {
               }}
               defaultValue=""
               render={({ field }) => (
-                <Input
+                <PasswordInput
                   {...field}
                   className="mt-2"
                   placeholder="Repite tu nueva contraseña"
@@ -119,7 +120,7 @@ const Recover = () => {
 
             <Button
               appearance="primary"
-              className="mt-2 w-full rs-btn-big"
+              className="mt-5 w-full rs-btn-big"
               loading={recoveryLoading}
               type="submit"
             >
