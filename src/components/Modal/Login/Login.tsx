@@ -8,6 +8,8 @@ import { useForm, Controller } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
 import Header from "components/Header/Header";
+import { PasswordInput } from "components/PasswordInput";
+import { Recovery } from "../Recovery";
 
 export const Login = () => {
   const {
@@ -17,7 +19,7 @@ export const Login = () => {
   } = useForm();
 
   const router = useRouter();
-  const { closeModal } = useModal();
+  const { closeModal, openModal } = useModal();
 
   const [
     getUser,
@@ -70,23 +72,25 @@ export const Login = () => {
     closeModal();
   };
 
+  const handleRecovery = () => {
+    openModal({
+      modalComponent: <Recovery />,
+      modalSize: "sm",
+    });
+  };
+
   return (
     <div className="w-full p-5">
       <Header {...{ title: "Bienvenido", description: "" }} />
       <form onSubmit={handleLoginSubmit(handleLogin)}>
         <label className="font-bold">Ingresa tu correo</label>
-
         <Controller
           name="email"
           control={loginControl}
           rules={{ required: true, validate: (value) => isEmail(value) }}
           defaultValue=""
           render={({ field }) => (
-            <Input
-              {...field}
-              className="mt-2"
-              placeholder="Ingresa aquí tu nombre"
-            />
+            <Input {...field} placeholder="Ingresa aquí tu email" />
           )}
         />
         {errors && errors.email && (
@@ -101,10 +105,9 @@ export const Login = () => {
           rules={{ required: true }}
           defaultValue=""
           render={({ field }) => (
-            <Input
+            <PasswordInput
               {...field}
               type="password"
-              className="mt-2"
               placeholder="Ingresa aquí tu contraseña"
             />
           )}
@@ -114,7 +117,12 @@ export const Login = () => {
             Debes ingresar una contraseña
           </small>
         )}
-        <div className="flex justify-end mt-3" style={{ color: "#5A27E7" }}>
+        <div
+          style={{ cursor: "pointer" }}
+          aria-hidden="true"
+          className="flex justify-end mt-3 font-bold"
+          onClick={handleRecovery}
+        >
           ¿Olvidate tu contraseña?
         </div>
         <div className="flex justify-end mt-4">

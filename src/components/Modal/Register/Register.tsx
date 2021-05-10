@@ -8,6 +8,7 @@ import { useForm, Controller } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
 import Header from "components/Header/Header";
+import { PasswordInput } from "components/PasswordInput";
 
 export const Register = () => {
   const {
@@ -77,7 +78,7 @@ export const Register = () => {
       <Header {...{ title: "Regístrate", description: "" }} />
       <form onSubmit={handleRegisterSubmit(handleRegister)}>
         <label className="font-bold" htmlFor="name">
-          ¿Cómo te llamas?
+          ¿Cuál es tu nombre?
         </label>
 
         <Controller
@@ -86,11 +87,7 @@ export const Register = () => {
           control={registerControl}
           rules={{ required: true }}
           render={({ field }) => (
-            <Input
-              {...field}
-              className="mt-3"
-              placeholder="Ingresa aquí tu nombre"
-            />
+            <Input {...field} placeholder="Ingresa aquí tu nombre" />
           )}
         />
         {errors && errors.name && (
@@ -98,7 +95,7 @@ export const Register = () => {
             Debes ingresar tu nombre
           </small>
         )}
-        <label className="font-bold mt-3 block">¿Cuál son tus apellidos?</label>
+        <label className="font-bold mt-2 block"> ¿Cuál es tu apellido?</label>
         <Controller
           name="lastname"
           defaultValue=""
@@ -114,9 +111,7 @@ export const Register = () => {
           </small>
         )}
 
-        <label className="font-bold mt-3 block">
-          Dinos cuál es tu correo electrónico
-        </label>
+        <label className="font-bold mt-2 block">¿Cuál es tu e-mail?</label>
 
         <Controller
           name="email"
@@ -137,7 +132,7 @@ export const Register = () => {
           </small>
         )}
 
-        <label className="font-bold mt-3 block">Ingresa tu contraseña</label>
+        <label className="font-bold mt-2 block">Ingresa tu contraseña</label>
 
         <Controller
           name="password"
@@ -145,7 +140,10 @@ export const Register = () => {
           control={registerControl}
           rules={{ required: true }}
           render={({ field }) => (
-            <Input {...field} placeholder="Ingresa aquí tu contraseña" />
+            <PasswordInput
+              {...field}
+              placeholder="Ingresa aquí tu contraseña"
+            />
           )}
         />
         {errors && errors.password && (
@@ -164,7 +162,7 @@ export const Register = () => {
             onClick={handleCloseModal}
             className="rs-btn-big"
           >
-            Cancelar
+            <span className="text-red-500">Cancelar</span>
           </Button>
           <Button
             appearance="primary"

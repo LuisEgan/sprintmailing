@@ -31,3 +31,27 @@
     }
   }
 }
+
+.rs-input-group.rs-input-group-inside .rs-input-group-addon {
+  padding: 0;
+  cursor: pointer;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset; /* Change the color to your own background color */
+  -webkit-text-fill-color: #000;
+  -webkit-background-clip: text !important;
+}
+
+.dark {
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #1a1d24 inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: #fff;
+    -webkit-background-clip: text !important;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 0.2rem;
+}

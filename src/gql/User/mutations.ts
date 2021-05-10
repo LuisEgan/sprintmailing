@@ -8,4 +8,34 @@ const SIGNUP = gql`
   }
 `;
 
-export default { SIGNUP };
+export interface IChangePasswordRequestInput {
+  email: string;
+}
+
+const CHANGE_PASSWORD = gql`
+  mutation ChangePassword(
+    $changePasswordRequestInput: ChangePasswordRequestInput!
+  ) {
+    changePassword(changePasswordRequestInput: $changePasswordRequestInput) {
+      id
+      name
+      email
+    }
+  }
+`;
+
+export interface IChangePasswordInput {
+  passwordRecoveryToken: string;
+  userId: string;
+  password: string;
+}
+
+const DO_RESET_PASSWORD = gql`
+  mutation DoResetPassword($changePasswordInput: ChangePasswordInput!) {
+    doResetPassword(changePasswordInput: $changePasswordInput) {
+      id
+    }
+  }
+`;
+
+export default { SIGNUP, CHANGE_PASSWORD, DO_RESET_PASSWORD };

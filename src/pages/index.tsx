@@ -10,6 +10,7 @@ import { useModal } from "context/modal/modal.provider";
 import { Login } from "components/Modal/Login/Login";
 import { Register } from "components/Modal/Register/Register";
 import { VERTICAL_LOGO_DARK, VERTICAL_LOGO_LIGHT } from "settings/constants";
+import { Recovery } from "components/Modal/Recovery";
 
 const Index = () => {
   const router = useRouter();
@@ -31,19 +32,17 @@ const Index = () => {
     });
   };
 
+  const handleRecovery = () => {
+    openModal({
+      modalComponent: <Recovery />,
+      modalSize: "sm",
+    });
+  };
+
   if (isAuthenticated()) router.push(APP_BASE_ROUTE.url);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100vw",
-        height: "100vh",
-      }}
-      className="bg-white dark:bg-gray-900"
-    >
+    <div className="bg-white dark:bg-gray-900 w-screen h-screen flex justify-center items-center">
       <Row>
         <Col size={24}>
           <ReactSVG
@@ -69,6 +68,11 @@ const Index = () => {
         <Col size={24} className="flex justify-center mt-5">
           <Button appearance="primary" size="lg" onClick={handleRegister}>
             Regístrarse
+          </Button>
+        </Col>
+        <Col size={24} className="flex justify-center mt-5">
+          <Button appearance="primary" size="lg" onClick={handleRecovery}>
+            Recuperar Contraseña
           </Button>
         </Col>
         <Col size={24} className="text-center mt-4">
