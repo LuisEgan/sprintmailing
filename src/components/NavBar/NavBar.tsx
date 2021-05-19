@@ -1,18 +1,36 @@
 /*  ./components/Navbar.jsx     */
 import { AuthContext } from "context/auth";
-import { Button, ButtonToolbar, Dropdown, Icon } from "rsuite";
+import { Button, ButtonToolbar, Dropdown, Icon, SelectPicker } from "rsuite";
 import { useProfile } from "context/profile/profile.context";
 import React, { useContext } from "react";
 import { useTheme } from "next-themes";
 import { loadStyleSheet } from "components/Theme/Theme";
 import { ReactSVG } from "react-svg";
 import { LOGO_DARK, LOGO_LIGHT } from "settings/constants";
+import setLanguage from "next-translate/setLanguage";
+import useTranslation from "next-translate/useTranslation";
 
 interface NavbarProps {
   showSideBar: boolean;
   setShowSideBar: (showSideBar: boolean) => void;
 }
+
+export enum EAvailableLanguages {
+  es = "es",
+  en = "en",
+}
+interface IAvailableLenguages {
+  value: EAvailableLanguages;
+  label: string;
+}
+export const availableLanguages: IAvailableLenguages[] = [
+  { value: EAvailableLanguages.es, label: "Español" },
+  { value: EAvailableLanguages.en, label: "English" },
+];
+
 const Navbar = (props: NavbarProps) => {
+  const { lang } = useTranslation("common");
+
   const { signout } = useContext(AuthContext);
   const { user } = useProfile();
   const { theme, setTheme } = useTheme();
@@ -26,6 +44,10 @@ const Navbar = (props: NavbarProps) => {
     const newTheme = theme === "dark" ? "light" : "dark";
 
     loadStyleSheet(newTheme, setTheme);
+  };
+
+  const changeLanguage = (lang: EAvailableLanguages) => {
+    setLanguage(lang);
   };
 
   return (
@@ -91,6 +113,17 @@ const Navbar = (props: NavbarProps) => {
               )}
             </>
           </Button>
+          {lang && (
+            <SelectPicker
+              data={availableLanguages}
+              style={{ width: 120 }}
+              defaultValue={lang}
+              onChange={changeLanguage}
+              cleanable={false}
+              searchable={false}
+              placement="bottomEnd"
+            />
+          )}
           <Dropdown
             appearance="primary"
             title={user?.name}
