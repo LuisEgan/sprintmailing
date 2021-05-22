@@ -177,3 +177,9 @@ const Profile = () => {
 };
 
 export default Profile;
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}
