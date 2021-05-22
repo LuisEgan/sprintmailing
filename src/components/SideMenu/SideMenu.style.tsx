@@ -6,7 +6,6 @@ export const SidebarWrapper = styled.div`
 `;
 
 export const AvatarContainer = styled.div`
-  padding: 2rem;
   display: flex;
   align-items: center;
 `;
@@ -15,6 +14,8 @@ export const AvatarImage = styled.div`
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 100%;
+  background-size: cover;
+  background-position: center center;
 `;
 
 export const UserInfoContainer = styled.div`

@@ -1,12 +1,12 @@
 import React from "react";
 import { Icon, Modal, ModalProps } from "rsuite";
 
-type SpringModalProps = {
+type TModalProps = {
   isOpen: boolean;
   onRequestClose: () => void;
   children: React.ReactNode;
   style?: any;
-  size: ModalProps["size"];
+  modalProps: ModalProps;
 };
 
 const buttonStyle = {
@@ -33,18 +33,18 @@ const buttonStyle = {
   },
 };
 
-const CenterModal: React.FC<SpringModalProps> = ({
+const CenterModal: React.FC<TModalProps> = ({
   isOpen,
   onRequestClose,
   children,
-  size,
+  modalProps,
 }) => (
   <Modal
     show={isOpen}
     onHide={onRequestClose}
-    size={size}
     style={{ padding: 0 }}
     className="fodtureModal"
+    {...modalProps}
   >
     <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
       <Icon icon="close" />

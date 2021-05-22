@@ -29,7 +29,7 @@ export const Recovery = () => {
     onCompleted({ changePassword }) {
       openModal({
         modalComponent: <EmailSended {...changePassword} />,
-        modalSize: "sm",
+        modalProps: { size: "sm" },
       });
     },
     onError() {},

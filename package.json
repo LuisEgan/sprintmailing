@@ -43,6 +43,7 @@
     "react": "^16.13.1",
     "react-adal": "^0.5.2",
     "react-dom": "^16.13.1",
+    "react-easy-crop": "^3.3.3",
     "react-hook-form": "^7.4.0",
     "react-svg": "^13.0.2",
     "rsuite": "^4.9.3",

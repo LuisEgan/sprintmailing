@@ -1,0 +1,53 @@
+.rs-btn-primary,
+.rs-btn-primary:hover {
+  color: #ffffff;
+}
+
+.rs-table-cell,
+.rs-table-row-header {
+  background-color: transparent !important;
+}
+
+.dark .dark\:block {
+  display: block !important;
+}
+
+.rs-modal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .rs-modal {
+    padding: 0 1rem !important;
+    margin: 0 !important;
+    max-width: 100%;
+
+    .rs-modal-dialog {
+      max-width: 100% !important;
+      max-height: 80vh;
+    }
+    .rs-modal-content {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
+}
+
+.rs-input-group.rs-input-group-inside .rs-input-group-addon {
+  padding: 0;
+  cursor: pointer;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset; /* Change the color to your own background color */
+  -webkit-text-fill-color: #000;
+  -webkit-background-clip: text !important;
+}
+
+.dark {
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #1a1d24 inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: #fff;
+    -webkit-background-clip: text !important;
+  }
+}

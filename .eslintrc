@@ -33,6 +33,7 @@
     "React": "writable"
   },
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
     "no-nested-ternary": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "import/no-absolute-path": "off",

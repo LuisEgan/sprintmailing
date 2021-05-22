@@ -1,5 +1,5 @@
 import { useApolloClient } from "@apollo/client";
-import React from "react";
+import React, { useContext } from "react";
 import jwt_decode from "jwt-decode";
 
 import {
@@ -67,6 +67,8 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
 
 export default AuthProvider;
 // dep

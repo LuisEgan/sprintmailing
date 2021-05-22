@@ -10,7 +10,7 @@ const ModalProvider: FC<IModalProvider> = (props) => {
 
   const [modal, setModal] = useState<JSX.Element | null>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [size, setSize] = useState<ModalProps["size"]>("xs");
+  const [modalProps, setModalProps] = useState<ModalProps>();
 
   const [onOpen, setOnOpen] = useState<Function | null>();
   const [onClose, setOnClose] = useState<Function | null>();
@@ -40,12 +40,17 @@ const ModalProvider: FC<IModalProvider> = (props) => {
   const value = useMemo(
     () => ({
       openModal: (params: IOpenModal) => {
-        const { modalComponent, modalSize, onOpenModal, onCloseModal } = params;
+        const {
+          modalComponent,
+          modalProps,
+          onOpenModal,
+          onCloseModal,
+        } = params;
 
         setIsOpen(true);
         setModal(modalComponent);
 
-        if (modalSize) setSize(modalSize);
+        if (modalProps) setModalProps(modalProps);
         if (onOpenModal) setOnOpen(() => onOpenModal);
         if (onCloseModal) setOnClose(() => onCloseModal);
       },
@@ -58,7 +63,7 @@ const ModalProvider: FC<IModalProvider> = (props) => {
 
   return (
     <ModalContext.Provider {...{ value }}>
-      <CenterModal {...{ size, isOpen }} onRequestClose={closeModal}>
+      <CenterModal {...{ modalProps, isOpen }} onRequestClose={closeModal}>
         {modal}
       </CenterModal>
 

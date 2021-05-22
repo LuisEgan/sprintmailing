@@ -34,7 +34,7 @@ const ManagerLayout = ({ children }: any) => {
       )}
       <LayoutMainContent className="animate__animated" id="layoutMainContent">
         <NavBar {...{ showSideBar, setShowSideBar }} />
-        {children}
+        <div className="p-6">{children}</div>
       </LayoutMainContent>
     </LayoutWrapper>
   );

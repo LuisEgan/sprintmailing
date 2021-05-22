@@ -55,7 +55,7 @@ const Recover = () => {
   const handleLogin = () => {
     openModal({
       modalComponent: <Login />,
-      modalSize: "sm",
+      modalProps: { size: "sm" },
     });
   };
 

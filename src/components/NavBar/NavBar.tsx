@@ -1,8 +1,8 @@
 /*  ./components/Navbar.jsx     */
-import { AuthContext } from "context/auth";
+import { useAuth } from "context/auth";
 import { Button, ButtonToolbar, Dropdown, Icon, SelectPicker } from "rsuite";
 import { useProfile } from "context/profile/profile.context";
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { loadStyleSheet } from "components/Theme/Theme";
 import { ReactSVG } from "react-svg";
@@ -29,9 +29,10 @@ export const availableLanguages: IAvailableLenguages[] = [
 ];
 
 const Navbar = (props: NavbarProps) => {
+  const [isToggleThemeEnable, setIsToggleThemeEnable] = useState<boolean>(true);
   const { lang } = useTranslation("common");
 
-  const { signout } = useContext(AuthContext);
+  const { signout } = useAuth();
   const { user } = useProfile();
   const { theme, setTheme } = useTheme();
   const { showSideBar, setShowSideBar } = props;
@@ -42,7 +43,7 @@ const Navbar = (props: NavbarProps) => {
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
-
+    setIsToggleThemeEnable(false);
     loadStyleSheet(newTheme, setTheme);
   };
 
@@ -50,9 +51,15 @@ const Navbar = (props: NavbarProps) => {
     setLanguage(lang);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsToggleThemeEnable(true);
+    }, 1000);
+  }, [theme]);
+
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap  p-3 ">
+      <nav className="flex items-center justify-between flex-wrap  p-3 bg-gray-50 dark:bg-gray-900 shadow-sm">
         <div className="flex">
           <button
             className="inline-flex p-3 mr-2 rounded lg:hidden text-black dark:text-white  hover:text-white outline-none "
@@ -91,30 +98,34 @@ const Navbar = (props: NavbarProps) => {
           </div>
         </div>
         <ButtonToolbar>
-          <Button appearance="link" className="mr-2" onClick={toggleTheme}>
+          <Button
+            appearance="link"
+            className="mr-2"
+            disabled={!isToggleThemeEnable}
+            onClick={toggleTheme}
+          >
             <>
               {theme === "dark" && (
                 <Icon
                   icon="sun-o"
-                  className="text-white animate__animated animate__zoomIn"
+                  className="text-white animate__animated animate__slow animate__zoomIn"
                   componentClass="span"
                   size="lg"
-                  onClick={toggleTheme}
                 />
               )}
               {theme === "light" && (
                 <Icon
                   icon="moon-o"
-                  className="text-black animate__animated animate__zoomIn"
+                  className="text-black animate__animated animate__slow animate__zoomIn"
                   componentClass="span"
                   size="lg"
-                  onClick={toggleTheme}
                 />
               )}
             </>
           </Button>
-          {lang && (
+          {process.env.NEXT_PUBLIC_ENABLE_MULTI_LANGUAGE && lang && (
             <SelectPicker
+              className="mr-2"
               data={availableLanguages}
               style={{ width: 120 }}
               defaultValue={lang}

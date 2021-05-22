@@ -1,7 +1,7 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-class MyDocument extends Document {
+class ExtendedDocument extends Document {
   render() {
     return (
       <Html>
@@ -15,4 +15,9 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument;
+export default ExtendedDocument;
+
+export async function getServerSideProps(context) {
+  const initialProps = await Document.getInitialProps(context);
+  return { ...initialProps };
+}

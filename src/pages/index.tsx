@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { Button, Col, Icon, Row } from "rsuite";
-import { AuthContext } from "context/auth";
+import { useAuth } from "context/auth";
 import { useRouter } from "next/router";
 import { ReactSVG } from "react-svg";
 
@@ -16,26 +16,26 @@ const Index = () => {
   const router = useRouter();
   const { openModal } = useModal();
 
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
 
   const handleLogin = () => {
     openModal({
       modalComponent: <Login />,
-      modalSize: "sm",
+      modalProps: { size: "sm" },
     });
   };
 
   const handleRegister = () => {
     openModal({
       modalComponent: <Register />,
-      modalSize: "sm",
+      modalProps: { size: "sm" },
     });
   };
 
   const handleRecovery = () => {
     openModal({
       modalComponent: <Recovery />,
-      modalSize: "sm",
+      modalProps: { size: "sm" },
     });
   };
 

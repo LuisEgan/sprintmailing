@@ -75,7 +75,7 @@ export const Login = () => {
   const handleRecovery = () => {
     openModal({
       modalComponent: <Recovery />,
-      modalSize: "sm",
+      modalProps: { size: "sm" },
     });
   };
 

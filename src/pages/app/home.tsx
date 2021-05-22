@@ -13,15 +13,13 @@ const Clevers = () => {
     // ] = useLazyQuery(gqlQuery.queries.NAME_OF_QUERY);
 
     <>
-      <div className="p-3">
-        <Header
-          {...{
-            title: "Home",
-            description: "Un super home para hacer lo que quieras",
-          }}
-        />
-      </div>
-      <Row>
+      <Header
+        {...{
+          title: "Home",
+          description: "Un super home para hacer lo que quieras",
+        }}
+      />
+      <Row className="pl-1">
         <Col size="24">{t("example")}</Col>
       </Row>
     </>

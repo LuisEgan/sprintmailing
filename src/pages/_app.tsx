@@ -16,6 +16,8 @@ import ManagerLayout from "components/Layout/Layout";
 import Tailwind from "components/Tailwind/Tailwind";
 
 import "styles/global.scss";
+import "styles/overwrite-rsuite.scss";
+
 import "animate.css/animate.css";
 import { PRIVATE_ROUTE } from "components/SideMenu/private-routes";
 import AuthProvider from "../context/auth";

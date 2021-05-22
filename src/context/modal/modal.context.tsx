@@ -3,7 +3,7 @@ import { ModalProps } from "rsuite/lib/Modal/Modal";
 
 export interface IOpenModal {
   modalComponent: JSX.Element;
-  modalSize?: ModalProps["size"];
+  modalProps?: ModalProps;
   onOpenModal?: () => void;
   onCloseModal?: () => void;
 }

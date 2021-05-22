@@ -38,4 +38,17 @@ const DO_RESET_PASSWORD = gql`
   }
 `;
 
-export default { SIGNUP, CHANGE_PASSWORD, DO_RESET_PASSWORD };
+const UPDATE_USER_PROFILE = gql`
+  mutation updateProfile($updateProfileInput: UpdateProfileInput!) {
+    updateProfile(updateProfileInput: $updateProfileInput) {
+      id
+    }
+  }
+`;
+
+export default {
+  SIGNUP,
+  CHANGE_PASSWORD,
+  DO_RESET_PASSWORD,
+  UPDATE_USER_PROFILE,
+};

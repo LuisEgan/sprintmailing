@@ -35,10 +35,11 @@ const SideMenu = (props: SideMenuProps) => {
   return (
     <SidebarWrapper style={{ width: SIDEBAR_WIDTH }}>
       <Sidenav
-        defaultOpenKeys={["3", "4"]}
         style={{ width: SIDEBAR_WIDTH, height: "100%" }}
+        className="bg-gray-50 dark:bg-gray-900 shadow-sm"
       >
         <Sidenav.Header
+          className="bg-gray-50 dark:bg-gray-900"
           style={{
             height: 60,
             display: "flex",
@@ -80,9 +81,13 @@ const SideMenu = (props: SideMenuProps) => {
             </svg>
           </button>
         </Sidenav.Header>
-        <Sidenav.Body className="pt-5">
-          <AvatarContainer>
-            <AvatarImage className="bg-gray-900 dark:bg-white" />
+        <Sidenav.Body className="pt-4">
+          <AvatarContainer className="pl-4 pb-5 mt-3">
+            <AvatarImage
+              style={{ backgroundImage: `url(${user?.profileImage})` }}
+              className="bg-gray-50 dark:bg-black border-2 border-current-500"
+            />
+
             <UserInfoContainer>
               <UserInfo>
                 {user?.name} {user?.lastname}

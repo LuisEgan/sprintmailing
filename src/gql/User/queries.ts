@@ -8,22 +8,14 @@ const LOGIN = gql`
   }
 `;
 
-const GET_ACTIVE_USER = gql`
-  query activeUsers {
-    activeUsers {
-      id
-      name
-      lastname
-    }
-  }
-`;
-
 const GET_USER = gql`
   query GetMyUser {
     user {
       id
       profileImage
       name
+      lastname
+      email
     }
   }
 `;
@@ -35,6 +27,7 @@ const GET_FULL_USER = gql`
       profileImage
       name
       lastname
+      email
     }
   }
 `;
@@ -43,5 +36,4 @@ export default {
   GET_USER,
   GET_FULL_USER,
   LOGIN,
-  GET_ACTIVE_USER,
 };

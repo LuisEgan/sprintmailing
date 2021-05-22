@@ -1,15 +1,9 @@
-import React, {
-  useEffect,
-  isValidElement,
-  cloneElement,
-  useContext,
-} from "react";
+import React, { useEffect, isValidElement, cloneElement } from "react";
 import Router from "next/router";
-
-import { AuthContext } from "context/auth";
+import { useAuth } from "../../context/auth";
 
 const PrivateRoute = ({ children }) => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
   // * Redirect to home if not logged in2
   useEffect(() => {
     if (!isAuthenticated()) {

@@ -18,9 +18,11 @@ const onLoad = (theme: string, setTheme: any) => {
     const layout = document.getElementById("layoutMainContent");
     setTheme(theme);
     if (layout) {
-      layout.classList.remove("animate__fast");
-      layout.classList.add(`${InAnimation}`);
-      layout.classList.remove(`${OutAnimation}`);
+      setTimeout(() => {
+        layout.classList.remove("animate__fast");
+        layout.classList.add(`${InAnimation}`);
+        layout.classList.remove(`${OutAnimation}`);
+      }, 500);
     }
   } else {
     initialLoad = false;
@@ -59,7 +61,7 @@ const Theme = () => {
         loadStyleSheet(theme, setTheme);
       }
     }
-  }, [mounted, theme, setTheme]);
+  }, [mounted]);
 
   return (
     <Head>
@@ -67,6 +69,7 @@ const Theme = () => {
         href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700"
         rel="stylesheet"
       />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     </Head>
   );
 };

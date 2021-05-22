@@ -8,9 +8,14 @@ interface IPrivateRoute {
 
 export const PRIVATE_ROUTE: IPrivateRoute[] = [
   {
-    name: "HOME",
+    name: "Home",
     url: "/app/home",
     icon: "home",
+  },
+  {
+    name: "Profile",
+    url: "/app/profile",
+    icon: "user",
   },
 ];
 export const APP_BASE_ROUTE = PRIVATE_ROUTE[0];
