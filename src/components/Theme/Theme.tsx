@@ -19,7 +19,7 @@ const onLoad = (theme: string, setTheme: any) => {
     setTheme(theme);
     if (layout) {
       setTimeout(() => {
-        layout.classList.remove("animate__fast");
+        layout.classList.remove("animate__faster");
         layout.classList.add(`${InAnimation}`);
         layout.classList.remove(`${OutAnimation}`);
       }, 500);
@@ -33,7 +33,7 @@ export const loadStyleSheet = (theme: string, setTheme: any) => {
   if (!initialLoad) {
     const layout = document.getElementById("layoutMainContent");
     if (layout) {
-      layout.classList.add("animate__fast");
+      layout.classList.add("animate__faster");
       layout.classList.add(`${OutAnimation}`);
     }
   }

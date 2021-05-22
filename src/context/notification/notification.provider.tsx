@@ -10,11 +10,12 @@ const NotificationProvider: FC = ({ children }) => {
 
         Notification[type]({
           description,
+          placement: "bottomEnd",
           ...notificationProps,
         });
       },
     }),
-    []
+    [],
   );
 
   return (
