@@ -137,5 +137,5 @@ const SideMenu = (props: SideMenuProps) => {
     </SidebarWrapper>
   );
 };
-//
+
 export default SideMenu;
