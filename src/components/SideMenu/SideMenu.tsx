@@ -99,7 +99,7 @@ const SideMenu = (props: SideMenuProps) => {
               if (item.type === EPrivateRouteType.ITEM) {
                 return (
                   <Nav.Item
-                    key={item.url}
+                    key={`item ${item.name}`}
                     active={router.pathname === item.url}
                     icon={<Icon icon={item.icon} />}
                     onClick={() => {
@@ -111,7 +111,11 @@ const SideMenu = (props: SideMenuProps) => {
                 );
               }
               return (
-                <Dropdown icon={<Icon icon={"cog"} />} title="Configuración">
+                <Dropdown
+                  key={`dropdown ${item.name}`}
+                  icon={<Icon icon="cog" />}
+                  title={item.name}
+                >
                   {item.children.map((route) => (
                     <Nav.Item
                       key={route.url}
@@ -133,5 +137,5 @@ const SideMenu = (props: SideMenuProps) => {
     </SidebarWrapper>
   );
 };
-
+//
 export default SideMenu;

@@ -33,15 +33,15 @@ export default function App({ Component, pageProps }: AppProps) {
       const { children } = route;
       if (route.url === pathname) {
         isPrivate = true;
-      } else {
-        if (children) {
+      } else if (children) {
           children.map((subRoute) => {
             if (subRoute.url === pathname) {
               isPrivate = true;
             }
+            return subRoute;
           });
         }
-      }
+      return route;
     });
     return isPrivate;
   };
@@ -57,10 +57,8 @@ export default function App({ Component, pageProps }: AppProps) {
               <AuthProvider>
                 <NotificationProvider>
                   <ProfileProvider>
-                    {!PRIVATE_ROUTE.some((item) => item.url === pathname) && (
-                      <Component {...pageProps} />
-                    )}{" "}
-                    {PRIVATE_ROUTE.some((item) => item.url === pathname) && (
+                    {!isPrivateRoute() && <Component {...pageProps} />}{" "}
+                    {isPrivateRoute() && (
                       <>
                         <PrivateRoute>
                           <ManagerLayout>
