@@ -1,11 +1,11 @@
-import { Icon, Nav, Sidenav } from "rsuite";
+import { Dropdown, Icon, Nav, Sidenav } from "rsuite";
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { ReactSVG } from "react-svg";
 
 import { ProfileContext } from "context/profile/profile.context";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
-import { PRIVATE_ROUTE } from "./private-routes";
+import { EPrivateRouteType, PRIVATE_ROUTE } from "./private-routes";
 
 import {
   AvatarContainer,
@@ -95,18 +95,38 @@ const SideMenu = (props: SideMenuProps) => {
             </UserInfoContainer>
           </AvatarContainer>
           <Nav>
-            {PRIVATE_ROUTE.map((item) => (
-              <Nav.Item
-                key={item.url}
-                active={router.pathname === item.url}
-                icon={<Icon icon={item.icon} />}
-                onClick={() => {
-                  handleRedirect(item.url);
-                }}
-              >
-                {item.name}
-              </Nav.Item>
-            ))}
+            {PRIVATE_ROUTE.map((item) => {
+              if (item.type === EPrivateRouteType.ITEM) {
+                return (
+                  <Nav.Item
+                    key={item.url}
+                    active={router.pathname === item.url}
+                    icon={<Icon icon={item.icon} />}
+                    onClick={() => {
+                      handleRedirect(item.url);
+                    }}
+                  >
+                    {item.name}
+                  </Nav.Item>
+                );
+              }
+              return (
+                <Dropdown icon={<Icon icon={"cog"} />} title="Configuración">
+                  {item.children.map((route) => (
+                    <Nav.Item
+                      key={route.url}
+                      active={router.pathname === route.url}
+                      icon={<Icon icon={route.icon} />}
+                      onClick={() => {
+                        handleRedirect(route.url);
+                      }}
+                    >
+                      {route.name}
+                    </Nav.Item>
+                  ))}
+                </Dropdown>
+              );
+            })}
           </Nav>
         </Sidenav.Body>
       </Sidenav>

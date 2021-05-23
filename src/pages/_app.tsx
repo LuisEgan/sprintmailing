@@ -27,6 +27,25 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { pathname } = router;
 
+  const isPrivateRoute = () => {
+    let isPrivate: boolean = false;
+    PRIVATE_ROUTE.map((route) => {
+      const { children } = route;
+      if (route.url === pathname) {
+        isPrivate = true;
+      } else {
+        if (children) {
+          children.map((subRoute) => {
+            if (subRoute.url === pathname) {
+              isPrivate = true;
+            }
+          });
+        }
+      }
+    });
+    return isPrivate;
+  };
+
   return (
     <>
       <ApolloProvider client={client}>
