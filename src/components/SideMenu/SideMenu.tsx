@@ -96,7 +96,7 @@ const SideMenu = (props: SideMenuProps) => {
           </AvatarContainer>
           <Nav>
             {PRIVATE_ROUTE.map((item) => {
-              if (item.type === EPrivateRouteType.ITEM) {
+              if (item.type === EPrivateRouteType.ITEM && !item.hidden) {
                 return (
                   <Nav.Item
                     key={`item ${item.name}`}
@@ -110,26 +110,33 @@ const SideMenu = (props: SideMenuProps) => {
                   </Nav.Item>
                 );
               }
-              return (
-                <Dropdown
-                  key={`dropdown ${item.name}`}
-                  icon={<Icon icon="cog" />}
-                  title={item.name}
-                >
-                  {item.children.map((route) => (
-                    <Nav.Item
-                      key={route.url}
-                      active={router.pathname === route.url}
-                      icon={<Icon icon={route.icon} />}
-                      onClick={() => {
-                        handleRedirect(route.url);
-                      }}
-                    >
-                      {route.name}
-                    </Nav.Item>
-                  ))}
-                </Dropdown>
-              );
+              if (item.type === EPrivateRouteType.DROPDOWN && !item.hidden) {
+                return (
+                  <Dropdown
+                    key={`dropdown ${item.name}`}
+                    icon={<Icon icon="cog" />}
+                    title={item.name}
+                  >
+                    {item.children.map((route) =>
+                      !route.hidden ? (
+                        <Nav.Item
+                          key={route.url}
+                          active={router.pathname === route.url}
+                          icon={<Icon icon={route.icon} />}
+                          onClick={() => {
+                            handleRedirect(route.url);
+                          }}
+                        >
+                          {route.name}
+                        </Nav.Item>
+                      ) : (
+                        false
+                      ),
+                    )}
+                  </Dropdown>
+                );
+              }
+              return false;
             })}
           </Nav>
         </Sidenav.Body>

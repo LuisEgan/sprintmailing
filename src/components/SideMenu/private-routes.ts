@@ -10,6 +10,7 @@ interface IPrivateRoute {
   icon: IconProps["icon"];
   type: EPrivateRouteType;
   children?: Omit<IPrivateRoute, "children">[];
+  hidden?: boolean; // * Use for hide item menu but stay as private route
 }
 export const PRIVATE_ROUTE: IPrivateRoute[] = [
   {
