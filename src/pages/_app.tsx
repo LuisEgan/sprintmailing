@@ -34,13 +34,13 @@ export default function App({ Component, pageProps }: AppProps) {
       if (route.url === pathname) {
         isPrivate = true;
       } else if (children) {
-          children.map((subRoute) => {
-            if (subRoute.url === pathname) {
-              isPrivate = true;
-            }
-            return subRoute;
-          });
-        }
+        children.map((subRoute) => {
+          if (subRoute.url === pathname) {
+            isPrivate = true;
+          }
+          return subRoute;
+        });
+      }
       return route;
     });
     return isPrivate;
@@ -50,28 +50,29 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ApolloProvider client={client}>
         <ThemeProvider attribute="class">
-          <Theme />
-          <Tailwind />
-          <ModalProvider>
-            <DrawerProvider>
-              <AuthProvider>
-                <NotificationProvider>
-                  <ProfileProvider>
-                    {!isPrivateRoute() && <Component {...pageProps} />}{" "}
-                    {isPrivateRoute() && (
-                      <>
-                        <PrivateRoute>
-                          <ManagerLayout>
-                            <Component {...pageProps} />
-                          </ManagerLayout>
-                        </PrivateRoute>
-                      </>
-                    )}
-                  </ProfileProvider>
-                </NotificationProvider>
-              </AuthProvider>
-            </DrawerProvider>
-          </ModalProvider>
+          <Theme>
+            <Tailwind />
+            <ModalProvider>
+              <DrawerProvider>
+                <AuthProvider>
+                  <NotificationProvider>
+                    <ProfileProvider>
+                      {!isPrivateRoute() && <Component {...pageProps} />}{" "}
+                      {isPrivateRoute() && (
+                        <>
+                          <PrivateRoute>
+                            <ManagerLayout>
+                              <Component {...pageProps} />
+                            </ManagerLayout>
+                          </PrivateRoute>
+                        </>
+                      )}
+                    </ProfileProvider>
+                  </NotificationProvider>
+                </AuthProvider>
+              </DrawerProvider>
+            </ModalProvider>
+          </Theme>
         </ThemeProvider>
       </ApolloProvider>
     </>

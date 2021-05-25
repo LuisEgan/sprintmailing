@@ -1,6 +1,11 @@
 import { useTheme } from "next-themes";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+import { IntlProvider } from "rsuite";
+import esEs from "rsuite/lib/IntlProvider/locales/es_ES";
+import enUS from "rsuite/lib/IntlProvider/locales/en_US";
+import useTranslation from "next-translate/useTranslation";
+import { EAvailableLanguages } from "components/NavBar/NavBar";
 
 const defaultStylesheet = "dark";
 const InAnimation = "animate__fadeIn";
@@ -45,7 +50,8 @@ export const loadStyleSheet = (theme: string, setTheme: any) => {
   document.head.prepend(sheet);
 };
 
-const Theme = () => {
+const Theme = ({ children }) => {
+  const { lang } = useTranslation();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState<boolean>();
   useEffect(() => {
@@ -64,13 +70,16 @@ const Theme = () => {
   }, [mounted]);
 
   return (
-    <Head>
-      <link
-        href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700"
-        rel="stylesheet"
-      />
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    </Head>
+    <IntlProvider locale={lang === EAvailableLanguages.es ? esEs : enUS}>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700"
+          rel="stylesheet"
+        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      </Head>
+      {children}
+    </IntlProvider>
   );
 };
 
