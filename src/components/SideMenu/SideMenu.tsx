@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { ReactSVG } from "react-svg";
 
-import { ProfileContext } from "context/profile/profile.context";
+import { ProfileContext, useProfile } from "context/profile/profile.context";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 import { EPrivateRouteType, PRIVATE_ROUTE } from "./private-routes";
 
@@ -23,7 +23,7 @@ interface SideMenuProps {
 const SideMenu = (props: SideMenuProps) => {
   const router = useRouter();
   const { showSideBar, setShowSideBar } = props;
-  const { user } = useContext(ProfileContext);
+  const { user } = useProfile();
 
   const handleShowSideBar = () => {
     setShowSideBar(!showSideBar);
@@ -114,7 +114,7 @@ const SideMenu = (props: SideMenuProps) => {
                 return (
                   <Dropdown
                     key={`dropdown ${item.name}`}
-                    icon={<Icon icon="cog" />}
+                    icon={<Icon icon={item.icon} />}
                     title={item.name}
                   >
                     {item.children.map((route) =>
