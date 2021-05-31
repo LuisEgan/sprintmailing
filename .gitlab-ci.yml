@@ -1,81 +1,73 @@
 stages:
-    - build
-    - deploy
+  - build
+  - deploy
 
 cache:
-    key: node-modules-cache
-    paths:
-        - node_modules/
+  key: node-modules-cache
+  paths:
+    - node_modules/
 
 variables:
-    DOCKER_TLS_CERTDIR: ''
-    DOCKER_DRIVER: overlay2
-    DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
 
 build:
-    stage: build
-    environment:
-        name: $CI_COMMIT_BRANCH
-    image: google/cloud-sdk:340.0.0
-    # tags:
-    #     - erodriguezl-macbook
-    #     - gitlab-org
-    #     - gitlab-org-docker
-    before_script:
-        - apt-get update -y
-        - apt-get install jq -y
-    services:
-        - docker:dind
-    script:
-        - export VERSION=$(cat package.json | jq -r .version).$CI_COMMIT_REF_SLUG
-        - export NAME=$(cat package.json | jq -r .name)
-        - echo $VERSION
-        - echo $NAME
-        - gcloud config set project $PROJECT_ID
-        - gcloud auth activate-service-account $SERVICE_ACCOUNT_EMAIL --key-file $GCP_SERVICE_ACCOUNT
-        - gcloud auth configure-docker us-west2-docker.pkg.dev
-        - docker build --build-arg GCP_KEY="${GPC_KEY_DEV}" -t us-west2-docker.pkg.dev/$PROJECT_ID/vesti/backend/$NAME:$VERSION .
-        - docker push us-west2-docker.pkg.dev/$PROJECT_ID/vesti/backend/$NAME:$VERSION
+  stage: build
+  environment:
+    name: $CI_COMMIT_BRANCH
+  image: google/cloud-sdk:340.0.0
+  # tags:
+  #     - erodriguezl-macbook
+  #     - gitlab-org
+  #     - gitlab-org-docker
+  before_script:
+    - apt-get update -y
+    - apt-get install jq -y
+  services:
+    - docker:dind
+  script:
+    - export VERSION=$(cat package.json | jq -r .version).$CI_COMMIT_REF_SLUG
+    - export NAME=$(cat package.json | jq -r .name)
+    - echo $VERSION
+    - echo $NAME
+    - gcloud config set project $PROJECT_ID
+    - gcloud auth activate-service-account $SERVICE_ACCOUNT_EMAIL --key-file $GCP_SERVICE_ACCOUNT
+    - gcloud auth configure-docker us-west2-docker.pkg.dev
+    - docker build --build-arg GCP_KEY="${GPC_KEY_DEV}" -t us-west2-docker.pkg.dev/$PROJECT_ID/test/backend/$NAME:$VERSION .
+    - docker push us-west2-docker.pkg.dev/$PROJECT_ID/test/backend/$NAME:$VERSION
 
 deploy:
-    stage: deploy
-    environment:
-        name: $CI_COMMIT_BRANCH
-    image: google/cloud-sdk:340.0.0
-    # tags:
-    #     - erodriguezl-macbook
-    #     - gitlab-org
-    #     - gitlab-org-docker
-    before_script:
-        - apt-get update -y
-        - apt-get install jq -y
-    script:
-        - gcloud config set project $PROJECT_ID
-        - gcloud auth activate-service-account $SERVICE_ACCOUNT_EMAIL --key-file $GCP_SERVICE_ACCOUNT
-        - export VERSION=$(cat package.json | jq -r .version).$CI_COMMIT_REF_SLUG
-        - export NAME=$(cat package.json | jq -r .name)
-        - export IMAGE=us-west2-docker.pkg.dev/$PROJECT_ID/vesti/backend/$NAME:$VERSION
-        - >
-            gcloud run deploy $NAME
-            --image=$IMAGE
-            --memory=$MEMORY
-            --platform=managed
-            --port=8080
-            --region=$REGION
-            --project=$PROJECT_ID
-            --allow-unauthenticated
-            --min-instances=$MIN_INSTANCES
-            --update-env-vars SERVER_PORT=8080
-            --update-env-vars DATABASE_URL=$DATABASE_URL
-            --update-env-vars JWT_SECRET_KEY=$JWT_SECRET_KEY
-            --update-env-vars JWT_EXPIRATION_TIME=$JWT_EXPIRATION_TIME
-            --update-env-vars WELCOME_EMAIL_TEMPLATE=$WELCOME_EMAIL_TEMPLATE
-            --update-env-vars RESET_PASSWORD_TEMPLATE=$RESET_PASSWORD_TEMPLATE
-            --update-env-vars SUCCESS_RESET_PASSWORD_TEMPLATE=$SUCCESS_RESET_PASSWORD_TEMPLATE
-            --update-env-vars GENERAL_SITE_NAME=$GENERAL_SITE_NAME
-            --update-env-vars GENERAL_SITE_HOST=$GENERAL_SITE_HOST
-    rules:
-        - if: $CI_COMMIT_REF_NAME == "develop"
-          when: always
-        - if: $CI_COMMIT_REF_NAME == "master"
-          when: manual
+  stage: deploy
+  environment:
+    name: $CI_COMMIT_BRANCH
+  image: google/cloud-sdk:340.0.0
+  # tags:
+  #     - erodriguezl-macbook
+  #     - gitlab-org
+  #     - gitlab-org-docker
+  before_script:
+    - apt-get update -y
+    - apt-get install jq -y
+  script:
+    - gcloud config set project $PROJECT_ID
+    - gcloud auth activate-service-account $SERVICE_ACCOUNT_EMAIL --key-file $GCP_SERVICE_ACCOUNT
+    - export VERSION=$(cat package.json | jq -r .version).$CI_COMMIT_REF_SLUG
+    - export NAME=$(cat package.json | jq -r .name)
+    - export IMAGE=us-west2-docker.pkg.dev/$PROJECT_ID/test/backend/$NAME:$VERSION
+    - >
+      gcloud run deploy $NAME
+      --image=$IMAGE
+      --memory=$MEMORY
+      --platform=managed
+      --port=8080
+      --region=$REGION
+      --project=$PROJECT_ID
+      --allow-unauthenticated
+      --min-instances=$MIN_INSTANCES
+      --update-env-vars NEXT_PUBLIC_APP_API_URL=$NEXT_PUBLIC_APP_API_URL
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "develop"
+      when: always
+    - if: $CI_COMMIT_REF_NAME == "master"
+      when: always
