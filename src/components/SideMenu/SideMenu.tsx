@@ -1,9 +1,9 @@
 import { Dropdown, Icon, Nav, Sidenav } from "rsuite";
-import React, { useContext } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { ReactSVG } from "react-svg";
 
-import { ProfileContext, useProfile } from "context/profile/profile.context";
+import { useProfile } from "context/profile/profile.context";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 import { EPrivateRouteType, PRIVATE_ROUTE } from "./private-routes";
 

@@ -7,6 +7,12 @@ const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_APP_API_URL,
 });
 
+// eslint-disable-next-line
+console.log(
+  "🚀 ~ file: apollo.ts ~ line 9 ~ process.env.NEXT_PUBLIC_APP_API_URL",
+  process.env.NEXT_PUBLIC_APP_API_URL,
+);
+
 const authLink = setContext((_, params) => {
   const { headers } = params;
   return {
