@@ -2,7 +2,7 @@ FROM node:12.16.0
 
 ENV PORT 8080
 
-RUN echo $NEXT_PUBLIC_APP_API_URL
+ARG ENV_BACKEND_URI=$NEXT_PUBLIC_APP_API_URL
 
 # Create app directory
 RUN mkdir -p /usr/src/app

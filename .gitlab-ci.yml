@@ -17,10 +17,6 @@ build:
   environment:
     name: $CI_COMMIT_BRANCH
   image: google/cloud-sdk:340.0.0
-  # tags:
-  #     - erodriguezl-macbook
-  #     - gitlab-org
-  #     - gitlab-org-docker
   before_script:
     - apt-get update -y
     - apt-get install jq -y
@@ -42,10 +38,6 @@ deploy:
   environment:
     name: $CI_COMMIT_BRANCH
   image: google/cloud-sdk:340.0.0
-  # tags:
-  #     - erodriguezl-macbook
-  #     - gitlab-org
-  #     - gitlab-org-docker
   before_script:
     - apt-get update -y
     - apt-get install jq -y
