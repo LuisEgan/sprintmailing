@@ -30,7 +30,7 @@ build:
     - gcloud config set project $PROJECT_ID
     - gcloud auth activate-service-account $SERVICE_ACCOUNT_EMAIL --key-file $GCP_SERVICE_ACCOUNT
     - gcloud auth configure-docker us-west2-docker.pkg.dev
-    - docker build --build-arg GCP_KEY="${GPC_KEY_DEV}" -t us-west2-docker.pkg.dev/$PROJECT_ID/test/backend/$NAME:$VERSION .
+    - docker build --build-arg GCP_KEY="${GPC_KEY_DEV}"  --build-arg NEXT_PUBLIC_APP_API_URL="${NEXT_PUBLIC_APP_API_URL}" -t us-west2-docker.pkg.dev/$PROJECT_ID/test/backend/$NAME:$VERSION .
     - docker push us-west2-docker.pkg.dev/$PROJECT_ID/test/backend/$NAME:$VERSION
 
 deploy:
