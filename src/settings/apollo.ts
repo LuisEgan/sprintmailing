@@ -1,10 +1,13 @@
 import { createHttpLink, ApolloClient, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import getConfig from "next/config";
 import { USER_TOKEN_PERSIST } from "./constants";
 
+const { publicRuntimeConfig } = getConfig();
+
 const httpLink = createHttpLink({
-  uri: process.env.NEXT_PUBLIC_APP_API_URL,
+  uri: publicRuntimeConfig.NEXT_PUBLIC_APP_API_URL,
 });
 
 // eslint-disable-next-line

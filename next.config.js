@@ -6,7 +6,7 @@ const { parsed: myEnv } = require("dotenv").config({
 });
 
 const config = () => {
-  webpack: (config, options) => {
+  webpack: (config) => {
     config.plugins.push(new webpack.EnvironmentPlugin(myEnv));
     return config;
   };
