@@ -1,9 +1,14 @@
 const withImages = require("next-images");
 const withPlugins = require("next-compose-plugins");
 const nextTranslate = require("next-translate");
-const config = {
-  publicRuntimeConfig: {
-    NEXT_PUBLIC_APP_API_URL: process.env.NEXT_PUBLIC_APP_API_URL,
-  },
+const { parsed: myEnv } = require("dotenv").config({
+  path: ".env",
+});
+
+const config = () => {
+  webpack: (config) => {
+    config.plugins.push(new webpack.EnvironmentPlugin(myEnv));
+    return config;
+  };
 };
 module.exports = withPlugins([withImages], nextTranslate(config));
