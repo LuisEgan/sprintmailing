@@ -4,7 +4,7 @@ import { onError } from "@apollo/client/link/error";
 import { USER_TOKEN_PERSIST } from "./constants";
 
 const httpLink = createHttpLink({
-  uri: process.env.NEXT_PUBLIC_APP_API_URL,
+  uri: `${process.env.NEXT_PUBLIC_APP_API_URL}/graphql`,
 });
 
 const authLink = setContext((_, params) => {
