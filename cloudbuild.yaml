@@ -32,5 +32,7 @@ steps:
         "--allow-unauthenticated",
       ]
 timeout: 900s
+options:
+  machineType: N1_HIGHCPU_32
 images:
   - gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
