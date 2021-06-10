@@ -9,17 +9,18 @@ RUN yarn install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM node:14-alpine AS builder
 
+
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+ARG NEXT_PUBLIC_APP_API_URL 
+ENV NEXT_PUBLIC_APP_API_URL=$NEXT_PUBLIC_APP_API_URL
 RUN yarn build 
 # Production image, copy all the files and run next
 FROM node:14-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ARG NEXT_PUBLIC_APP_API_URL 
-ENV NEXT_PUBLIC_APP_API_URL=$NEXT_PUBLIC_APP_API_URL
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
