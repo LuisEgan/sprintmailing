@@ -5,7 +5,7 @@ import { IntlProvider } from "rsuite";
 import esEs from "rsuite/lib/IntlProvider/locales/es_ES";
 import enUS from "rsuite/lib/IntlProvider/locales/en_US";
 import useTranslation from "next-translate/useTranslation";
-import { EAvailableLanguages } from "components/NavBar/NavBar";
+import { EAvailableLanguages } from "components/ToggleLang/ToggleLang";
 
 const defaultStylesheet = "dark";
 const InAnimation = "animate__fadeIn";

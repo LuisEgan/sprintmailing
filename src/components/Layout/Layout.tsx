@@ -5,7 +5,11 @@ import { MOBILE_VIEW, SIDEBAR_WIDTH } from "settings/constants";
 import { useWindowSize } from "utils/use-windows-size";
 import SideMenu from "components/SideMenu/SideMenu";
 import dynamic from "next/dynamic";
-import { LayoutMainContent, LayoutWrapper } from "./Layout.style";
+import {
+  LayoutMainContent,
+  LayoutWrapper,
+  SideMenuWrapper,
+} from "./Layout.style";
 
 const NavBar = dynamic(() => import("components/NavBar/NavBar"), {
   ssr: false,
@@ -30,9 +34,15 @@ const ManagerLayout = ({ children }: any) => {
           <SideMenu {...{ showSideBar, setShowSideBar }} />
         </Drawer>
       ) : (
-        <SideMenu {...{ showSideBar, setShowSideBar }} />
+        <SideMenuWrapper>
+          <SideMenu {...{ showSideBar, setShowSideBar }} />
+        </SideMenuWrapper>
       )}
-      <LayoutMainContent className="animate__animated" id="layoutMainContent">
+      <LayoutMainContent
+        style={{ marginLeft: wSize.width <= MOBILE_VIEW ? 0 : SIDEBAR_WIDTH }}
+        className="animate__animated"
+        id="layoutMainContent"
+      >
         <NavBar {...{ showSideBar, setShowSideBar }} />
         <div className="p-6">{children}</div>
       </LayoutMainContent>

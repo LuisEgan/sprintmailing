@@ -1,10 +1,12 @@
-import { Dropdown, Icon, Nav, Sidenav } from "rsuite";
+import { Divider, Dropdown, Footer, Icon, Nav, Sidenav } from "rsuite";
 import React from "react";
 import { useRouter } from "next/router";
 import { ReactSVG } from "react-svg";
 
 import { useProfile } from "context/profile/profile.context";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
+import ToggleLang from "components/ToggleLang/ToggleLang";
+import ToggleTheme from "components/ToggleTheme/ToggleTheme";
 import { EPrivateRouteType, PRIVATE_ROUTE } from "./private-routes";
 
 import {
@@ -31,12 +33,16 @@ const SideMenu = (props: SideMenuProps) => {
 
   const handleRedirect = (url: string) => {
     router.push(url);
+    setShowSideBar(false);
   };
   return (
-    <SidebarWrapper style={{ width: SIDEBAR_WIDTH }}>
+    <SidebarWrapper
+      style={{ width: SIDEBAR_WIDTH }}
+      className="bg-gray-50 dark:bg-gray-900 flex flex-col"
+    >
       <Sidenav
-        style={{ width: SIDEBAR_WIDTH, height: "100%" }}
-        className="bg-gray-50 dark:bg-gray-900 shadow-sm"
+        style={{ width: SIDEBAR_WIDTH }}
+        className="bg-gray-50 dark:bg-gray-900 flex-1"
       >
         <Sidenav.Header
           className="bg-gray-50 dark:bg-gray-900"
@@ -120,6 +126,7 @@ const SideMenu = (props: SideMenuProps) => {
                     {item.children.map((route) =>
                       !route.hidden ? (
                         <Nav.Item
+                          className="ml-8"
                           key={route.url}
                           active={router.pathname === route.url}
                           icon={<Icon icon={route.icon} />}
@@ -141,6 +148,11 @@ const SideMenu = (props: SideMenuProps) => {
           </Nav>
         </Sidenav.Body>
       </Sidenav>
+      <Divider />
+      <Footer className="flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <ToggleLang />
+        <ToggleTheme />
+      </Footer>
     </SidebarWrapper>
   );
 };

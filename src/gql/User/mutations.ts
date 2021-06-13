@@ -46,9 +46,24 @@ const UPDATE_USER_PROFILE = gql`
   }
 `;
 
+export interface IUpdateUserSelectedVendorInput {}
+
+const UPDATE_USER_SELECTED_VENDOR = gql`
+  mutation updateUserSelectedVendor(
+    $updateUserSelectedVendorInput: UpdateUserSelectedVendorInput!
+  ) {
+    updateUserSelectedVendor(
+      updateUserSelectedVendorInput: $updateUserSelectedVendorInput
+    ) {
+      id
+    }
+  }
+`;
+
 export default {
   SIGNUP,
   CHANGE_PASSWORD,
   DO_RESET_PASSWORD,
   UPDATE_USER_PROFILE,
+  UPDATE_USER_SELECTED_VENDOR,
 };

@@ -31,7 +31,7 @@ export const PRIVATE_ROUTE: IPrivateRoute[] = [
     type: EPrivateRouteType.DROPDOWN,
     children: [
       {
-        name: "Categoría insumos",
+        name: "Site config",
         url: "/app/config/site-config",
         icon: "cog",
         type: EPrivateRouteType.ITEM,
