@@ -24,6 +24,7 @@ export const RouteLayout: FC<IRouteLayout> = (props) => {
   const { layout = ELayout.GENERAL, roleGuards } = props;
   const { fireNotification } = useNotification();
   const Layout = LAYOUTS[layout];
+
   if (!guardCheckUserRole(roleGuards)) {
     fireNotification({
       title: "Oops",
@@ -31,6 +32,7 @@ export const RouteLayout: FC<IRouteLayout> = (props) => {
       type: "error",
     });
     router.back();
+    return null;
   }
 
   return <Layout>{children}</Layout>;

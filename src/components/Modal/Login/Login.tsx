@@ -22,7 +22,6 @@ export const Login = () => {
     control: loginControl,
     formState: { errors },
   } = useForm();
-
   const router = useRouter();
   const { closeModal, openModal } = useModal();
 

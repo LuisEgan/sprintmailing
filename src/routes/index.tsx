@@ -46,7 +46,7 @@ const Routes = ({ Component, pageProps }: AppProps) => {
       ) : (
         <RouteLayout
           layout={ROUTES.PUBLIC[key]?.layout}
-          roleGuards={ROUTES.PUBLIC[key]?.roleGuards}
+          roleGuards={ROUTES.PUBLIC[key]?.guards}
         >
           <Component {...pageProps} />
         </RouteLayout>
