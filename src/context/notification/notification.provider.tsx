@@ -1,5 +1,6 @@
 import React, { FC, useContext, useMemo } from "react";
 import { Notification } from "rsuite";
+
 import { IOpenNotification, NotificationContext } from "./notification.context";
 
 const NotificationProvider: FC = ({ children }) => {

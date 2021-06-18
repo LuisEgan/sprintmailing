@@ -1,14 +1,13 @@
-import { Divider, Dropdown, Footer, Icon, Nav, Sidenav } from "rsuite";
-import React from "react";
-import { useRouter } from "next/router";
-import { ReactSVG } from "react-svg";
-
-import { useProfile } from "context/profile/profile.context";
-import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 import ToggleLang from "components/ToggleLang/ToggleLang";
 import ToggleTheme from "components/ToggleTheme/ToggleTheme";
-import { EPrivateRouteType, PRIVATE_ROUTE } from "./private-routes";
+import { useProfile } from "context/profile/profile.context";
+import { useRouter } from "next/router";
+import React from "react";
+import { ReactSVG } from "react-svg";
+import { Divider, Dropdown, Footer, Icon, Nav, Sidenav } from "rsuite";
+import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 
+import { EPrivateRouteType, PRIVATE_ROUTE } from "./side-menu-routes";
 import {
   AvatarContainer,
   AvatarImage,
@@ -32,9 +31,10 @@ const SideMenu = (props: SideMenuProps) => {
   };
 
   const handleRedirect = (url: string) => {
-    router.push(url);
+    router.push({ pathname: url });
     setShowSideBar(false);
   };
+
   return (
     <SidebarWrapper
       style={{ width: SIDEBAR_WIDTH }}

@@ -1,16 +1,19 @@
-import React from "react";
-
-import { Button, Col, Icon, Row } from "rsuite";
-import { useAuth } from "context/auth";
-import { useRouter } from "next/router";
-import { ReactSVG } from "react-svg";
-
-import { APP_BASE_ROUTE } from "components/SideMenu/private-routes";
-import { useModal } from "context/modal/modal.provider";
 import { Login } from "components/Modal/Login/Login";
-import { Register } from "components/Modal/Register/Register";
-import { VERTICAL_LOGO_DARK, VERTICAL_LOGO_LIGHT } from "settings/constants";
 import { Recovery } from "components/Modal/Recovery";
+import { Register } from "components/Modal/Register/Register";
+import ToggleLang from "components/ToggleLang/ToggleLang";
+import ToggleTheme from "components/ToggleTheme/ToggleTheme";
+import { useAuth } from "context/auth";
+import { useModal } from "context/modal/modal.provider";
+import { useRouter } from "next/router";
+import React from "react";
+import { ReactSVG } from "react-svg";
+import { Button, Col, Icon, Row } from "rsuite";
+import {
+  AFTER_LOGIN_REDIRECT,
+  VERTICAL_LOGO_DARK,
+  VERTICAL_LOGO_LIGHT,
+} from "settings/constants";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -21,14 +24,14 @@ const LoginPage = () => {
   const handleLogin = () => {
     openModal({
       modalComponent: <Login />,
-      modalProps: { size: "sm" },
+      size: "sm",
     });
   };
 
   const handleRegister = () => {
     openModal({
       modalComponent: <Register />,
-      modalProps: { size: "sm" },
+      size: "sm",
     });
   };
 
@@ -39,7 +42,7 @@ const LoginPage = () => {
     });
   };
 
-  if (isAuthenticated()) router.push(APP_BASE_ROUTE.url);
+  if (isAuthenticated()) router.push(AFTER_LOGIN_REDIRECT);
 
   return (
     <div className="bg-white dark:bg-gray-900 w-screen h-screen flex justify-center items-center">
@@ -77,6 +80,10 @@ const LoginPage = () => {
         </Col>
         <Col size={24} className="text-center mt-4">
           Boilerplate Made with <Icon icon="heart" /> by Clever Labs
+        </Col>
+        <Col size={24} className="text-center mt-4">
+          <ToggleLang />
+          <ToggleTheme />
         </Col>
       </Row>
     </div>

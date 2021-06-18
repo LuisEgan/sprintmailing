@@ -1,7 +1,8 @@
+import AdminDrawer from "components/Drawer";
 import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { DrawerProps } from "rsuite";
-import AdminDrawer from "components/Drawer";
-import { IOpenDrawer, DrawerContext } from "./drawer.context";
+
+import { DrawerContext, IOpenDrawer } from "./drawer.context";
 
 interface IDrawerProvider {}
 
@@ -10,7 +11,7 @@ const DrawerProvider: FC<IDrawerProvider> = (props) => {
 
   const [drawer, setDrawer] = useState<JSX.Element | null>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [size, setSize] = useState<DrawerProps["size"]>("xs");
+  const [drawerProps, setDrawerProps] = useState<DrawerProps>();
 
   const [onOpen, setOnOpen] = useState<Function | null>();
   const [onClose, setOnClose] = useState<Function | null>();
@@ -40,17 +41,13 @@ const DrawerProvider: FC<IDrawerProvider> = (props) => {
   const value = useMemo(
     () => ({
       openDrawer: (params: IOpenDrawer) => {
-        const {
-          drawerComponent,
-          drawerSize,
-          onOpenDrawer,
-          onCloseDrawer,
-        } = params;
+        const { drawerComponent, onOpenDrawer, onCloseDrawer, ...drawerProps } =
+          params;
 
         setIsOpen(true);
         setDrawer(drawerComponent);
 
-        if (drawerSize) setSize(drawerSize);
+        if (drawerProps) setDrawerProps(drawerProps);
         if (onOpenDrawer) setOnOpen(() => onOpenDrawer);
         if (onCloseDrawer) setOnClose(() => onCloseDrawer);
       },
@@ -63,7 +60,7 @@ const DrawerProvider: FC<IDrawerProvider> = (props) => {
 
   return (
     <DrawerContext.Provider {...{ value }}>
-      <AdminDrawer {...{ size, isOpen }} onRequestClose={closeDrawer}>
+      <AdminDrawer {...{ ...drawerProps, isOpen }} onRequestClose={closeDrawer}>
         {drawer}
       </AdminDrawer>
 

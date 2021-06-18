@@ -1,9 +1,10 @@
+import { useModal } from "context/modal/modal.provider";
 import React, { useCallback, useEffect, useState } from "react";
-import { Button, Slider } from "rsuite";
 import Cropper from "react-easy-crop";
 import { Area } from "react-easy-crop/types";
+import { Button, Slider } from "rsuite";
 import { getCroppedImg } from "utils/helpers";
-import { useModal } from "context/modal/modal.provider";
+
 import { CropperWrapper } from "./ImagesCropper.style";
 
 export enum CropImageType {

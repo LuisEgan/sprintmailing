@@ -2,9 +2,10 @@ import NoResult from "components/NoResult/NoResult";
 import React, { useEffect, useState } from "react";
 import { Table as RSTable, TableProps } from "rsuite";
 import TablePagination from "rsuite/lib/Table/TablePagination";
+
+import { ButtonCell, CustomCell, NormalCell } from "./Cells";
 import { Container } from "./Table.styles";
 import { ITableData, TTable } from "./Table.types";
-import { ButtonCell, CustomCell, NormalCell } from "./Cells";
 
 const { Column, HeaderCell } = RSTable;
 
@@ -116,7 +117,7 @@ const Table = <TData extends {}>(props: TTable<TData>) => {
         shouldUpdateScroll
         wordWrap
         affixHorizontalScrollbar
-        height={500}
+        autoHeight
         headerHeight={50}
         rowHeight={55}
         loading={loading}

@@ -1,5 +1,5 @@
-import { blobToFile } from "lib/files";
 import { Area } from "react-easy-crop/types";
+import { blobToFile } from "utils/files";
 
 const createImage = (url: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {

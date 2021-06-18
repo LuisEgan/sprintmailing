@@ -1,11 +1,11 @@
-import { useTheme } from "next-themes";
+import { EAvailableLanguages } from "components/ToggleLang/ToggleLang";
 import Head from "next/head";
+import { useTheme } from "next-themes";
+import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { IntlProvider } from "rsuite";
-import esEs from "rsuite/lib/IntlProvider/locales/es_ES";
 import enUS from "rsuite/lib/IntlProvider/locales/en_US";
-import useTranslation from "next-translate/useTranslation";
-import { EAvailableLanguages } from "components/ToggleLang/ToggleLang";
+import esEs from "rsuite/lib/IntlProvider/locales/es_ES";
 
 const defaultStylesheet = "dark";
 const InAnimation = "animate__fadeIn";

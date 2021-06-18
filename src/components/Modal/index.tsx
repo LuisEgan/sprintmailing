@@ -1,13 +1,12 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { Icon, Modal, ModalProps } from "rsuite";
 
-type TModalProps = {
+interface IModalProps extends ModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
   children: React.ReactNode;
-  style?: any;
-  modalProps: ModalProps;
-};
+  style?: CSSProperties;
+}
 
 const buttonStyle = {
   width: 35,
@@ -33,24 +32,23 @@ const buttonStyle = {
   },
 };
 
-const CenterModal: React.FC<TModalProps> = ({
-  isOpen,
-  onRequestClose,
-  children,
-  modalProps,
-}) => (
-  <Modal
-    show={isOpen}
-    onHide={onRequestClose}
-    style={{ padding: 0 }}
-    className="fodtureModal"
-    {...modalProps}
-  >
-    <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
-      <Icon icon="close" />
-    </button>
-    {children}
-  </Modal>
-);
+const CenterModal: React.FC<IModalProps> = (props) => {
+  const { isOpen, onRequestClose, children, ...modalProps } = props;
+
+  return (
+    <Modal
+      show={isOpen}
+      onHide={onRequestClose}
+      style={{ padding: 0 }}
+      className="fodtureModal"
+      {...modalProps}
+    >
+      <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
+        <Icon icon="close" />
+      </button>
+      {children}
+    </Modal>
+  );
+};
 
 export default CenterModal;

@@ -1,8 +1,7 @@
-import React from "react";
-import { Col, Row } from "rsuite";
-
 import Header from "components/Header/Header";
 import useTranslation from "next-translate/useTranslation";
+import React from "react";
+import { Col, Row } from "rsuite";
 
 const Clevers = () => {
   const { t } = useTranslation("common");

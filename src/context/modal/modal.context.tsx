@@ -1,9 +1,8 @@
 import { createContext } from "react";
 import { ModalProps } from "rsuite/lib/Modal/Modal";
 
-export interface IOpenModal {
+export interface IOpenModal extends ModalProps {
   modalComponent: JSX.Element;
-  modalProps?: ModalProps;
   onOpenModal?: () => void;
   onCloseModal?: () => void;
 }

@@ -1,5 +1,5 @@
-import { IUser } from "utils/Types/User.types";
 import { createContext, Dispatch, useContext } from "react";
+import { IUser } from "types/User.types";
 
 interface IProfileContext {
   user: IUser;

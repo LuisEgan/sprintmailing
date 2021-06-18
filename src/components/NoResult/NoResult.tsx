@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "rsuite";
+
 import NoResultSvg from "./astronaut.svg";
-import { NoResultWrapper, ImageWrapper, ButtonWrapper } from "./NoResult.style";
+import { ButtonWrapper, ImageWrapper, NoResultWrapper } from "./NoResult.style";
 // import { ArrowPrev } from '../AllSvgIcon';
 
 type NoResultProps = {

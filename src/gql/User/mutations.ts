@@ -60,10 +60,21 @@ const UPDATE_USER_SELECTED_VENDOR = gql`
   }
 `;
 
+const REFRESH_ACCESS_TOKEN = gql`
+  mutation refreshAccessToken(
+    $refreshAccessTokenInput: RefreshAccessTokenInput!
+  ) {
+    refreshAccessToken(refreshAccessTokenInput: $refreshAccessTokenInput) {
+      accessToken
+    }
+  }
+`;
+
 export default {
   SIGNUP,
   CHANGE_PASSWORD,
   DO_RESET_PASSWORD,
   UPDATE_USER_PROFILE,
   UPDATE_USER_SELECTED_VENDOR,
+  REFRESH_ACCESS_TOKEN,
 };

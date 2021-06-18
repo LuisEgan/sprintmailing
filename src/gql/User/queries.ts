@@ -1,9 +1,20 @@
 import { gql } from "@apollo/client";
 
+export interface ILoginInput {
+  email: string;
+  password: string;
+}
+
+export interface ILoginResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
 const LOGIN = gql`
   mutation Login($loginInput: LoginInput!) {
     login(loginInput: $loginInput) {
       accessToken
+      refreshToken
     }
   }
 `;

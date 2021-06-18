@@ -1,5 +1,6 @@
-import React, { useEffect, isValidElement, cloneElement } from "react";
 import Router from "next/router";
+import React, { cloneElement, isValidElement, useEffect } from "react";
+
 import { useAuth } from "../../context/auth";
 
 const PrivateRoute = ({ children }) => {

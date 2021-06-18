@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "rsuite";
-import { IUser } from "utils/Types/User.types";
+import { IUser } from "types/User.types";
 
 const Recover = () => {
   const { openModal } = useModal();
@@ -23,18 +23,16 @@ const Recover = () => {
 
   const { tkn, userId } = router.query as { tkn: string; userId: string };
   const [completed, setCompleted] = useState<boolean>(false);
-  const [
-    doResetPassword,
-    { loading: recoveryLoading, error: loginError },
-  ] = useMutation<
-    { doResetPassword: IUser },
-    { changePasswordInput: IChangePasswordInput }
-  >(gqlUser.mutations.DO_RESET_PASSWORD, {
-    onCompleted() {
-      setCompleted(true);
-    },
-    onError() {},
-  });
+  const [doResetPassword, { loading: recoveryLoading, error: loginError }] =
+    useMutation<
+      { doResetPassword: IUser },
+      { changePasswordInput: IChangePasswordInput }
+    >(gqlUser.mutations.DO_RESET_PASSWORD, {
+      onCompleted() {
+        setCompleted(true);
+      },
+      onError() {},
+    });
 
   const handleResetPassword = (data) => {
     try {

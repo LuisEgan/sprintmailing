@@ -19,7 +19,7 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -53,6 +53,7 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/anchor-is-valid": "off",
+    "simple-import-sort/imports": "error",
     "prefer-destructuring": [
       "error",
       {

@@ -1,14 +1,19 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { useModal } from "context/modal/modal.provider";
-import { gqlUser } from "gql";
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import { Button, Input } from "rsuite";
-import { useForm, Controller } from "react-hook-form";
-import isEmail from "validator/lib/isEmail";
-import { AFTER_LOGIN_REDIRECT } from "settings/constants";
 import Header from "components/Header/Header";
 import { PasswordInput } from "components/PasswordInput";
+import { useModal } from "context/modal/modal.provider";
+import { gqlUser } from "gql";
+import { ILoginInput, ILoginResponse } from "gql/User/queries";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Button, Input } from "rsuite";
+import {
+  AFTER_LOGIN_REDIRECT,
+  REFRESH_TOKEN_PERSIST,
+} from "settings/constants";
+import isEmail from "validator/lib/isEmail";
+
 import { Recovery } from "../Recovery";
 
 export const Login = () => {
@@ -21,26 +26,26 @@ export const Login = () => {
   const router = useRouter();
   const { closeModal, openModal } = useModal();
 
-  const [
-    getUser,
-    { data: getUserData, loading: getUserLoading },
-  ] = useLazyQuery(gqlUser.queries.GET_USER);
+  const [getUser, { data: getUserData, loading: getUserLoading }] =
+    useLazyQuery(gqlUser.queries.GET_USER);
 
-  const [login, { loading: loginLoading, error: loginError }] = useMutation(
-    gqlUser.queries.LOGIN,
-    {
-      onCompleted({ login }) {
-        const { accessToken } = login;
-        localStorage.setItem("userToken", `${accessToken}`);
-        getUser({
-          variables: {
-            accessToken,
-          },
-        });
-      },
-      onError() {},
+  const [login, { loading: loginLoading, error: loginError }] = useMutation<
+    { login: ILoginResponse },
+    { loginInput: ILoginInput }
+  >(gqlUser.queries.LOGIN, {
+    onCompleted({ login }) {
+      const { accessToken, refreshToken } = login;
+
+      localStorage.setItem("userToken", `${accessToken}`);
+      localStorage.setItem(REFRESH_TOKEN_PERSIST, `${refreshToken}`);
+      getUser({
+        variables: {
+          accessToken,
+        },
+      });
     },
-  );
+    onError() {},
+  });
 
   useEffect(() => {
     if (getUserData) {

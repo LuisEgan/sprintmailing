@@ -1,13 +1,11 @@
 import React from "react";
-import { Drawer, Icon, ModalProps } from "rsuite";
+import { Drawer, DrawerProps, Icon } from "rsuite";
 
-type SpringModalProps = {
+interface IDrawerProps extends DrawerProps {
   isOpen: boolean;
   onRequestClose: () => void;
   children: React.ReactNode;
-  style?: any;
-  size: ModalProps["size"];
-};
+}
 
 const buttonStyle = {
   width: 35,
@@ -33,13 +31,13 @@ const buttonStyle = {
   },
 };
 
-const AdminDrawer: React.FC<SpringModalProps> = ({
+const AdminDrawer: React.FC<IDrawerProps> = ({
   isOpen,
   onRequestClose,
   children,
-  size,
+  ...drawerProps
 }) => (
-  <Drawer show={isOpen} onHide={onRequestClose} size={size}>
+  <Drawer show={isOpen} onHide={onRequestClose} {...drawerProps}>
     <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
       <Icon icon="close" />
     </button>

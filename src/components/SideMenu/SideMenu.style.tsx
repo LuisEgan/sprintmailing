@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const SidebarWrapper = styled.div`
   height: 100vh;
-  overflow-y: scroll;
   padding-bottom: 3rem;
+  scrollbar-width: none;
+  overflow: auto;
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
 `;
 
 export const AvatarContainer = styled.div`

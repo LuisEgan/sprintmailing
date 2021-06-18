@@ -1,9 +1,8 @@
 import { createContext } from "react";
 import { DrawerProps } from "rsuite/lib/Drawer/Drawer";
 
-export interface IOpenDrawer {
+export interface IOpenDrawer extends DrawerProps {
   drawerComponent: JSX.Element;
-  drawerSize?: DrawerProps["size"];
   onOpenDrawer?: () => void;
   onCloseDrawer?: () => void;
 }

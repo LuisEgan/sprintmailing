@@ -1,11 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { useNotification } from "context/notification/notification.provider";
-import { useProfile } from "context/profile/profile.context";
-import { gqlUser } from "gql";
-import React from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Button, Col, Icon, Input, Loader, Panel, Row, Uploader } from "rsuite";
-import { FileType } from "rsuite/lib/Uploader";
+import CropImage, { CropImageType } from "components/Modal/CropImage";
 import {
   ProfileFormItem,
   ProfileImage,
@@ -13,7 +7,13 @@ import {
   ProfileWrapper,
 } from "components/Styles/Profile/profile.style";
 import { useModal } from "context/modal/modal.provider";
-import CropImage, { CropImageType } from "components/Modal/CropImage";
+import { useNotification } from "context/notification/notification.provider";
+import { useProfile } from "context/profile/profile.context";
+import { gqlUser } from "gql";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Button, Col, Icon, Input, Loader, Panel, Row, Uploader } from "rsuite";
+import { FileType } from "rsuite/lib/Uploader";
 
 const Profile = () => {
   const { fireNotification } = useNotification();

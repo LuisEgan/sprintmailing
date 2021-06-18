@@ -1,14 +1,14 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
+import Header from "components/Header/Header";
+import { PasswordInput } from "components/PasswordInput";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Button, Input } from "rsuite";
-import { useForm, Controller } from "react-hook-form";
-import isEmail from "validator/lib/isEmail";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
-import Header from "components/Header/Header";
-import { PasswordInput } from "components/PasswordInput";
+import isEmail from "validator/lib/isEmail";
 
 export const Register = () => {
   const {

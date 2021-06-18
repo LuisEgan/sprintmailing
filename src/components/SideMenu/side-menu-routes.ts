@@ -1,4 +1,7 @@
 import { IconProps } from "rsuite";
+import { guardCheckUserRole } from "utils/guards";
+
+import { PRIVATE_ROUTES } from "../../routes/routes";
 
 export enum EPrivateRouteType {
   ITEM = "SINGLE",
@@ -10,20 +13,28 @@ interface IPrivateRoute {
   icon: IconProps["icon"];
   type: EPrivateRouteType;
   children?: Omit<IPrivateRoute, "children">[];
-  hidden?: boolean; // * Use for hide item menu but stay as private route
+  hidden?: boolean; // * Use for hide item menu for some reason
 }
+
 export const PRIVATE_ROUTE: IPrivateRoute[] = [
   {
     name: "Home",
-    url: "/app/home",
+    url: PRIVATE_ROUTES.home.path,
     icon: "home",
     type: EPrivateRouteType.ITEM,
   },
   {
     name: "Profile",
-    url: "/app/profile",
+    url: PRIVATE_ROUTES.profile.path,
     icon: "user",
     type: EPrivateRouteType.ITEM,
+  },
+  {
+    name: "Only admin",
+    url: PRIVATE_ROUTES.onlyAdmin.path,
+    icon: "key",
+    type: EPrivateRouteType.ITEM,
+    hidden: !guardCheckUserRole(PRIVATE_ROUTES.onlyAdmin.roleGuards),
   },
   {
     name: "Configuration",
@@ -32,11 +43,16 @@ export const PRIVATE_ROUTE: IPrivateRoute[] = [
     children: [
       {
         name: "Site config",
-        url: "/app/config/site-config",
+        url: PRIVATE_ROUTES.siteConfig.path,
         icon: "cog",
+        type: EPrivateRouteType.ITEM,
+      },
+      {
+        name: "Only admin",
+        url: PRIVATE_ROUTES.onlyAdmin.path,
+        icon: "key",
         type: EPrivateRouteType.ITEM,
       },
     ],
   },
 ];
-export const APP_BASE_ROUTE = PRIVATE_ROUTE[0];

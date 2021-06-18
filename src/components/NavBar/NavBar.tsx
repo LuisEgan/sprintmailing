@@ -1,11 +1,11 @@
-/*  ./components/Navbar.jsx     */
+import ToggleVendor from "components/ToggleVendor/ToggleVendor";
 import { useAuth } from "context/auth";
-import { ButtonToolbar, Dropdown, Icon } from "rsuite";
 import { useProfile } from "context/profile/profile.context";
 import React from "react";
 import { ReactSVG } from "react-svg";
+import { ButtonToolbar, Dropdown, Icon } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT } from "settings/constants";
-import ToggleVendor from "components/ToggleVendor/ToggleVendor";
+
 import {
   AvatarContainer,
   AvatarImage,
@@ -76,7 +76,7 @@ const Navbar = (props: NavbarProps) => {
                 renderTitle={(children) => (
                   <div className="flex items-center">
                     <AvatarImage
-                      className="bg-gray-900 dark:bg-white"
+                      className="bg-gray-900 dark:bg-white border-2 border-current-500"
                       style={{
                         backgroundImage: `url(${user?.profileImage})`,
                       }}
@@ -86,7 +86,7 @@ const Navbar = (props: NavbarProps) => {
                 )}
               >
                 <Dropdown.Item onClick={signout}>
-                  <Icon icon="sign-out" />
+                  <Icon icon="sign-out" className="text-red-500" />
                   <span className="text-red-500">Cerrar sesión</span>
                 </Dropdown.Item>
               </Dropdown>

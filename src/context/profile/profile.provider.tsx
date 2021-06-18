@@ -1,14 +1,15 @@
-import React, { useEffect, useReducer } from "react";
 import { useQuery } from "@apollo/client";
 import { gqlUser } from "gql";
+import React, { useEffect, useReducer } from "react";
+import { USER_TOKEN_PERSIST } from "settings/constants";
+import { IUser } from "types/User.types";
 
-import { IUser } from "utils/Types/User.types";
 import { ProfileContext } from "./profile.context";
-import { useAuth } from "../auth";
 
 type Action =
   | { type: "UPDATE_SELECTED_VENDOR"; payload: any }
-  | { type: "SET_USER_DATA"; payload: any };
+  | { type: "SET_USER_DATA"; payload: any }
+  | { type: "CLEAN_USER"; payload: any };
 
 function reducer(state: any, action: Action): any {
   switch (action.type) {
@@ -17,6 +18,11 @@ function reducer(state: any, action: Action): any {
         ...state,
         data: action.payload,
       };
+    case "CLEAN_USER":
+      return {
+        ...state,
+        data: null,
+      };
     default:
       return state;
   }
@@ -24,16 +30,16 @@ function reducer(state: any, action: Action): any {
 
 type ProfileProviderProps = {};
 
+const isBrowser = typeof window !== "undefined";
+
 export const ProfileProvider: React.FunctionComponent<ProfileProviderProps> = ({
   children,
 }) => {
-  const { isAuthenticated } = useAuth();
-
   const { data: userData, error } = useQuery<
     { user: IUser },
     { accessToken: string }
   >(gqlUser.queries.GET_FULL_USER, {
-    skip: !isAuthenticated(),
+    skip: !(isBrowser && localStorage.getItem(USER_TOKEN_PERSIST)),
     variables: {
       accessToken:
         typeof window === "undefined"

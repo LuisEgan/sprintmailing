@@ -1,13 +1,14 @@
 import { useMutation } from "@apollo/client";
+import Header from "components/Header/Header";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
-import React from "react";
-import { Button, Input } from "rsuite";
-import { useForm, Controller } from "react-hook-form";
-import isEmail from "validator/lib/isEmail";
-import Header from "components/Header/Header";
-import { IUser } from "utils/Types/User.types";
 import { IChangePasswordRequestInput } from "gql/User/mutations";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Button, Input } from "rsuite";
+import { IUser } from "types/User.types";
+import isEmail from "validator/lib/isEmail";
+
 import { EmailSended } from "./EmailSended";
 
 export const Recovery = () => {
@@ -19,21 +20,19 @@ export const Recovery = () => {
 
   const { closeModal, openModal } = useModal();
 
-  const [
-    changePassword,
-    { loading: recoveryLoading, error: loginError },
-  ] = useMutation<
-    { changePassword: IUser },
-    { changePasswordRequestInput: IChangePasswordRequestInput }
-  >(gqlUser.mutations.CHANGE_PASSWORD, {
-    onCompleted({ changePassword }) {
-      openModal({
-        modalComponent: <EmailSended {...changePassword} />,
-        modalProps: { size: "sm" },
-      });
-    },
-    onError() {},
-  });
+  const [changePassword, { loading: recoveryLoading, error: loginError }] =
+    useMutation<
+      { changePassword: IUser },
+      { changePasswordRequestInput: IChangePasswordRequestInput }
+    >(gqlUser.mutations.CHANGE_PASSWORD, {
+      onCompleted({ changePassword }) {
+        openModal({
+          modalComponent: <EmailSended {...changePassword} />,
+          modalProps: { size: "sm" },
+        });
+      },
+      onError() {},
+    });
 
   const handleRecovery = (data) => {
     try {
