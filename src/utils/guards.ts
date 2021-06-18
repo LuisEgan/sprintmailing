@@ -6,9 +6,12 @@ import { ESystemRoles } from "../settings/constants";
 const isBrowser = typeof window !== "undefined";
 
 export const guardCheckUserRole = (roleGuards: ESystemRoles[]) => {
-  const userRole =
-    isBrowser &&
-    JSON.parse(atob(localStorage.getItem(USER_TOKEN_PERSIST).split(".")[1]));
+  let userRole;
+  if (isBrowser && localStorage.getItem(USER_TOKEN_PERSIST)) {
+    userRole = JSON.parse(
+      atob(localStorage.getItem(USER_TOKEN_PERSIST)?.split(".")[1]),
+    );
+  }
 
   if (!roleGuards) return true;
 

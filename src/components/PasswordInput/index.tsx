@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon, Input, InputGroup, InputProps } from "rsuite";
 
-export const PasswordInput = (props: InputProps) => {
+const PasswordInput = React.forwardRef((props: InputProps) => {
   const [passwordType, setPasswordType] = useState<boolean>(true);
 
   const handleReveal = () => {
@@ -20,4 +20,8 @@ export const PasswordInput = (props: InputProps) => {
       </InputGroup.Addon>
     </InputGroup>
   );
-};
+});
+
+PasswordInput.displayName = "PasswordInput";
+
+export default PasswordInput;

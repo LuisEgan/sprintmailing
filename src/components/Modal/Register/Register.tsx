@@ -1,6 +1,6 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
 import Header from "components/Header/Header";
-import { PasswordInput } from "components/PasswordInput";
+import PasswordInput from "components/PasswordInput";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { useRouter } from "next/router";
@@ -19,10 +19,8 @@ export const Register = () => {
   const router = useRouter();
   const { closeModal } = useModal();
 
-  const [
-    getUser,
-    { data: getUserData, loading: getUserLoading },
-  ] = useLazyQuery(gqlUser.queries.GET_USER);
+  const [getUser, { data: getUserData, loading: getUserLoading }] =
+    useLazyQuery(gqlUser.queries.GET_USER);
 
   const [signup, { loading: signupLoading, error: signupError }] = useMutation(
     gqlUser.mutations.SIGNUP,
