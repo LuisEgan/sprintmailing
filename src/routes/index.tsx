@@ -2,6 +2,7 @@ import PrivateRoute from "components/PrivateRoute/PrivateRoute";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import { useRouter } from "next/router";
 import React from "react";
+import { guardCheckUserRole } from "utils/guards";
 
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "./routes";
 import { IRoute, RouteLayout } from "./types";
@@ -15,7 +16,7 @@ type IRoutes = {
   };
 };
 
-const ROUTES: IRoutes = {
+export const ROUTES: IRoutes = {
   PRIVATE: PRIVATE_ROUTES,
   PUBLIC: PUBLIC_ROUTES,
 };
@@ -23,30 +24,56 @@ const ROUTES: IRoutes = {
 const Routes = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
-  const privatePaths = Object.values(ROUTES.PRIVATE).map((route) => route.path);
-  const pathIndex = privatePaths.findIndex((path) =>
-    path.includes(router.pathname),
-  );
+  const getCurrentRoute = (
+    routes: IRoutes["PRIVATE"] | IRoutes["PUBLIC"],
+    isPrivate = false,
+  ) => {
+    let currentRoute: IRoute;
+    let isPrivatePath = false;
 
-  const privatePathsKeys = Object.keys(ROUTES.PRIVATE);
+    Object.values(routes).some((route) => {
+      const isRoute = route.path.includes(router.pathname);
+      if (isRoute) {
+        isPrivatePath = isPrivate;
+        currentRoute = route;
+      }
+      return isRoute;
+    });
 
-  const key = privatePathsKeys[pathIndex];
+    return { currentRoute, isPrivatePath };
+  };
+
+  let route: IRoute;
+  // * Search for the current route in private routes
+  const { currentRoute, isPrivatePath } = getCurrentRoute(ROUTES.PRIVATE, true);
+  route = currentRoute;
+
+  // * If route was not private, search for the current route in public routes
+  if (!isPrivatePath) {
+    route = getCurrentRoute(ROUTES.PUBLIC).currentRoute;
+  }
+
+  // * Don't render the route if it's private and the user's role is not allowed
+  if (!guardCheckUserRole(currentRoute?.roleGuards)) {
+    router.push("404");
+    return null;
+  }
 
   return (
     <>
-      {privatePaths.includes(router.pathname) ? (
+      {isPrivatePath ? (
         <PrivateRoute>
           <RouteLayout
-            layout={ROUTES.PRIVATE[key]?.layout}
-            roleGuards={ROUTES.PRIVATE[key]?.roleGuards}
+            layout={route?.layout}
+            roleGuards={route?.roleGuards}
           >
             <Component {...pageProps} />
           </RouteLayout>
         </PrivateRoute>
       ) : (
         <RouteLayout
-          layout={ROUTES.PUBLIC[key]?.layout}
-          roleGuards={ROUTES.PUBLIC[key]?.guards}
+          layout={route?.layout}
+          roleGuards={route?.roleGuards}
         >
           <Component {...pageProps} />
         </RouteLayout>
