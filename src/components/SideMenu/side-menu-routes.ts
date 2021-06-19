@@ -30,7 +30,7 @@ export const PRIVATE_ROUTE: IPrivateRoute[] = [
     type: EPrivateRouteType.ITEM,
   },
   {
-    name: "Only admin",
+    name: "Only admin333",
     url: PRIVATE_ROUTES.onlyAdmin.path,
     icon: "key",
     type: EPrivateRouteType.ITEM,
