@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import { PUBLIC_ROUTES } from "routes/routes";
 import { AFTER_LOGIN_REDIRECT } from "settings/constants";
-import lottieSiteLoader from "utils/lottie/SiteLoader.json";
+import lottieSiteLoader from "utils/lottie/siteLoader.json";
 
 const loaderLottieOptions = {
   loop: true,
