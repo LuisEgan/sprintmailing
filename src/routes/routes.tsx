@@ -21,5 +21,6 @@ export const PRIVATE_ROUTES = {
 };
 
 export const PUBLIC_ROUTES = {
+  404: { path: "/404" },
   login: { path: "/login" },
 };

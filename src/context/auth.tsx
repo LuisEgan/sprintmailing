@@ -50,13 +50,13 @@ const AuthProvider = ({ children }) => {
 
   const signout = async () => {
     try {
-      await client.clearStore();
-      await client.resetStore();
+      signOutActions();
+      router.push("/login");
       dispatch({
         type: "CLEAN_USER",
       });
-      signOutActions();
-      router.push("/");
+      await client.clearStore();
+      await client.resetStore();
     } catch (error) {
       console.error("error: ", error);
     }

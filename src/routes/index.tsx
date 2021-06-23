@@ -55,7 +55,7 @@ const Routes = ({ Component, pageProps }: AppProps) => {
 
   // * Don't render the route if it's private and the user's role is not allowed
   if (!guardCheckUserRole(currentRoute?.roleGuards)) {
-    router.push("404");
+    router.push("/404");
     return null;
   }
 
@@ -63,18 +63,12 @@ const Routes = ({ Component, pageProps }: AppProps) => {
     <>
       {isPrivatePath ? (
         <PrivateRoute>
-          <RouteLayout
-            layout={route?.layout}
-            roleGuards={route?.roleGuards}
-          >
+          <RouteLayout layout={route?.layout} roleGuards={route?.roleGuards}>
             <Component {...pageProps} />
           </RouteLayout>
         </PrivateRoute>
       ) : (
-        <RouteLayout
-          layout={route?.layout}
-          roleGuards={route?.roleGuards}
-        >
+        <RouteLayout layout={route?.layout} roleGuards={route?.roleGuards}>
           <Component {...pageProps} />
         </RouteLayout>
       )}

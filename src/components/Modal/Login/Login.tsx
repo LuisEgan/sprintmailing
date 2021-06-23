@@ -94,7 +94,11 @@ export const Login = () => {
           rules={{ required: true, validate: (value) => isEmail(value) }}
           defaultValue=""
           render={({ field }) => (
-            <Input {...field} placeholder="Ingresa aquí tu email" />
+            <Input
+              {...field}
+              autocapitalize="none"
+              placeholder="Ingresa aquí tu email"
+            />
           )}
         />
         {errors && errors.email && (
@@ -112,6 +116,7 @@ export const Login = () => {
             <PasswordInput
               {...field}
               type="password"
+              autocapitalize="none"
               placeholder="Ingresa aquí tu contraseña"
             />
           )}

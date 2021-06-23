@@ -52,18 +52,18 @@ const LoginPage = () => {
             className="hidden dark:block"
             src={VERTICAL_LOGO_DARK}
             beforeInjection={(svg) => {
-              svg.setAttribute("style", "width: 350px;");
+              svg.setAttribute("style", "width: 250px;height:100%;");
             }}
           />
           <ReactSVG
             className="block dark:hidden"
             src={VERTICAL_LOGO_LIGHT}
             beforeInjection={(svg) => {
-              svg.setAttribute("style", "width: 350px;");
+              svg.setAttribute("style", "width: 250px;height:100%;");
             }}
           />
         </Col>
-        <Col size={24} className="flex justify-center mt-5">
+        <Col size={24} className="flex justify-center mt-8">
           <Button appearance="primary" size="lg" onClick={handleLogin}>
             Iniciar sesión
           </Button>

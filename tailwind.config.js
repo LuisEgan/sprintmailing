@@ -3,6 +3,9 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      height: {
+        screen: ["100vh", "-webkit-fill-available"],
+      },
       colors: {
         current: {
           500: "#ff0657",
