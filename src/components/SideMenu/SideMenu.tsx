@@ -105,6 +105,7 @@ const SideMenu = (props: SideMenuProps) => {
               if (item.type === EPrivateRouteType.ITEM && !item.hidden) {
                 return (
                   <Nav.Item
+                    eventKey={item.name}
                     key={`item ${item.name}`}
                     active={router.pathname === item.url}
                     icon={<Icon icon={item.icon} />}
@@ -126,6 +127,7 @@ const SideMenu = (props: SideMenuProps) => {
                     {item.children.map((route) =>
                       !route.hidden ? (
                         <Nav.Item
+                          eventKey={item.name}
                           className="ml-8"
                           key={route.url}
                           active={router.pathname === route.url}
