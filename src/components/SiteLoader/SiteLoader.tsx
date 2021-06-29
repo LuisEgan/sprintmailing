@@ -27,7 +27,10 @@ const SiteLoader = ({ children }) => {
     if (isAuthenticated() && user)
       setTimeout(() => {
         setShowLoader(false);
-        if (router.pathname !== AFTER_LOGIN_REDIRECT) {
+        if (
+          router.pathname !== AFTER_LOGIN_REDIRECT &&
+          router.pathname !== "/404"
+        ) {
           router.push(AFTER_LOGIN_REDIRECT);
         }
       }, 2000);
@@ -35,7 +38,10 @@ const SiteLoader = ({ children }) => {
     if (!isAuthenticated())
       setTimeout(() => {
         setShowLoader(false);
-        if (router.pathname !== PUBLIC_ROUTES.login.path) {
+        if (
+          router.pathname !== PUBLIC_ROUTES.login.path &&
+          router.pathname !== "/404"
+        ) {
           router.push(PUBLIC_ROUTES.login.path);
         }
       }, 2000);

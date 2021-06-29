@@ -39,6 +39,10 @@ const GET_FULL_USER = gql`
       name
       lastname
       email
+      vendorList {
+        id
+        name
+      }
     }
   }
 `;

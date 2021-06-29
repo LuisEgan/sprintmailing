@@ -66,7 +66,7 @@ const Navbar = (props: NavbarProps) => {
             />
           </div>
         </div>
-        <ButtonToolbar>
+        <ButtonToolbar className="flex">
           <ToggleVendor />
           <AvatarContainer className="mr-2">
             <UserInfoContainer>
