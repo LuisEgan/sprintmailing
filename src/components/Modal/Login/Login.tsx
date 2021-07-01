@@ -11,6 +11,7 @@ import { Button, Input } from "rsuite";
 import {
   AFTER_LOGIN_REDIRECT,
   REFRESH_TOKEN_PERSIST,
+  USER_TOKEN_PERSIST,
 } from "settings/constants";
 import isEmail from "validator/lib/isEmail";
 
@@ -35,7 +36,7 @@ export const Login = () => {
     onCompleted({ login }) {
       const { accessToken, refreshToken } = login;
 
-      localStorage.setItem("userToken", `${accessToken}`);
+      localStorage.setItem(USER_TOKEN_PERSIST, `${accessToken}`);
       localStorage.setItem(REFRESH_TOKEN_PERSIST, `${refreshToken}`);
       getUser({
         variables: {

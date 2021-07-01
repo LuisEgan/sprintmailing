@@ -7,7 +7,11 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Input } from "rsuite";
-import { AFTER_LOGIN_REDIRECT } from "settings/constants";
+import {
+  AFTER_LOGIN_REDIRECT,
+  REFRESH_TOKEN_PERSIST,
+  USER_TOKEN_PERSIST,
+} from "settings/constants";
 import isEmail from "validator/lib/isEmail";
 
 export const Register = () => {
@@ -26,8 +30,9 @@ export const Register = () => {
     gqlUser.mutations.SIGNUP,
     {
       onCompleted({ signup }) {
-        const { accessToken } = signup;
-        localStorage.setItem("userToken", `${accessToken}`);
+        const { accessToken, refreshToken } = signup;
+        localStorage.setItem(USER_TOKEN_PERSIST, `${accessToken}`);
+        localStorage.setItem(REFRESH_TOKEN_PERSIST, `${refreshToken}`);
         getUser({
           variables: {
             accessToken,

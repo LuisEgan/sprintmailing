@@ -43,7 +43,10 @@ const getNewToken = () =>
     .then((response) => {
       const { refreshAccessToken } = response.data;
       if (refreshAccessToken) {
-        localStorage.setItem("userToken", `${refreshAccessToken.accessToken}`);
+        localStorage.setItem(
+          USER_TOKEN_PERSIST,
+          `${refreshAccessToken.accessToken}`,
+        );
 
         return refreshAccessToken.accessToken;
       }

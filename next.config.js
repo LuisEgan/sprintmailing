@@ -5,10 +5,11 @@ const { parsed: myEnv } = require("dotenv").config({
   path: ".env",
 });
 
-const config = () => {
-  webpack: (config) => {
+const config = {
+  webpack: (config, { webpack }) => {
     config.plugins.push(new webpack.EnvironmentPlugin(myEnv));
     return config;
-  };
+  },
 };
-module.exports = withPlugins([withImages], nextTranslate(config));
+
+module.exports = withPlugins([withImages, nextTranslate], config);
