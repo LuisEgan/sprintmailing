@@ -26,9 +26,8 @@ const SiteLoader = ({ children }) => {
   useEffect(() => {
     if (isAuthenticated() && user)
       setTimeout(() => {
-        setShowLoader(false);
         if (router.pathname === "") {
-          router.push(AFTER_LOGIN_REDIRECT);
+          router.push(AFTER_LOGIN_REDIRECT).then(() => setShowLoader(false));
         }
       }, 2000);
 
