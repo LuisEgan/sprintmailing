@@ -27,22 +27,20 @@ const SiteLoader = ({ children }) => {
     if (isAuthenticated() && user)
       setTimeout(() => {
         setShowLoader(false);
-        if (
-          router.pathname !== AFTER_LOGIN_REDIRECT &&
-          router.pathname !== "/404"
-        ) {
+        if (router.pathname === "") {
           router.push(AFTER_LOGIN_REDIRECT);
         }
       }, 2000);
 
     if (!isAuthenticated())
       setTimeout(() => {
-        setShowLoader(false);
         if (
           router.pathname !== PUBLIC_ROUTES.login.path &&
           router.pathname !== "/404"
         ) {
-          router.push(PUBLIC_ROUTES.login.path);
+          router
+            .push(PUBLIC_ROUTES.login.path)
+            .then(() => setShowLoader(false));
         }
       }, 2000);
   }, [isAuthenticated(), user]);
