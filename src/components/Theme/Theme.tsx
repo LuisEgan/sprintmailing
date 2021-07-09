@@ -6,6 +6,13 @@ import React, { useEffect, useState } from "react";
 import { IntlProvider } from "rsuite";
 import enUS from "rsuite/lib/IntlProvider/locales/en_US";
 import esEs from "rsuite/lib/IntlProvider/locales/es_ES";
+import resolveConfig from "tailwindcss/resolveConfig";
+import { TailwindConfig } from "tailwindcss/tailwind-config";
+
+import tailwindConfig from "../../../tailwind.config.js";
+// @ts-ignore
+const fullConfig = resolveConfig({ ...tailwindConfig });
+export const { theme: tailwindTheme }: TailwindConfig = fullConfig;
 
 const defaultStylesheet = "dark";
 const InAnimation = "animate__fadeIn";
