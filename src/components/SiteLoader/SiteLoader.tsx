@@ -42,6 +42,8 @@ const SiteLoader = ({ children }) => {
           router
             .push(PUBLIC_ROUTES.login.path)
             .then(() => setShowLoader(false));
+        } else {
+          setShowLoader(false);
         }
       }, 2000);
   }, [isAuthenticated(), user]);
