@@ -17,6 +17,7 @@
     "@graphql-tools/schema": "6.0.18",
     "@react-hook/window-size": "^3.0.7",
     "@types/react-adal": "^0.5.0",
+    "@types/react-lottie": "^1.2.6",
     "@types/react-transition-group": "^4.4.1",
     "@types/styled-components": "^5.1.9",
     "@types/tailwindcss": "^2.2.1",

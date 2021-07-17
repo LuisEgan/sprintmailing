@@ -1,8 +1,21 @@
-export const LOGO_DARK = "/images/logo/dark/HorizontalLogo.svg";
-export const LOGO_LIGHT = "/images/logo/light/HorizontalLogo.svg";
+export const LOGO_DARK =
+  process.env.NEXT_PUBLIC_HORIZONTAL_LOGO_DARK ||
+  "/images/logo/dark/HorizontalLogo.svg";
+export const LOGO_LIGHT =
+  process.env.NEXT_PUBLIC_HORIZONTAL_LOGO_LIGHT ||
+  "/images/logo/light/HorizontalLogo.svg";
 
-export const VERTICAL_LOGO_DARK = "/images/logo/dark/VerticalLogo.svg";
-export const VERTICAL_LOGO_LIGHT = "/images/logo/light/VerticalLogo.svg";
+export const VERTICAL_LOGO_DARK =
+  process.env.NEXT_PUBLIC_VERTICAL_LOGO_DARK ||
+  "/images/logo/dark/VerticalLogo.svg";
+export const VERTICAL_LOGO_LIGHT =
+  process.env.NEXT_PUBLIC_VERTICAL_LOGO_DARK ||
+  "/images/logo/light/VerticalLogo.svg";
+
+export const SITE_LOADER_DARK =
+  process.env.NEXT_PUBLIC_SITE_LOADER_DARK || "utils/lottie/site-loader.json";
+export const SITE_LOADER_LIGHT =
+  process.env.NEXT_PUBLIC_SITE_LOADER_LIGHT || "utils/lottie/site-loader.json";
 
 export const USER_TOKEN_PERSIST = "userToken";
 export const VENDOR_ID_PERSIST = "selectedVendorId";
