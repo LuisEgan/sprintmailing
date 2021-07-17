@@ -1,7 +1,7 @@
 # Install dependencies only when needed
 FROM node:14-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat wget
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
@@ -15,7 +15,10 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 ARG ENVIRONMENT_VARIABLES
 RUN echo -e ${ENVIRONMENT_VARIABLES} >> .env
+
+RUN yarn generate-styles
 RUN yarn build 
+
 # Production image, copy all the files and run next
 FROM node:14-alpine AS runner
 WORKDIR /app
