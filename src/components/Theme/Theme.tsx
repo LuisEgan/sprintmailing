@@ -6,11 +6,11 @@ import React, { useEffect, useState } from "react";
 import { IntlProvider } from "rsuite";
 import enUS from "rsuite/lib/IntlProvider/locales/en_US";
 import esEs from "rsuite/lib/IntlProvider/locales/es_ES";
+import { DEFAULT_THEME } from "settings/constants";
 import resolveConfig from "tailwindcss/resolveConfig";
 import { TailwindConfig } from "tailwindcss/tailwind-config";
 
 import tailwindConfig from "../../../tailwind.config.js";
-import { DEFAULT_THEME } from "settings/constants.js";
 // @ts-ignore
 const fullConfig = resolveConfig({ ...tailwindConfig });
 export const { theme: tailwindTheme }: TailwindConfig = fullConfig;
