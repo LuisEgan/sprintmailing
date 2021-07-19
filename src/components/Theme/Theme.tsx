@@ -10,11 +10,11 @@ import resolveConfig from "tailwindcss/resolveConfig";
 import { TailwindConfig } from "tailwindcss/tailwind-config";
 
 import tailwindConfig from "../../../tailwind.config.js";
+import { DEFAULT_THEME } from "settings/constants.js";
 // @ts-ignore
 const fullConfig = resolveConfig({ ...tailwindConfig });
 export const { theme: tailwindTheme }: TailwindConfig = fullConfig;
 
-const defaultStylesheet = "dark";
 const InAnimation = "animate__fadeIn";
 const OutAnimation = "animate__fadeOut";
 let initialLoad = true;
@@ -68,8 +68,8 @@ const Theme = ({ children }) => {
   useEffect(() => {
     if (mounted) {
       if (!theme || theme === "system") {
-        setTheme(defaultStylesheet);
-        loadStyleSheet(defaultStylesheet, setTheme);
+        setTheme(DEFAULT_THEME);
+        loadStyleSheet(DEFAULT_THEME, setTheme);
       } else {
         loadStyleSheet(theme, setTheme);
       }
