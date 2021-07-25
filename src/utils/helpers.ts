@@ -1,3 +1,4 @@
+import { DocumentNode, getOperationAST } from "graphql";
 import { Area } from "react-easy-crop/types";
 import { blobToFile } from "utils/files";
 
@@ -83,3 +84,5 @@ export const getCroppedImg = async (
   }
   return null;
 };
+
+export const getQueryOperator = (query: DocumentNode) => getOperationAST(query)?.name?.value;
