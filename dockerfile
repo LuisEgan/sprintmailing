@@ -15,7 +15,7 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 ARG ENVIRONMENT_VARIABLES
 RUN echo -e ${ENVIRONMENT_VARIABLES} >> .env
-ENV NEXT_PUBLIC_BASE_COLOR=red
+RUN source .env
 RUN yarn generate-styles
 RUN yarn build
 # Production image, copy all the files and run next

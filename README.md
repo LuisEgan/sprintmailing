@@ -25,6 +25,10 @@ yarn dev
 
 @Esteban explicar como funcionan los guards
 
+### Custom hooks
+
+@So many details
+
 ## Variables de Entorno
 
 Esta plantilla NEXT funciona con variables de entorno en tiempo de compilación, para facilitar el trabajo local con la plantilla estamos usando actualmente el package .dotenv, el cual permite leer las variables de entorno de un archivo .env, el cual no debe ser versionado y permitirá modificar las variables que han sido definidas como NEXT_PUBLIC.
