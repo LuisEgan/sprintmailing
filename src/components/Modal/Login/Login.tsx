@@ -56,7 +56,7 @@ export const Login = () => {
       closeModal();
       router.push(AFTER_LOGIN_REDIRECT);
     }
-  }, [getUserData, router.pathname, closeModal, router]);
+  }, [getUserData]);
 
   const handleLogin = (data) => {
     try {
