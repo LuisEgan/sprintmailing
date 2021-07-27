@@ -8,7 +8,7 @@ module.exports = {
       },
       colors: {
         current: {
-          500: "#ff0657",
+          500: process.env.NEXT_PUBLIC_BASE_COLOR || "#ff0657",
         },
         black: "#090C10",
         gray: {

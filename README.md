@@ -1,36 +1,37 @@
-# TypeScript and GraphQL Example
+# Introducción
 
-One of the strengths of GraphQL is [enforcing data types on runtime](https://graphql.github.io/graphql-spec/June2018/#sec-Value-Completion). Further, TypeScript and [GraphQL Code Generator](https://graphql-code-generator.com/) (graphql-codegen) make it safer by typing data statically, so you can write truly type-protected code with rich IDE assists.
+Esta plantilla de NEXT genérica fue creada por el equipo de Cleverit Labs.
 
-This template extends [Apollo Server and Client Example](https://github.com/vercel/next.js/tree/canary/examples/api-routes-apollo-server-and-client#readme) by rewriting in TypeScript and integrating [graphql-let](https://github.com/piglovesyou/graphql-let#readme), which runs [TypeScript React Apollo](https://graphql-code-generator.com/docs/plugins/typescript-react-apollo) in [graphql-codegen](https://github.com/dotansimha/graphql-code-generator#readme) under the hood. It enhances the typed GraphQL use as below:
+## Instalación
 
-```tsx
-import { useNewsQuery } from './news.graphql'
+Para utilizar esta plantilla, primero debemos tener instalado Yarn.
 
-const News = () => {
-	// Typed already️⚡️
-	const { data: { news } } = useNewsQuery()
-
-	return <div>{news.map(...)}</div>
-}
+```shell
+npm install --global yarn
+yarn
+yarn generate-styles
+yarn dev
 ```
 
-By default `**/*.graphqls` is recognized as GraphQL schema and `**/*.graphql` as GraphQL documents. If you prefer the other extensions, make sure the settings of the webpack loader in `next.config.js` and `.graphql-let.yml` are consistent.
+## Módulos
 
-## Deploy your own
+@Esteban por favor explicar como es la estructura de carpetas de esta solución.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## Rutas Privadas
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-graphql&project-name=with-typescript-graphql&repository-name=with-typescript-graphql)
+@Esteban explicar como funcionan las rutas privadas dentro del template.
 
-## How to use
+### Guards
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+@Esteban explicar como funcionan los guards
 
-```bash
-npx create-next-app --example with-typescript-graphql with-typescript-graphql-app
-# or
-yarn create next-app --example with-typescript-graphql with-typescript-graphql-app
+## Variables de Entorno
+
+Esta plantilla NEXT funciona con variables de entorno en tiempo de compilación, para facilitar el trabajo local con la plantilla estamos usando actualmente el package .dotenv, el cual permite leer las variables de entorno de un archivo .env, el cual no debe ser versionado y permitirá modificar las variables que han sido definidas como NEXT_PUBLIC.
+
+```shell
+NEXT_PUBLIC_DEFAULT_THEME=light
+NEXT_PUBLIC_ENABLE_MULTILANGUAGE=true
+NEXT_PUBLIC_BASE_COLOR=#98f8bb
+NEXT_PUBLIC_APP_API_URL=<<url-de-tu-backend>>
 ```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
