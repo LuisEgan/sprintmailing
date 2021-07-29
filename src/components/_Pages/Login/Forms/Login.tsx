@@ -1,4 +1,5 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
+import { Recovery } from "components/_Pages/Recovery/Forms/Recovery";
 import Header from "components/Header/Header";
 import PasswordInput from "components/PasswordInput";
 import { useModal } from "context/modal/modal.provider";
@@ -14,8 +15,6 @@ import {
   USER_TOKEN_PERSIST,
 } from "settings/constants";
 import isEmail from "validator/lib/isEmail";
-
-import { Recovery } from "../Recovery";
 
 export const Login = () => {
   const {

@@ -1,3 +1,5 @@
+// import { useLazyQuery } from "@apollo/client";
+// import { gqlExample } from "gql";
 import Header from "components/Header/Header";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
@@ -5,12 +7,11 @@ import { Col, Row } from "rsuite";
 
 const Clevers = () => {
   const { t } = useTranslation("common");
-  return (
-    // const [
-    //   queryName,
-    //   { data: queryNameData, loading: queryNameLoading },
-    // ] = useLazyQuery(gqlQuery.queries.NAME_OF_QUERY);
 
+  // const [queryName, { data: queryNameData, loading: queryNameLoading }] =
+  //   useLazyQuery(gqlExample.queries.QUERY_EXAMPLE);
+
+  return (
     <>
       <Header
         {...{

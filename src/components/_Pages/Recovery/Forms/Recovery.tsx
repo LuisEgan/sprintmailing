@@ -9,7 +9,7 @@ import { Button, Input } from "rsuite";
 import { IUser } from "types/User.types";
 import isEmail from "validator/lib/isEmail";
 
-import { EmailSended } from "./EmailSended";
+import { EmailSent } from "../EmailSent";
 
 export const Recovery = () => {
   const {
@@ -27,7 +27,7 @@ export const Recovery = () => {
     >(gqlUser.mutations.CHANGE_PASSWORD, {
       onCompleted({ changePassword }) {
         openModal({
-          modalComponent: <EmailSended {...changePassword} />,
+          modalComponent: <EmailSent {...changePassword} />,
           modalProps: { size: "sm" },
         });
       },

@@ -1,11 +1,11 @@
 import Header from "components/Header/Header";
 import React from "react";
 
-interface EmailSendedProps {
+interface EmailSentProps {
   email: string;
   name: string;
 }
-export const EmailSended = (props: EmailSendedProps) => {
+export const EmailSent = (props: EmailSentProps) => {
   const { email, name } = props;
   return (
     <div className="w-full p-5">

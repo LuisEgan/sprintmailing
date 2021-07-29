@@ -28,7 +28,7 @@ export const RouteLayout: FC<IRouteLayout> = (props) => {
   if (!guardCheckUserRole(roleGuards)) {
     fireNotification({
       title: "Oops",
-      description: " No tienes permisos para acceder a esta ruta",
+      description: "No tienes permisos para acceder a esta ruta",
       type: "error",
     });
     router.back();
