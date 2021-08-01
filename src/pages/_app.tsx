@@ -17,6 +17,7 @@ import Routes from "routes";
 
 import AuthProvider from "../context/auth";
 import client from "../settings/apollo";
+import SiteHead from "components/SiteHead/SiteHead";
 
 export default function App(props: AppProps) {
   return (
@@ -24,6 +25,7 @@ export default function App(props: AppProps) {
       <ApolloProvider client={client}>
         <ThemeProvider attribute="class">
           <Theme>
+            <SiteHead />
             <Tailwind />
             <ModalProvider>
               <DrawerProvider>
