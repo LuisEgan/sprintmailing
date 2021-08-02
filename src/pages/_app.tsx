@@ -3,6 +3,7 @@ import "styles/overwrite-rsuite.scss";
 import "animate.css/animate.css";
 
 import { ApolloProvider } from "@apollo/client";
+import SiteHead from "components/SiteHead/SiteHead";
 import SiteLoader from "components/SiteLoader/SiteLoader";
 import Tailwind from "components/Tailwind/Tailwind";
 import Theme from "components/Theme/Theme";
@@ -17,7 +18,6 @@ import Routes from "routes";
 
 import AuthProvider from "../context/auth";
 import client from "../settings/apollo";
-import SiteHead from "components/SiteHead/SiteHead";
 
 export default function App(props: AppProps) {
   return (
