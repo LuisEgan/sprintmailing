@@ -2,23 +2,15 @@ import { Register } from "components/_Pages/Login/Forms/Register";
 import { Recovery } from "components/_Pages/Recovery/Forms/Recovery";
 import ToggleLang from "components/ToggleLang/ToggleLang";
 import ToggleTheme from "components/ToggleTheme/ToggleTheme";
-import { useAuth } from "context/auth";
 import { useModal } from "context/modal/modal.provider";
-import { useRouter } from "next/router";
 import React from "react";
 import { ReactSVG } from "react-svg";
 import { Button, Col, Icon, Row } from "rsuite";
-import {
-  AFTER_LOGIN_REDIRECT,
-  VERTICAL_LOGO_DARK,
-  VERTICAL_LOGO_LIGHT,
-} from "settings/constants";
+import { VERTICAL_LOGO_DARK, VERTICAL_LOGO_LIGHT } from "settings/constants";
+import { Login } from "./Forms/Login";
 
-const Login = () => {
-  const router = useRouter();
+const LoginPage = () => {
   const { openModal } = useModal();
-
-  const { isAuthenticated } = useAuth();
 
   const handleLogin = () => {
     openModal({
@@ -40,8 +32,6 @@ const Login = () => {
       modalProps: { size: "sm" },
     });
   };
-
-  if (isAuthenticated()) router.push(AFTER_LOGIN_REDIRECT);
 
   return (
     <div className="bg-white dark:bg-gray-900 w-screen h-screen flex justify-center items-center">
@@ -89,4 +79,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
