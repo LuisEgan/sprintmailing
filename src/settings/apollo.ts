@@ -3,15 +3,17 @@
 import {
   ApolloClient,
   createHttpLink,
+  DocumentNode,
   fromPromise,
   InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { signOutActions } from "context/auth";
-import { gqlUser } from "gql";
+import { gqlDoNothing, gqlUser } from "gql";
 import Router from "next/router";
 import { PUBLIC_ROUTES } from "routes/routes";
+import { getQueryOperator } from "utils/helpers";
 
 import { REFRESH_TOKEN_PERSIST, USER_TOKEN_PERSIST } from "./constants";
 
@@ -90,5 +92,16 @@ apolloClient = new ApolloClient({
   }),
   link,
 });
+
+export const forceRefetchQueries = (queries: DocumentNode[]) => {
+  // * Hack for run refetch queries by Name Without real mutation
+  const queryNames = queries.map(getQueryOperator);
+
+  apolloClient.mutate({
+    mutation: gqlDoNothing.mutations.DO_NOTHING,
+    awaitRefetchQueries: true,
+    refetchQueries: () => queryNames,
+  });
+};
 
 export default apolloClient;
