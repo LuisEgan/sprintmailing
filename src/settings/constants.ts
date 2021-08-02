@@ -1,3 +1,5 @@
+export const DEFAULT_PROFILE_IMAGE = "some-default-url-avatar-for-users";
+
 export const LOGO_DARK = "/images/logo/dark/HorizontalLogo.svg";
 export const LOGO_LIGHT = "/images/logo/light/HorizontalLogo.svg";
 
