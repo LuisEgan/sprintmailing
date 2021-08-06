@@ -1,6 +1,3 @@
-import GeneralLayout from "components/Layout/GeneralLayout";
-import LandingLayout from "components/Layout/LandingLayout";
-import ManagerLayout from "components/Layout/ManagerLayout";
 import { useNotification } from "context/notification/notification.provider";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
@@ -11,12 +8,6 @@ interface IRouteLayout {
   layout: ELayout;
   roleGuards?: ESystemRoles[];
 }
-
-const LAYOUTS = {
-  [ELayout.GENERAL]: GeneralLayout,
-  [ELayout.MANAGER]: ManagerLayout,
-  [ELayout.LANDING]: LandingLayout,
-};
 
 export const RouteLayout: FC<IRouteLayout> = (props) => {
   const router = useRouter();
