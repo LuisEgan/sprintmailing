@@ -1,4 +1,4 @@
-import Login from "components/_Pages/Login";
+import { Login } from "components/_Pages/Login/Forms/Login";
 import ToggleVendor from "components/ToggleVendor/ToggleVendor";
 import { useAuth } from "context/auth";
 import { useModal } from "context/modal/modal.provider";

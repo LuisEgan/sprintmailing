@@ -4,7 +4,7 @@ import { ELayout, ESystemRoles } from "settings/constants";
 
 export const PRIVATE_ROUTES = {
   home: {
-    path: "/app/home",
+    path: "/app/admin",
     layout: ELayout.MANAGER,
   },
   profile: { path: "/app/profile", layout: ELayout.MANAGER },
