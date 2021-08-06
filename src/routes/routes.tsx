@@ -13,6 +13,11 @@ export const PRIVATE_ROUTES = {
     layout: ELayout.MANAGER,
     roleGuards: [ESystemRoles.ADMIN, ESystemRoles.USER],
   },
+  siteConfig2: {
+    path: "/app/config/[id]",
+    layout: ELayout.MANAGER,
+    roleGuards: [ESystemRoles.ADMIN, ESystemRoles.USER],
+  },
   onlyAdmin: {
     path: "/app/only-admin",
     layout: ELayout.MANAGER,
@@ -21,6 +26,7 @@ export const PRIVATE_ROUTES = {
 };
 
 export const PUBLIC_ROUTES = {
+  noRoute: { path: "/" },
   404: { path: "/404" },
   login: { path: "/login" },
   recover: { path: "/recover" },

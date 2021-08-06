@@ -60,7 +60,7 @@ const PublicNavBar = (props: NavbarProps) => {
               />
             </svg>
           </button>
-          <div className="lg:hidden">
+          <div>
             <ReactSVG
               className="hidden dark:block"
               src={LOGO_DARK}
