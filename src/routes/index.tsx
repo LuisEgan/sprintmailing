@@ -32,7 +32,7 @@ const Routes = ({ Component, pageProps }: AppProps) => {
     let isPrivatePath = false;
 
     Object.values(routes).some((route) => {
-      const isRoute = route.path.includes(router.pathname);
+      const isRoute = route.path === router.pathname;
       if (isRoute) {
         isPrivatePath = isPrivate;
         currentRoute = route;
