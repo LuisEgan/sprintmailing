@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 module.exports = {
   dark: {
     import: ["~rsuite/lib/styles/themes/dark/index"],
