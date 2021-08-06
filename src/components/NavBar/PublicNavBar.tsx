@@ -1,4 +1,4 @@
-import Login from "components/_Pages/Login";
+import { Login } from "components/_Pages/Login/Forms/Login";
 import ToggleVendor from "components/ToggleVendor/ToggleVendor";
 import { useAuth } from "context/auth";
 import { useModal } from "context/modal/modal.provider";
@@ -60,7 +60,7 @@ const PublicNavBar = (props: NavbarProps) => {
               />
             </svg>
           </button>
-          <div className="lg:hidden">
+          <div>
             <ReactSVG
               className="hidden dark:block"
               src={LOGO_DARK}

@@ -96,7 +96,7 @@ export const Login = () => {
           render={({ field }) => (
             <Input
               {...field}
-              autocapitalize="none"
+              autoCapitalize="none"
               placeholder="Ingresa aquí tu email"
             />
           )}
@@ -116,7 +116,7 @@ export const Login = () => {
             <PasswordInput
               {...field}
               type="password"
-              autocapitalize="none"
+              autoCapitalize="none"
               placeholder="Ingresa aquí tu contraseña"
             />
           )}
