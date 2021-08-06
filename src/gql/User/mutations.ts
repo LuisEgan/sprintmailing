@@ -4,6 +4,7 @@ const SIGNUP = gql`
   mutation Signup($signUpInput: CreateUserInput!) {
     signup(signUpInput: $signUpInput) {
       accessToken
+      refreshToken
     }
   }
 `;
