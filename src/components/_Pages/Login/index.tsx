@@ -7,6 +7,7 @@ import React from "react";
 import { ReactSVG } from "react-svg";
 import { Button, Col, Icon, Row } from "rsuite";
 import { VERTICAL_LOGO_DARK, VERTICAL_LOGO_LIGHT } from "settings/constants";
+
 import { Login } from "./Forms/Login";
 
 const LoginPage = () => {

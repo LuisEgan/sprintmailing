@@ -1,3 +1,4 @@
+import { LAYOUTS } from "components/Layout/Layout.types";
 import { useNotification } from "context/notification/notification.provider";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
