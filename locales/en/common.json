@@ -1,3 +1,7 @@
 {
-  "example": "Texto en inglés"
+  "example": "Texto en inglés",
+  "login": {
+    "loginBtnText": "Iniciar sesión",
+    "registerBtnText": "Registrate"
+  }
 }

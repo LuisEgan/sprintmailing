@@ -35,9 +35,13 @@ const SiteLoader = ({ children }) => {
 
   const { user } = useProfile();
 
-  const isPublicRoute = useCallback(() => Object.values(PUBLIC_ROUTES)
-      .map((route) => route.path)
-      .includes(router.pathname), [router.pathname]);
+  const isPublicRoute = useCallback(
+    () =>
+      Object.values(PUBLIC_ROUTES)
+        .map((route) => route.path)
+        .includes(router.pathname),
+    [router.pathname],
+  );
 
   useEffect(() => {
     if (isAuthenticated() && user)
@@ -52,9 +56,7 @@ const SiteLoader = ({ children }) => {
     if (!isAuthenticated())
       setTimeout(() => {
         if (!isPublicRoute()) {
-          router
-            .push(PUBLIC_ROUTES.login.path)
-            .then(() => setShowLoader(false));
+          router.push(PUBLIC_ROUTES.home.path).then(() => setShowLoader(false));
         } else {
           setShowLoader(false);
         }

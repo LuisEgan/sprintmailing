@@ -24,5 +24,5 @@ export const PUBLIC_ROUTES = {
   404: { path: "/404" },
   login: { path: "/login" },
   recover: { path: "/recover" },
-  publicPage: { path: "/public-page", layout: ELayout.LANDING },
+  home: { path: "/home", layout: ELayout.LANDING },
 };

@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 
 import { LayoutMainContent, LayoutWrapper } from "./Layout.style";
 
-const NavBar = dynamic(() => import("components/NavBar/NavBar"), {
+const PublicNavBar = dynamic(() => import("components/NavBar/PublicNavBar"), {
   ssr: false,
 });
 
@@ -14,7 +14,7 @@ const LandingLayout: FC = (props) => {
   return (
     <LayoutWrapper>
       <LayoutMainContent className="animate__animated" id="layoutMainContent">
-        <NavBar {...{ showSideBar, setShowSideBar }} />
+        <PublicNavBar {...{ showSideBar, setShowSideBar }} />
         <div className="p-6">{children}</div>
       </LayoutMainContent>
     </LayoutWrapper>
