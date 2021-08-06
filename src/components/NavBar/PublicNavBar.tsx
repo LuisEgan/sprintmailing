@@ -79,6 +79,7 @@ const PublicNavBar = (props: NavbarProps) => {
         </div>
         <ButtonToolbar className="flex">
           <ToggleVendor />
+
           {user && (
             <AvatarContainer className="mr-2">
               <UserInfoContainer>

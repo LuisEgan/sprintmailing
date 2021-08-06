@@ -16,7 +16,7 @@ interface IPrivateRoute {
   hidden?: boolean; // * Use for hide item menu for some reason
 }
 
-export const SIDE_MENU_ROUTES: IPrivateRoute[] = [
+export const PUBLIC_SIDE_MENU_ROUTES: IPrivateRoute[] = [
   {
     name: "Home",
     url: PRIVATE_ROUTES.home.path,
@@ -30,7 +30,7 @@ export const SIDE_MENU_ROUTES: IPrivateRoute[] = [
     type: EPrivateRouteType.ITEM,
   },
   {
-    name: "Only admin",
+    name: "Only admin333",
     url: PRIVATE_ROUTES.onlyAdmin.path,
     icon: "key",
     type: EPrivateRouteType.ITEM,
