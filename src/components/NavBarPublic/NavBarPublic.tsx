@@ -2,6 +2,7 @@ import { Login } from "components/_Pages/Login/Forms/Login";
 import { Register } from "components/_Pages/Login/Forms/Register";
 import ToggleLang from "components/ToggleLang/ToggleLang";
 import ToggleTheme from "components/ToggleTheme/ToggleTheme";
+import UserAvatar from "components/User/UserAvatar";
 import { useAuth } from "context/auth";
 import { useModal } from "context/modal/modal.provider";
 import { useProfile } from "context/profile/profile.context";
@@ -11,11 +12,7 @@ import { ReactSVG } from "react-svg";
 import { Button, ButtonToolbar, Dropdown, Icon, Nav } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT } from "settings/constants";
 
-import {
-  AvatarContainer,
-  AvatarImage,
-  UserInfoContainer,
-} from "./NavBar.style";
+import { AvatarContainer, UserInfoContainer } from "./NavBar.style";
 
 interface NavbarProps {
   showSideBar: boolean;
@@ -105,7 +102,8 @@ const NavBarPublic = (props: NavbarProps) => {
               </Dropdown.Item>
             </Dropdown>
           </Nav>
-
+          <ToggleLang {...{ placement: "bottomStart" }} />
+          <ToggleTheme />
           {user && (
             <AvatarContainer className="mr-2">
               <UserInfoContainer>
@@ -114,12 +112,7 @@ const NavBarPublic = (props: NavbarProps) => {
                   placement="bottomEnd"
                   renderTitle={(children) => (
                     <div className="flex items-center">
-                      <AvatarImage
-                        className="bg-gray-900 dark:bg-white border-2 border-current-500"
-                        style={{
-                          backgroundImage: `url(${user?.profileImage})`,
-                        }}
-                      />
+                      <UserAvatar {...{ user, showName: true, size: 40 }} />
                       <div className="text-base ml-2">{children}</div>
                     </div>
                   )}
@@ -137,8 +130,6 @@ const NavBarPublic = (props: NavbarProps) => {
               {" "}
               <Button onClick={handleLogin}>{t("login.loginBtn")}</Button>
               <Button onClick={handleRegister}>{t("login.registerBtn")}</Button>
-              <ToggleLang {...{ placement: "bottomStart" }} />
-              <ToggleTheme />
             </>
           )}
         </ButtonToolbar>

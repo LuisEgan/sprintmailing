@@ -4,8 +4,8 @@ import { ELayout, ESystemRoles } from "settings/constants";
 
 export const PRIVATE_ROUTES = {
   home: {
-    path: "/app/admin",
-    layout: ELayout.MANAGER,
+    path: "/",
+    layout: ELayout.LANDING,
   },
   profile: { path: "/app/profile", layout: ELayout.MANAGER },
   siteConfig: {
@@ -28,6 +28,4 @@ export const PRIVATE_ROUTES = {
 export const PUBLIC_ROUTES = {
   noRoute: { path: "/", layout: ELayout.LANDING },
   404: { path: "/404" },
-  login: { path: "/login" },
-  recover: { path: "/recover" },
 };

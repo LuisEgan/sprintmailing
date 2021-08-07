@@ -10,6 +10,7 @@ import { useModal } from "context/modal/modal.provider";
 import { useNotification } from "context/notification/notification.provider";
 import { useProfile } from "context/profile/profile.context";
 import { gqlUser } from "gql";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Col, Icon, Input, Loader, Panel, Row, Uploader } from "rsuite";
@@ -40,7 +41,7 @@ const Profile = () => {
 
   const { openModal } = useModal();
   const { user } = useProfile();
-
+  const { t } = useTranslation("common");
   const { control, handleSubmit } = useForm();
 
   const handleUpdate = (data) => {
@@ -120,38 +121,47 @@ const Profile = () => {
             {user && (
               <form onSubmit={handleSubmit(handleUpdate)}>
                 <ProfileFormItem>
-                  <label>Nombre</label>
+                  <label>{t("profile.name")}</label>
                   <Controller
                     name="name"
                     control={control}
                     defaultValue={user.name || ""}
                     render={({ field }) => (
-                      <Input placeholder="Ingresa tu nombre" {...field} />
+                      <Input
+                        placeholder={t("profile.namePlaceholder")}
+                        {...field}
+                      />
                     )}
                     rules={{ required: true }}
                   />
                 </ProfileFormItem>
                 <ProfileFormItem>
-                  <label>Apellido</label>
+                  <label>{t("profile.lastname")}</label>
                   <Controller
                     name="lastname"
                     control={control}
                     defaultValue={user.lastname || ""}
                     render={({ field }) => (
-                      <Input placeholder="Ingresa tu apellido" {...field} />
+                      <Input
+                        placeholder={t("profile.lastnamePlaceholder")}
+                        {...field}
+                      />
                     )}
                     rules={{ required: true }}
                   />
                 </ProfileFormItem>
 
                 <ProfileFormItem>
-                  <label>E-mail</label>
+                  <label>{t("profile.email")}</label>
                   <Controller
                     name="email"
                     control={control}
                     defaultValue={user.email || ""}
                     render={({ field }) => (
-                      <Input placeholder="Ingresa tu email" {...field} />
+                      <Input
+                        placeholder={t("profile.emailPlaceholder")}
+                        {...field}
+                      />
                     )}
                     rules={{ required: true }}
                   />
@@ -164,7 +174,7 @@ const Profile = () => {
                     disabled={updateProfileLoading}
                     loading={updateProfileLoading}
                   >
-                    Actualizar Datos
+                    {t("profile.updateBtn")}
                   </Button>
                 </ProfileFormItem>
               </form>

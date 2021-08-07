@@ -19,7 +19,7 @@ export const MOBILE_VIEW = 1024;
 export const SIDEBAR_WIDTH = 300;
 
 export const AFTER_LOGIN_REDIRECT = "/app/profile";
-export const PUBLIC_HOME = "/home";
+export const PUBLIC_HOME = "/";
 
 export const DEFAULT_THEME = process.env.NEXT_PUBLIC_DEFAULT_THEME || "dark";
 

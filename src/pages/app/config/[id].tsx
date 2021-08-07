@@ -1,2 +1,2 @@
-const Test = () => "HOLA";
+const Test = () => "Testing config index";
 export default Test;

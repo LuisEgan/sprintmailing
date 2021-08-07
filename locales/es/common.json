@@ -47,5 +47,21 @@
       "signOut": "Cerrar sesión",
       "loginBtn": "Iniciar sesión"
     }
+  },
+  "profile": {
+    "name": "Nombre",
+    "namePlaceholder": "Actualiza tu nombre aquí",
+    "lastname": "Apellido",
+    "lastnamePlaceholder": "Actualiza tu apellido aquí",
+    "email": "Correo",
+    "emailPlaceholder": "Actualiza tu correo aquí",
+    "updateBtn": "Actualizar datos"
+  },
+  "routes": {
+    "home": "Inicio",
+    "profile": "Perfíl",
+    "configuration": "Configuración",
+    "siteConfig": "Configuración del Sitio",
+    "onlyAdmin": "Solo adminsitrador"
   }
 }

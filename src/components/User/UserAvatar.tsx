@@ -14,7 +14,7 @@ const UserAvatar = ({ user, showName, size = 50 }: IUserAvatarProps) => (
     {user?.profileImage && user?.profileImage !== DEFAULT_PROFILE_IMAGE ? (
       <>
         <div
-          className=" bg-center bg-cover rounded-full border-2 border-black dark:border-white bg-gray-900 dark:bg-white"
+          className="bg-center bg-cover rounded-full border-2 border-black dark:border-white bg-gray-900 dark:bg-white"
           style={{ width: size, height: size }}
         >
           <Image

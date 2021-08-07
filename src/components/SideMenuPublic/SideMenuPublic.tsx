@@ -1,5 +1,6 @@
 import ToggleLang from "components/ToggleLang/ToggleLang";
 import ToggleTheme from "components/ToggleTheme/ToggleTheme";
+import UserAvatar from "components/User/UserAvatar";
 import { useProfile } from "context/profile/profile.context";
 import { useRouter } from "next/router";
 import React from "react";
@@ -11,13 +12,7 @@ import {
   EPrivateRouteType,
   SIDE_MENU_PUBLIC_ROUTES,
 } from "./side-menu-public-routes";
-import {
-  AvatarContainer,
-  AvatarImage,
-  SidebarWrapper,
-  UserInfo,
-  UserInfoContainer,
-} from "./SideMenu.style";
+import { AvatarContainer, SidebarWrapper } from "./SideMenu.style";
 
 interface SideMenuProps {
   showSideBar: boolean;
@@ -92,16 +87,7 @@ const SideMenu = (props: SideMenuProps) => {
         </Sidenav.Header>
         <Sidenav.Body className="pt-4">
           <AvatarContainer className="pl-4 pb-5 mt-3">
-            <AvatarImage
-              style={{ backgroundImage: `url(${user?.profileImage})` }}
-              className="bg-gray-50 dark:bg-black border-2 border-current-500"
-            />
-
-            <UserInfoContainer>
-              <UserInfo>
-                {user?.name} {user?.lastname}
-              </UserInfo>
-            </UserInfoContainer>
+            <UserAvatar {...{ user, showName: false, size: 100 }} />
           </AvatarContainer>
           <Nav>
             {SIDE_MENU_PUBLIC_ROUTES.map((item) => {

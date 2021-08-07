@@ -1,18 +1,16 @@
 import { Login } from "components/_Pages/Login/Forms/Login";
 import ToggleVendor from "components/ToggleVendor/ToggleVendor";
+import UserAvatar from "components/User/UserAvatar";
 import { useAuth } from "context/auth";
 import { useModal } from "context/modal/modal.provider";
 import { useProfile } from "context/profile/profile.context";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { ReactSVG } from "react-svg";
 import { Button, ButtonToolbar, Dropdown, Icon } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT } from "settings/constants";
 
-import {
-  AvatarContainer,
-  AvatarImage,
-  UserInfoContainer,
-} from "./NavBar.style";
+import { AvatarContainer, UserInfoContainer } from "./NavBar.style";
 
 interface NavbarProps {
   showSideBar: boolean;
@@ -22,6 +20,7 @@ interface NavbarProps {
 const PublicNavBar = (props: NavbarProps) => {
   const { signout } = useAuth();
   const { user } = useProfile();
+  const { t } = useTranslation("common");
   const { showSideBar, setShowSideBar } = props;
 
   const handleClick = () => {
@@ -79,7 +78,6 @@ const PublicNavBar = (props: NavbarProps) => {
         </div>
         <ButtonToolbar className="flex">
           <ToggleVendor />
-
           {user && (
             <AvatarContainer className="mr-2">
               <UserInfoContainer>
@@ -88,25 +86,26 @@ const PublicNavBar = (props: NavbarProps) => {
                   placement="bottomEnd"
                   renderTitle={(children) => (
                     <div className="flex items-center">
-                      <AvatarImage
-                        className="bg-gray-900 dark:bg-white border-2 border-current-500"
-                        style={{
-                          backgroundImage: `url(${user?.profileImage})`,
-                        }}
-                      />
+                      <UserAvatar {...{ user, showName: true }} />
                       <div className="text-base ml-2">{children}</div>
                     </div>
                   )}
                 >
                   <Dropdown.Item onClick={signout}>
                     <Icon icon="sign-out" className="text-red-500" />
-                    <span className="text-red-500">Cerrar sesión</span>
+                    <span className="text-red-500">
+                      {t("publicHome.navbarLinksTitle.signout")}
+                    </span>
                   </Dropdown.Item>
                 </Dropdown>
               </UserInfoContainer>
             </AvatarContainer>
           )}
-          {!user && <Button onClick={handleLogin}>Log in</Button>}
+          {!user && (
+            <Button onClick={handleLogin}>
+              {t("publicHome.login.loginBtn")}
+            </Button>
+          )}
         </ButtonToolbar>
       </nav>
     </>

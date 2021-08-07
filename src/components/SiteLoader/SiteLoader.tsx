@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import { PUBLIC_ROUTES } from "routes/routes";
-import { AFTER_LOGIN_REDIRECT } from "settings/constants";
+import { PUBLIC_HOME } from "settings/constants";
 import lottieSiteLoaderDark from "utils/lottie/site-loader-dark.json";
 import lottieSiteLoaderLight from "utils/lottie/site-loader-light.json";
 
@@ -47,7 +47,7 @@ const SiteLoader = ({ children }) => {
     if (isAuthenticated() && user)
       setTimeout(() => {
         if (router.pathname === "/") {
-          router.push(AFTER_LOGIN_REDIRECT).then(() => setShowLoader(false));
+          router.push(PUBLIC_HOME).then(() => setShowLoader(false));
         } else {
           setShowLoader(false);
         }

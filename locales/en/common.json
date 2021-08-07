@@ -47,5 +47,21 @@
       "contact": "Contact",
       "signOut": "Sign out"
     }
+  },
+  "profile": {
+    "name": "Name",
+    "namePlaceholder": "Update your name here",
+    "lastname": "Lastname",
+    "lastnamePlaceholder": "Update your lastname here",
+    "email": "Email",
+    "emailPlaceholder": "Update your email here",
+    "updateBtn": "Update"
+  },
+  "routes": {
+    "home": "Home",
+    "profile": "Profile",
+    "configuration": "Configuration",
+    "siteConfig": "Site config",
+    "onlyAdmin": "Only admin"
   }
 }

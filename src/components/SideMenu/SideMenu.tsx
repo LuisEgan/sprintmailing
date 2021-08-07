@@ -1,20 +1,16 @@
 import ToggleLang from "components/ToggleLang/ToggleLang";
 import ToggleTheme from "components/ToggleTheme/ToggleTheme";
+import UserAvatar from "components/User/UserAvatar";
 import { useProfile } from "context/profile/profile.context";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { ReactSVG } from "react-svg";
 import { Divider, Dropdown, Footer, Icon, Nav, Sidenav } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 
 import { EPrivateRouteType, SIDE_MENU_ROUTES } from "./side-menu-routes";
-import {
-  AvatarContainer,
-  AvatarImage,
-  SidebarWrapper,
-  UserInfo,
-  UserInfoContainer,
-} from "./SideMenu.style";
+import { AvatarContainer, SidebarWrapper } from "./SideMenu.style";
 
 interface SideMenuProps {
   showSideBar: boolean;
@@ -25,6 +21,7 @@ const SideMenu = (props: SideMenuProps) => {
   const router = useRouter();
   const { showSideBar, setShowSideBar } = props;
   const { user } = useProfile();
+  const { t } = useTranslation("common");
 
   const handleShowSideBar = () => {
     setShowSideBar(!showSideBar);
@@ -89,16 +86,7 @@ const SideMenu = (props: SideMenuProps) => {
         </Sidenav.Header>
         <Sidenav.Body className="pt-4">
           <AvatarContainer className="pl-4 pb-5 mt-3">
-            <AvatarImage
-              style={{ backgroundImage: `url(${user?.profileImage})` }}
-              className="bg-gray-50 dark:bg-black border-2 border-current-500"
-            />
-
-            <UserInfoContainer>
-              <UserInfo>
-                {user?.name} {user?.lastname}
-              </UserInfo>
-            </UserInfoContainer>
+            <UserAvatar {...{ user, showName: false, size: 100 }} />
           </AvatarContainer>
           <Nav>
             {SIDE_MENU_ROUTES.map((item) => {
@@ -113,7 +101,7 @@ const SideMenu = (props: SideMenuProps) => {
                       handleRedirect(item.url);
                     }}
                   >
-                    {item.name}
+                    {t(`routes.${item.t}`)}
                   </Nav.Item>
                 );
               }
@@ -122,7 +110,7 @@ const SideMenu = (props: SideMenuProps) => {
                   <Dropdown
                     key={`dropdown ${item.name}`}
                     icon={<Icon icon={item.icon} />}
-                    title={item.name}
+                    title={t(`routes.${item.t}`)}
                   >
                     {item.children.map((route) =>
                       !route.hidden ? (
@@ -136,7 +124,7 @@ const SideMenu = (props: SideMenuProps) => {
                             handleRedirect(route.url);
                           }}
                         >
-                          {route.name}
+                          {t(`routes.${route.t}`)}
                         </Nav.Item>
                       ) : (
                         false
