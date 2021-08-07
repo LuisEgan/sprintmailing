@@ -6,6 +6,7 @@ import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { ILoginInput, ILoginResponse } from "gql/User/queries";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Input } from "rsuite";
@@ -24,6 +25,7 @@ export const Login = () => {
   } = useForm();
   const router = useRouter();
   const { closeModal, openModal } = useModal();
+  const { t } = useTranslation("common");
 
   const [getUser, { data: getUserData, loading: getUserLoading }] =
     useLazyQuery(gqlUser.queries.GET_USER);
@@ -34,7 +36,6 @@ export const Login = () => {
   >(gqlUser.queries.LOGIN, {
     onCompleted({ login }) {
       const { accessToken, refreshToken } = login;
-
       localStorage.setItem(USER_TOKEN_PERSIST, `${accessToken}`);
       localStorage.setItem(REFRESH_TOKEN_PERSIST, `${refreshToken}`);
       getUser({
@@ -68,7 +69,7 @@ export const Login = () => {
         },
       });
     } catch (e) {
-      console.error("🚀 ~ file: Login.tsx ~ line 64 ~ handleLogin ~ e", e);
+      console.error(e);
     }
   };
 
@@ -85,9 +86,9 @@ export const Login = () => {
 
   return (
     <div className="w-full p-5">
-      <Header {...{ title: "Bienvenido", description: "" }} />
+      <Header {...{ title: t("login.welcomeMessage"), description: "" }} />
       <form onSubmit={handleLoginSubmit(handleLogin)}>
-        <label className="font-bold">Ingresa tu correo</label>
+        <label className="font-bold">{t("login.enterEmail")}</label>
         <Controller
           name="email"
           control={loginControl}
@@ -97,16 +98,18 @@ export const Login = () => {
             <Input
               {...field}
               autoCapitalize="none"
-              placeholder="Ingresa aquí tu email"
+              placeholder={t("login.enterEmailPlaceholder")}
             />
           )}
         />
         {errors && errors.email && (
           <small className="w-full text-red-500">
-            Debes ingresar un e-mail válido
+            {t("login.enterValidEmail")}
           </small>
         )}
-        <label className="font-bold mt-3 block">Ingresa tu contraseña</label>
+        <label className="font-bold mt-3 block">
+          {t("login.enterPassword")}
+        </label>
         <Controller
           name="password"
           control={loginControl}
@@ -117,13 +120,13 @@ export const Login = () => {
               {...field}
               type="password"
               autoCapitalize="none"
-              placeholder="Ingresa aquí tu contraseña"
+              placeholder={t("login.enterEmailPlaceholder")}
             />
           )}
         />
         {errors && errors.password && (
           <small className="w-full text-red-500">
-            Debes ingresar una contraseña
+            {t("login.enterPasswordError")}
           </small>
         )}
         <div
@@ -132,7 +135,7 @@ export const Login = () => {
           className="flex justify-end mt-3 font-bold"
           onClick={handleRecovery}
         >
-          ¿Olvidate tu contraseña?
+          {t("login.forgotPassword")}
         </div>
         <div className="flex justify-end mt-4">
           <Button
@@ -141,7 +144,7 @@ export const Login = () => {
             onClick={handleCloseModal}
             className="rs-btn-big"
           >
-            Cancelar
+            {t("login.cancelButton")}
           </Button>
           <Button
             appearance="primary"
@@ -150,7 +153,7 @@ export const Login = () => {
             loading={loginLoading || getUserLoading}
             type="submit"
           >
-            Acceder
+            {t("login.accessButton")}
           </Button>
         </div>
         {loginError && (

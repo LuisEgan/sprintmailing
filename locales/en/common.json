@@ -1,7 +1,51 @@
 {
-  "example": "Texto en inglés",
+  "example": "Text in english",
+  "cancelButton": "Cancelar",
+  "accessButton": "Continuar",
   "login": {
-    "loginBtnText": "Iniciar sesión",
-    "registerBtnText": "Registrate"
+    "loginBtn": "Login",
+    "registerBtn": "Register",
+    "enterEmail": "Enter your email",
+    "enterEmailPlaceholder": "Enter your email here",
+    "enterValidEmail": "Must enter a valid email",
+    "enterPassword": "Enter password",
+    "enterPasswordPlaceholder": "Enter your password here",
+    "enterPasswordError": "Must enter a valid password",
+    "forgotPassword": "¿Did you forget your password?",
+    "cancelButton": "Cancel",
+    "accessButton": "Login",
+    "welcomeMessage": "Welcome"
+  },
+  "recovery": {
+    "recoverTitle": "Recover password",
+    "enterEmail": "Enter your email",
+    "enterValidEmail": "Must enter a valid email",
+    "enterEmailPlaceholder": "Enter your email here"
+  },
+  "register": {
+    "registerTitle": "Register here",
+    "nameQuestion": "What is your name?",
+    "nameQuestionPlaceholder": "Enter your name here",
+    "nameQuestionError": "Must enter your name",
+    "lastNameQuestion": "What is your lastname?",
+    "lastNameQuestionPlaceholder": "Enter your lastname here",
+    "lastNameQuestionError": "Must enter your lastname",
+    "emailQuestion": "What is your email?",
+    "emailQuestionPlaceholder": "Enter your email here",
+    "emailQuestionError": "Must be a valid email",
+    "enterPassword": "Enter your password",
+    "enterPasswordPlaceholder": "Enter your password here",
+    "enterPasswordError": "Password is required",
+    "forgotPassword": "¿Did you forget your password?"
+  },
+  "publicHome": {
+    "navbarLinksTitle": {
+      "home": "Home",
+      "company": "Company",
+      "aboutus": "About us",
+      "team": "Team",
+      "contact": "Contact",
+      "signOut": "Sign out"
+    }
   }
 }

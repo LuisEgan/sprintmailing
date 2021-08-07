@@ -4,6 +4,7 @@ import PasswordInput from "components/PasswordInput";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Input } from "rsuite";
@@ -22,6 +23,8 @@ export const Register = () => {
   } = useForm();
   const router = useRouter();
   const { closeModal } = useModal();
+
+  const { t } = useTranslation("common");
 
   const [getUser, { data: getUserData, loading: getUserLoading }] =
     useLazyQuery(gqlUser.queries.GET_USER);
@@ -64,10 +67,7 @@ export const Register = () => {
           },
         });
       } catch (error) {
-        console.error(
-          "🚀 ~ file: Register.tsx ~ line 62 ~ handleRegister ~ error",
-          error,
-        );
+        console.error(error);
       }
     }
   };
@@ -78,10 +78,10 @@ export const Register = () => {
 
   return (
     <div className="p-5 w-full">
-      <Header {...{ title: "Regístrate", description: "" }} />
+      <Header {...{ title: t("register.registerTitle"), description: "" }} />
       <form onSubmit={handleRegisterSubmit(handleRegister)}>
         <label className="font-bold" htmlFor="name">
-          ¿Cuál es tu nombre?
+          {t("register.nameQuestion")}
         </label>
 
         <Controller
@@ -90,31 +90,42 @@ export const Register = () => {
           control={registerControl}
           rules={{ required: true }}
           render={({ field }) => (
-            <Input {...field} placeholder="Ingresa aquí tu nombre" />
+            <Input
+              {...field}
+              placeholder={t("register.nameQuestionPlaceholder")}
+            />
           )}
         />
         {errors && errors.name && (
           <small className="w-full text-red-500">
-            Debes ingresar tu nombre
+            {t("register.nameQuestionError")}
           </small>
         )}
-        <label className="font-bold mt-2 block"> ¿Cuál es tu apellido?</label>
+        <label className="font-bold mt-2 block">
+          {" "}
+          {t("register.lastNameQuestion")}
+        </label>
         <Controller
           name="lastname"
           defaultValue=""
           control={registerControl}
           rules={{ required: true }}
           render={({ field }) => (
-            <Input {...field} placeholder="Ingresa aquí tus apellidos" />
+            <Input
+              {...field}
+              placeholder={t("register.lastNameQuestionPlaceholder")}
+            />
           )}
         />
         {errors && errors.lastname && (
           <small className="w-full text-red-500">
-            Debes ingresar tu apellido
+            {t("register.lastNameQuestionError")}
           </small>
         )}
 
-        <label className="font-bold mt-2 block">¿Cuál es tu e-mail?</label>
+        <label className="font-bold mt-2 block">
+          {t("register.emailQuestion")}
+        </label>
 
         <Controller
           name="email"
@@ -125,17 +136,19 @@ export const Register = () => {
             <Input
               {...field}
               type="email"
-              placeholder="Ingresa aquí tu correo eletrónico"
+              placeholder={t("register.emailQuestionPlaceholder")}
             />
           )}
         />
         {errors && errors.email && (
           <small className="w-full text-red-500">
-            Debes ingresar un e-mail válido
+            {t("register.emailQuestionError")}
           </small>
         )}
 
-        <label className="font-bold mt-2 block">Ingresa tu contraseña</label>
+        <label className="font-bold mt-2 block">
+          {t("register.enterPassword")}
+        </label>
 
         <Controller
           name="password"
@@ -145,18 +158,22 @@ export const Register = () => {
           render={({ field }) => (
             <PasswordInput
               {...field}
-              placeholder="Ingresa aquí tu contraseña"
+              placeholder={t("register.enterPasswordPlaceholder")}
             />
           )}
         />
         {errors && errors.password && (
           <small className="w-full text-red-500">
-            Debes ingresar una contraseña (Al menos 1 dígito y 1 número)
+            {t("register.enterPasswordError")}
           </small>
         )}
 
-        <div className="flex justify-end mt-3" style={{ color: "#5A27E7" }}>
-          ¿Olvidate tu contraseña?
+        <div
+          style={{ cursor: "pointer" }}
+          aria-hidden="true"
+          className="flex justify-end mt-3 font-bold"
+        >
+          {t("register.forgotPassword")}
         </div>
         <div className="flex justify-end mt-4">
           <Button
@@ -165,7 +182,7 @@ export const Register = () => {
             onClick={handleCloseModal}
             className="rs-btn-big"
           >
-            <span className="text-red-500">Cancelar</span>
+            <span className="text-red-500">{t("cancelButton")}</span>
           </Button>
           <Button
             appearance="primary"
@@ -174,7 +191,7 @@ export const Register = () => {
             type="submit"
             loading={signupLoading || getUserLoading}
           >
-            Acceder
+            {t("accessButton")}
           </Button>
         </div>
         {signupError && (

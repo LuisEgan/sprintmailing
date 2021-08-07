@@ -9,7 +9,7 @@ import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 
 import {
   EPrivateRouteType,
-  PUBLIC_SIDE_MENU_ROUTES,
+  SIDE_MENU_PUBLIC_ROUTES,
 } from "./side-menu-public-routes";
 import {
   AvatarContainer,
@@ -17,7 +17,7 @@ import {
   SidebarWrapper,
   UserInfo,
   UserInfoContainer,
-} from "./SideMenuPublic.style";
+} from "./SideMenu.style";
 
 interface SideMenuProps {
   showSideBar: boolean;
@@ -104,7 +104,7 @@ const SideMenu = (props: SideMenuProps) => {
             </UserInfoContainer>
           </AvatarContainer>
           <Nav>
-            {PUBLIC_SIDE_MENU_ROUTES.map((item) => {
+            {SIDE_MENU_PUBLIC_ROUTES.map((item) => {
               if (item.type === EPrivateRouteType.ITEM && !item.hidden) {
                 return (
                   <Nav.Item

@@ -1,3 +1,51 @@
 {
-  "example": "Texto en español"
+  "example": "Texto en inglés",
+  "cancelButton": "Cancelar",
+  "accessButton": "Acceder",
+  "login": {
+    "loginBtn": "Iniciar sesión",
+    "registerBtn": "Registrate",
+    "enterEmail": "Ingresa tu correo",
+    "enterEmailPlaceholder": "Ingresa tu correo aquí",
+    "enterValidEmail": "Debes ingresar un e-mail válido",
+    "enterPassword": "Ingresa tu contraseña",
+    "enterPasswordPlaceholder": "Ingresa tu contraseña aquí",
+    "enterPasswordError": "Debes ingresar una contraseña",
+    "forgotPassword": "¿Olvidate tu contraseña?",
+    "cancelButton": "Cancelar",
+    "accessButton": "Acceder",
+    "welcomeMessage": "Bienvenido"
+  },
+  "recovery": {
+    "recoverTitle": "Recuperar contraseña",
+    "enterEmail": "Ingresa tu correo",
+    "enterPasswordPlaceholder": "Ingresa tu contraseña aquí",
+    "enterEmailPlaceholder": "Ingresa tu correo aquí"
+  },
+  "register": {
+    "registerTitle": "Recuperar contraseña",
+    "nameQuestion": "Ingresa tu correo",
+    "nameQuestionPlaceholder": "Ingrese aquí tu nombre",
+    "nameQuestionError": "El nombre es requerido",
+    "lastNameQuestion": "Ingresa tu contraseña aquí",
+    "lastNameQuestionPlaceholder": "Ingresa aquí tus apellido",
+    "lastNameQuestionError": "El apellido es requerido",
+    "emailQuestion": "Ingresa tu correo aquí",
+    "emailQuestionPlaceholder": "Ingresa aquí tu correo electrónico",
+    "emailQuestionError": "Ingresa un correo válido",
+    "enterPasswordPlaceholder": "Ingresa aquí tu contraseña",
+    "enterPasswordError": "El password es requerido",
+    "forgotPassword": "¿Has olvidado to contraseña?"
+  },
+  "publicHome": {
+    "navbarLinksTitle": {
+      "home": "Inicio",
+      "company": "Empresa",
+      "aboutus": "Acerca de",
+      "team": "Equipo",
+      "contact": "Contacto",
+      "signOut": "Cerrar sesión",
+      "loginBtn": "Iniciar sesión"
+    }
+  }
 }

@@ -7,7 +7,7 @@ import { ReactSVG } from "react-svg";
 import { Divider, Dropdown, Footer, Icon, Nav, Sidenav } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 
-import { EPrivateRouteType, PRIVATE_ROUTE } from "./side-menu-routes";
+import { EPrivateRouteType, SIDE_MENU_ROUTES } from "./side-menu-routes";
 import {
   AvatarContainer,
   AvatarImage,
@@ -101,7 +101,7 @@ const SideMenu = (props: SideMenuProps) => {
             </UserInfoContainer>
           </AvatarContainer>
           <Nav>
-            {PRIVATE_ROUTE.map((item) => {
+            {SIDE_MENU_ROUTES.map((item) => {
               if (item.type === EPrivateRouteType.ITEM && !item.hidden) {
                 return (
                   <Nav.Item

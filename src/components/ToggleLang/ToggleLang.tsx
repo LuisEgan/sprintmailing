@@ -2,6 +2,7 @@ import setLanguage from "next-translate/setLanguage";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { SelectPicker } from "rsuite";
+import { TypeAttributes } from "rsuite/lib/@types/common";
 
 export enum EAvailableLanguages {
   es = "es",
@@ -15,7 +16,12 @@ export const availableLanguages: IAvailableLenguages[] = [
   { value: EAvailableLanguages.es, label: "Español" },
   { value: EAvailableLanguages.en, label: "English" },
 ];
-const ToggleLang = () => {
+
+interface IToggleLang {
+  placement?: TypeAttributes.Placement;
+}
+
+const ToggleLang = ({ placement }: IToggleLang) => {
   const { lang } = useTranslation("common");
 
   const changeLanguage = (lang: EAvailableLanguages) => {
@@ -31,7 +37,7 @@ const ToggleLang = () => {
           onChange={changeLanguage}
           cleanable={false}
           searchable={false}
-          placement="topEnd"
+          placement={placement || "topStart"}
         />
       )}
     </>

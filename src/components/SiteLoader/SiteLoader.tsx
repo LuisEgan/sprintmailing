@@ -55,8 +55,10 @@ const SiteLoader = ({ children }) => {
 
     if (!isAuthenticated())
       setTimeout(() => {
-        if (!isPublicRoute() || router.pathname === "/") {
-          router.push(PUBLIC_ROUTES.home.path).then(() => setShowLoader(false));
+        if (!isPublicRoute()) {
+          router
+            .push(PUBLIC_ROUTES.login.path)
+            .then(() => setShowLoader(false));
         } else {
           setShowLoader(false);
         }

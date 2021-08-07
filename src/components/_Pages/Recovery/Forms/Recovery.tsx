@@ -3,6 +3,7 @@ import Header from "components/Header/Header";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { IChangePasswordRequestInput } from "gql/User/mutations";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Input } from "rsuite";
@@ -17,6 +18,8 @@ export const Recovery = () => {
     control: loginControl,
     formState: { errors },
   } = useForm();
+
+  const { t } = useTranslation("common");
 
   const { closeModal, openModal } = useModal();
 
@@ -44,7 +47,7 @@ export const Recovery = () => {
         },
       });
     } catch (e) {
-      console.error("🚀 ~ file: Login.tsx ~ line 64 ~ handleLogin ~ e", e);
+      console.error(e);
     }
   };
 
@@ -54,10 +57,9 @@ export const Recovery = () => {
 
   return (
     <div className="w-full p-5">
-      <Header {...{ title: "Recuperar contraseña", description: "" }} />
+      <Header {...{ title: t("recovery.recoverTitle"), description: "" }} />
       <form onSubmit={handleLoginSubmit(handleRecovery)}>
-        <label className="font-bold">Ingresa tu correo</label>
-
+        <label className="font-bold">{t("recovery.enterEmail")}</label>
         <Controller
           name="email"
           control={loginControl}
@@ -67,13 +69,13 @@ export const Recovery = () => {
             <Input
               {...field}
               className="mt-2"
-              placeholder="Ingresa aquí tu nombre"
+              placeholder={t("recovery.enterEmailPlaceholder")}
             />
           )}
         />
         {errors && errors.email && (
           <small className="w-full text-red-500">
-            Debes ingresar un e-mail válido
+            {t("recovery.enterValidEmail")}
           </small>
         )}
 
@@ -84,7 +86,7 @@ export const Recovery = () => {
             onClick={handleCloseModal}
             className="rs-btn-big"
           >
-            Cancelar
+            {t("cancelButton")}
           </Button>
           <Button
             appearance="primary"
@@ -93,7 +95,7 @@ export const Recovery = () => {
             loading={recoveryLoading}
             type="submit"
           >
-            Acceder
+            {t("accessButton")}
           </Button>
         </div>
         {loginError && (
