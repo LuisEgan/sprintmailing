@@ -49,7 +49,6 @@ const getNewToken = () =>
           USER_TOKEN_PERSIST,
           `${refreshAccessToken.accessToken}`,
         );
-
         return refreshAccessToken.accessToken;
       }
     });
@@ -60,7 +59,7 @@ const onErrorLink = onError(({ graphQLErrors, operation, forward }) => {
       switch (err.extensions.exception.status) {
         case 422:
           signOutActions();
-          Router.push(PUBLIC_ROUTES.login.path);
+          Router.push(PUBLIC_ROUTES.noRoute.path);
           break;
         case 401:
           return fromPromise(getNewToken().catch(() => {}))
