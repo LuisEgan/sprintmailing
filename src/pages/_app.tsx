@@ -27,19 +27,19 @@ export default function App(props: AppProps) {
           <Theme>
             <SiteHead />
             <Tailwind />
-            <ModalProvider>
-              <DrawerProvider>
-                <ProfileProvider>
-                  <AuthProvider>
-                    <NotificationProvider>
-                      <SiteLoader>
+            <NotificationProvider>
+              <ProfileProvider>
+                <AuthProvider>
+                  <SiteLoader>
+                    <ModalProvider>
+                      <DrawerProvider>
                         <Routes {...props} />
-                      </SiteLoader>
-                    </NotificationProvider>
-                  </AuthProvider>
-                </ProfileProvider>
-              </DrawerProvider>
-            </ModalProvider>
+                      </DrawerProvider>
+                    </ModalProvider>
+                  </SiteLoader>
+                </AuthProvider>
+              </ProfileProvider>
+            </NotificationProvider>
           </Theme>
         </ThemeProvider>
       </ApolloProvider>
