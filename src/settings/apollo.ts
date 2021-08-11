@@ -49,7 +49,6 @@ const getNewToken = () =>
           USER_TOKEN_PERSIST,
           `${refreshAccessToken.accessToken}`,
         );
-
         return refreshAccessToken.accessToken;
       }
     });
