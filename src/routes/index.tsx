@@ -1,5 +1,5 @@
 import PrivateRoute from "components/PrivateRoute/PrivateRoute";
-import { AppProps } from "next/dist/next-server/lib/router/router";
+import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
 import { guardCheckUserRole } from "utils/guards";
