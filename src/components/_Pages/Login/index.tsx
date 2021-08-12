@@ -16,7 +16,7 @@ const LoginPage = () => {
   const handleLogin = () => {
     openModal({
       modalComponent: <Login />,
-      size: "sm",
+      size: "xs",
     });
   };
 

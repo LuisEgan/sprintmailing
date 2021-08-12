@@ -34,7 +34,7 @@ const NavBarPublic = (props: NavbarProps) => {
   const handleLogin = () => {
     openModal({
       modalComponent: <Login />,
-      size: "sm",
+      size: "xs",
     });
   };
 
@@ -47,7 +47,7 @@ const NavBarPublic = (props: NavbarProps) => {
 
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap  p-3 bg-gray-50 dark:bg-gray-900 shadow-sm">
+      <nav className="flex items-center justify-between flex-wrap p-3 bg-gray-50 dark:bg-gray-900 shadow-sm">
         <div className="flex">
           <button
             className="inline-flex p-3 mr-2 rounded sm:hidden text-black dark:text-white  hover:text-white outline-none"

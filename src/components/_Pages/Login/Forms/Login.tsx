@@ -107,7 +107,7 @@ export const Login = () => {
             {t("login.enterValidEmail")}
           </small>
         )}
-        <label className="font-bold mt-5 mb-2 block">
+        <label className="font-bold mt-6 mb-2 block">
           {t("login.enterPassword")}
         </label>
         <Controller
@@ -130,9 +130,9 @@ export const Login = () => {
           </small>
         )}
         <div
-          style={{ cursor: "pointer", color: "rgba(216, 216, 216, 0.5)" }}
+          style={{ color: "rgba(216, 216, 216, 0.5)" }}
           aria-hidden="true"
-          className="flex justify-end mt-3 font-bold mt-6 mb-6"
+          className="flex justify-end mt-3 font-bold mt-8 mb-8"
         >
           {t("login.forgotPassword")}
           <div
@@ -147,7 +147,7 @@ export const Login = () => {
         </div>
         <div className="flex justify-end mt-4">
           <Button
-            appearance="default"
+            appearance="ghost"
             style={{ width: 150 }}
             onClick={handleCloseModal}
             className="rs-btn-big"
