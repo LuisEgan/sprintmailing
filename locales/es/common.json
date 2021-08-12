@@ -6,14 +6,15 @@
     "loginBtn": "Iniciar sesión",
     "registerBtn": "Registrate",
     "enterEmail": "Ingresa tu correo",
-    "enterEmailPlaceholder": "Ingresa tu correo aquí",
+    "enterEmailPlaceholder": "Ingresa aquí tu email",
     "enterValidEmail": "Debes ingresar un e-mail válido",
     "enterPassword": "Ingresa tu contraseña",
-    "enterPasswordPlaceholder": "Ingresa tu contraseña aquí",
+    "enterPasswordPlaceholder": "Ingresa aquí tu contraseña",
     "enterPasswordError": "Debes ingresar una contraseña",
     "forgotPassword": "¿Olvidate tu contraseña?",
+    "recoverPassword": "Recupérala aquí",
     "cancelButton": "Cancelar",
-    "accessButton": "Acceder",
+    "accessButton": "Ingresar",
     "welcomeMessage": "Bienvenido"
   },
   "recovery": {

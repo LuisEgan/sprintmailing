@@ -32,7 +32,7 @@ const PublicNavBar = (props: NavbarProps) => {
   const handleLogin = () => {
     openModal({
       modalComponent: <Login />,
-      size: "sm",
+      size: "xs",
     });
   };
 
