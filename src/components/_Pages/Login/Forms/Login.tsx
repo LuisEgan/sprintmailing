@@ -87,8 +87,8 @@ export const Login = () => {
   return (
     <div className="w-full p-5">
       <Header {...{ title: t("login.welcomeMessage"), description: "" }} />
-      <form onSubmit={handleLoginSubmit(handleLogin)}>
-        <label className="font-bold">{t("login.enterEmail")}</label>
+      <form onSubmit={handleLoginSubmit(handleLogin)} className="mt-3">
+        <label className="font-bold mb-2">{t("login.enterEmail")}</label>
         <Controller
           name="email"
           control={loginControl}
@@ -107,7 +107,7 @@ export const Login = () => {
             {t("login.enterValidEmail")}
           </small>
         )}
-        <label className="font-bold mt-3 block">
+        <label className="font-bold mt-5 mb-2 block">
           {t("login.enterPassword")}
         </label>
         <Controller
@@ -130,12 +130,20 @@ export const Login = () => {
           </small>
         )}
         <div
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", color: "rgba(216, 216, 216, 0.5)" }}
           aria-hidden="true"
-          className="flex justify-end mt-3 font-bold"
-          onClick={handleRecovery}
+          className="flex justify-end mt-3 font-bold mt-6 mb-6"
         >
           {t("login.forgotPassword")}
+          <div
+            onClick={handleRecovery}
+            onKeyPress={handleRecovery}
+            role="button"
+            tabIndex={0}
+            className="ml-2 underline inline"
+          >
+            {t("login.recoverPassword")}
+          </div>
         </div>
         <div className="flex justify-end mt-4">
           <Button
