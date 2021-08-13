@@ -1,4 +1,4 @@
-import Login from "components/_Pages/Login";
+import Login from "components/_Pages/Login/Login";
 import { useAuth } from "context/auth";
 import { useRouter } from "next/router";
 import React from "react";
