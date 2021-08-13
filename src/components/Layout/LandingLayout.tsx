@@ -32,7 +32,7 @@ const LandingLayout: FC = (props) => {
       </Drawer>
       <LayoutMainContent className="animate__animated" id="layoutMainContent">
         <NavBarPublic {...{ showSideBar, setShowSideBar }} />
-        <div className="p-6">{children}</div>
+        <div >{children}</div>
       </LayoutMainContent>
     </LayoutWrapper>
   );

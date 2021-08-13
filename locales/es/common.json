@@ -24,19 +24,21 @@
     "enterEmailPlaceholder": "Ingresa tu correo aquí"
   },
   "register": {
-    "registerTitle": "Recuperar contraseña",
-    "nameQuestion": "Ingresa tu correo",
+    "registerTitle": "Regístrate",
+    "nameQuestion": "¿Cuál es tu nombre?",
     "nameQuestionPlaceholder": "Ingrese aquí tu nombre",
     "nameQuestionError": "El nombre es requerido",
-    "lastNameQuestion": "Ingresa tu contraseña aquí",
-    "lastNameQuestionPlaceholder": "Ingresa aquí tus apellido",
+    "lastNameQuestion": "¿Cuál es tu apellido?",
+    "lastNameQuestionPlaceholder": "Ingresa tu apellido",
     "lastNameQuestionError": "El apellido es requerido",
-    "emailQuestion": "Ingresa tu correo aquí",
+    "emailQuestion": "¿Cuál es tu e-mail?",
     "emailQuestionPlaceholder": "Ingresa aquí tu correo electrónico",
     "emailQuestionError": "Ingresa un correo válido",
+    "enterPassword": "Ingresa tu contraseña",
     "enterPasswordPlaceholder": "Ingresa aquí tu contraseña",
     "enterPasswordError": "El password es requerido",
-    "forgotPassword": "¿Has olvidado to contraseña?"
+    "forgotPassword": "¿Has olvidado to contraseña?",
+    "recoverPassword": "Recupérala aquí"
   },
   "publicHome": {
     "navbarLinksTitle": {

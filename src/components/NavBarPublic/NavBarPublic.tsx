@@ -2,17 +2,12 @@ import { Login } from "components/_Pages/Login/Forms/Login";
 import { Register } from "components/_Pages/Login/Forms/Register";
 import ToggleLang from "components/ToggleLang/ToggleLang";
 import ToggleTheme from "components/ToggleTheme/ToggleTheme";
-import UserAvatar from "components/User/UserAvatar";
-import { useAuth } from "context/auth";
 import { useModal } from "context/modal/modal.provider";
-import { useProfile } from "context/profile/profile.context";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { Button, ButtonToolbar, Dropdown, Icon, Nav } from "rsuite";
+import { ButtonToolbar, Dropdown, Icon, Nav } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT } from "settings/constants";
-
-import { AvatarContainer, UserInfoContainer } from "./NavBar.style";
 
 interface NavbarProps {
   showSideBar: boolean;
@@ -20,8 +15,6 @@ interface NavbarProps {
 }
 
 const NavBarPublic = (props: NavbarProps) => {
-  const { signout } = useAuth();
-  const { user } = useProfile();
   const { showSideBar, setShowSideBar } = props;
   const { t } = useTranslation("common");
 
@@ -69,20 +62,8 @@ const NavBarPublic = (props: NavbarProps) => {
             </svg>
           </button>
           <div>
-            <ReactSVG
-              className="hidden dark:block"
-              src={LOGO_DARK}
-              beforeInjection={(svg) => {
-                svg.setAttribute("style", "width: 120px; height: 50px");
-              }}
-            />
-            <ReactSVG
-              className="block dark:hidden"
-              src={LOGO_LIGHT}
-              beforeInjection={(svg) => {
-                svg.setAttribute("style", "width: 120px; height: 50px");
-              }}
-            />
+            <ReactSVG className="hidden dark:block" src={LOGO_DARK} />
+            <ReactSVG className="block dark:hidden" src={LOGO_LIGHT} />
           </div>
         </div>
         <ButtonToolbar className="flex">
@@ -100,38 +81,16 @@ const NavBarPublic = (props: NavbarProps) => {
               <Dropdown.Item eventKey="6">
                 {t("publicHome.navbarLinksTitle.contact")}
               </Dropdown.Item>
+              <Dropdown.Item eventKey="7" onClick={handleLogin}>
+                {t("login.loginBtn")}
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="8" onClick={handleRegister}>
+                {t("login.registerBtn")}
+              </Dropdown.Item>
             </Dropdown>
           </Nav>
           <ToggleLang {...{ placement: "bottomStart" }} />
           <ToggleTheme />
-          {user && (
-            <AvatarContainer className="mr-2">
-              <UserInfoContainer>
-                <Dropdown
-                  title={user?.name || user?.lastname}
-                  placement="bottomEnd"
-                  renderTitle={(children) => (
-                    <div className="flex items-center">
-                      <UserAvatar {...{ user, showName: true, size: 40 }} />
-                      <div className="text-base ml-2">{children}</div>
-                    </div>
-                  )}
-                >
-                  <Dropdown.Item onClick={signout}>
-                    <Icon icon="sign-out" className="text-red-500" />
-                    <span className="text-red-500">Cerrar sesión</span>
-                  </Dropdown.Item>
-                </Dropdown>
-              </UserInfoContainer>
-            </AvatarContainer>
-          )}
-          {!user && (
-            <>
-              {" "}
-              <Button onClick={handleLogin}>{t("login.loginBtn")}</Button>
-              <Button onClick={handleRegister}>{t("login.registerBtn")}</Button>
-            </>
-          )}
         </ButtonToolbar>
       </nav>
     </>

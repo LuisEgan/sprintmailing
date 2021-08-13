@@ -60,14 +60,14 @@ const MainLoginMenu = () => {
             </div>
           </div>
 
-          <Button appearance="primary" className="mt-10 mb-5" onClick={handleLogin}>
+          <Button appearance="primary" style={{ width: 150 }} className="mt-10 mb-5" onClick={handleLogin}>
             {t("login.loginBtn")}
           </Button>
 
-          <Button appearance="primary" onClick={handleRegister}>
+          <Button appearance="primary" style={{ width: 150 }} onClick={handleRegister}>
             {t("login.registerBtn")}
           </Button>
-          
+
           <div
             style={{ color: "#d8d8d8" }}
             aria-hidden="true"
@@ -85,7 +85,7 @@ const MainLoginMenu = () => {
             </div>
           </div>
         </div>
-
+        
         <p style={{color: "#8f8f8f"}} className="mt-5">
           Boilerplate Made with ♥ by Clever Labs
         </p>

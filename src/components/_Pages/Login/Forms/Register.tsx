@@ -169,15 +169,17 @@ export const Register = () => {
         )}
 
         <div
-          style={{ cursor: "pointer" }}
           aria-hidden="true"
-          className="flex justify-end mt-3 font-bold"
+          className="flex justify-end mt-3 font-bold text-gray-500"
         >
           {t("register.forgotPassword")}
+          <div style={{ cursor: "pointer" }} className="ml-2 underline">
+            {t("register.recoverPassword")}
+          </div>
         </div>
         <div className="flex justify-end mt-4">
           <Button
-            appearance="default"
+            appearance="ghost"
             style={{ width: 150 }}
             onClick={handleCloseModal}
             className="rs-btn-big"

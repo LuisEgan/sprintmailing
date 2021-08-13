@@ -1,4 +1,6 @@
-import MainLoginMenu from "components/MainLoginMenu/MainLoginMenu";
+import { LandingPage } from "components/_Pages/Landing";
+import React from "react";
 
-const Index = () => <MainLoginMenu />;
+const Index = () => <LandingPage />;
+
 export default Index;

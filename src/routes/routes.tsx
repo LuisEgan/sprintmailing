@@ -28,4 +28,5 @@ export const PRIVATE_ROUTES = {
 export const PUBLIC_ROUTES = {
   noRoute: { path: "/", layout: ELayout.LANDING },
   404: { path: "/404" },
+  login: { path: "/login" },
 };
