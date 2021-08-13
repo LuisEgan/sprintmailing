@@ -59,11 +59,11 @@ const MainLoginMenu = () => {
           </div>
         </div>
 
-        <Button appearance="primary" className="mt-10 mb-5" onClick={handleLogin}>
+        <Button appearance="primary" style={{ width: 150 }} className="mt-10 mb-5" onClick={handleLogin}>
           {t("login.loginBtn")}
         </Button>
 
-        <Button appearance="primary" onClick={handleRegister}>
+        <Button appearance="primary" style={{ width: 150 }} onClick={handleRegister}>
           {t("login.registerBtn")}
         </Button>
         

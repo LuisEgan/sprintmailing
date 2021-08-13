@@ -179,7 +179,7 @@ export const Register = () => {
         </div>
         <div className="flex justify-end mt-4">
           <Button
-            appearance="default"
+            appearance="ghost"
             style={{ width: 150 }}
             onClick={handleCloseModal}
             className="rs-btn-big"
