@@ -1,7 +1,7 @@
 import React from "react";
 import { BOTTLE_ICON, RECYCLING_ICON, TRASH_ICON } from "settings/icons";
 
-import { CardService } from "./Cards/CardService";
+import { ServiceCard } from "./Cards/ServiceCard";
 import { ServicesWrapper } from "./Services.style";
 
 export const Services = () => (
@@ -16,19 +16,19 @@ export const Services = () => (
       </p>
     </div>
     <div className="flex mt-10 justify-items-center">
-      <CardService
+      <ServiceCard
         icon={RECYCLING_ICON}
         title="Nullam lacinia justo"
         description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
           quis felis ullamcorper"
       />
-      <CardService
+      <ServiceCard
         icon={BOTTLE_ICON}
         title="Nullam lacinia justo"
         description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
           quis felis ullamcorper"
       />
-      <CardService
+      <ServiceCard
         icon={TRASH_ICON}
         title="Nullam lacinia justo"
         description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis

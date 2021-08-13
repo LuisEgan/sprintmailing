@@ -1,17 +1,17 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 
-interface ICardServiceProps {
+interface IServiceCardProps {
   icon: string;
   title: string;
   description: string;
 }
 
-export const CardService = ({
+export const ServiceCard = ({
   icon,
   title,
   description,
-}: ICardServiceProps) => (
+}: IServiceCardProps) => (
   <div className="flex flex-col items-center gap-4">
     <ReactSVG src={icon} />
     <h1 className="text-2xl font-bold text-pink-700">{title}</h1>
