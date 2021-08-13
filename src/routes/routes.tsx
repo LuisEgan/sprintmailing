@@ -7,6 +7,10 @@ export const PRIVATE_ROUTES = {
     path: "/",
     layout: ELayout.GENERAL,
   },
+  contact: {
+    path: "/contact",
+    layout: ELayout.GENERAL,
+  },
   profile: { path: "/app/profile", layout: ELayout.MANAGER },
   siteConfig: {
     path: "/app/config/site-config",

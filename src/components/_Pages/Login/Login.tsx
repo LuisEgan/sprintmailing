@@ -1,4 +1,4 @@
-import { Login } from "components/_Pages/Login/Forms/Login";
+import { Login as LoginModal } from "components/_Pages/Login/Forms/Login";
 import { Register } from "components/_Pages/Login/Forms/Register";
 import { Recovery } from "components/_Pages/Recovery/Forms/Recovery";
 import { useModal } from "context/modal/modal.provider";
@@ -8,14 +8,14 @@ import { ReactSVG } from "react-svg";
 import { Button } from "rsuite";
 import { VERTICAL_LOGO_DARK, VERTICAL_LOGO_LIGHT } from "settings/constants";
 
-const MainLoginMenu = () => {
+const Login = () => {
   const { t } = useTranslation("common");
 
   const { openModal } = useModal();
 
   const handleLogin = () => {
     openModal({
-      modalComponent: <Login />,
+      modalComponent: <LoginModal />,
       size: "xs",
     });
   };
@@ -94,4 +94,4 @@ const MainLoginMenu = () => {
   );
 };
 
-export default MainLoginMenu;
+export default Login;
