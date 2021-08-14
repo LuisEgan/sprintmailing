@@ -1,3 +1,4 @@
+import { Footer } from "components/_Pages/Landing/Footer/Footer";
 import SideMenuPublic from "components/SideMenuPublic/SideMenuPublic";
 import dynamic from "next/dynamic";
 import React, { FC, useState } from "react";
@@ -34,6 +35,7 @@ const LandingLayout: FC = (props) => {
         <NavBarPublic {...{ showSideBar, setShowSideBar }} />
         <div>{children}</div>
       </LayoutMainContent>
+      <Footer />
     </LayoutWrapper>
   );
 };

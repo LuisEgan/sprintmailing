@@ -1,6 +1,7 @@
 import React from "react";
 
 import { CallToAction } from "./CallToAction/CallToAction";
+import { Contact } from "./Contact/Contact";
 import { Headline } from "./Headline/Headline";
 import { MiddleImage } from "./MiddleImage/MiddleImage";
 import { Services } from "./Services/Services";
@@ -13,5 +14,6 @@ export const LandingPage = () => (
     <Services />
     <MiddleImage />
     <Testimonials />
+    <Contact />
   </>
 );
