@@ -5,7 +5,6 @@ export const Main = styled.div`
   flex-direction: column;
   align-items: stretch;
   background-color: #424242;
-  height: 100vh;
 `;
 
 export const Top = styled.div`
@@ -13,7 +12,6 @@ export const Top = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
 
   & h1 {
     color: #99a2bc;
