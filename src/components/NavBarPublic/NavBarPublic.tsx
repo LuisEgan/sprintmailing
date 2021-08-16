@@ -1,13 +1,11 @@
 import { Login } from "components/_Pages/Login/Forms/Login";
 import { Register } from "components/_Pages/Login/Forms/Register";
-import ToggleLang from "components/ToggleLang/ToggleLang";
-import ToggleTheme from "components/ToggleTheme/ToggleTheme";
 import { useModal } from "context/modal/modal.provider";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { ButtonToolbar, Dropdown, Icon, Nav } from "rsuite";
-import { LOGO_DARK, LOGO_LIGHT } from "settings/constants";
+import { ButtonToolbar, Dropdown, Nav } from "rsuite";
+import { LOGO_LIGHT } from "settings/constants";
 
 interface NavbarProps {
   showSideBar: boolean;
@@ -40,7 +38,7 @@ const NavBarPublic = (props: NavbarProps) => {
 
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap p-3 bg-gray-50 dark:bg-gray-900 shadow-sm">
+      <nav className="flex items-center justify-between flex-wrap p-3  bg-gradient-to-br from-gray-300 to-white shadow-sm">
         <div className="flex">
           <button
             className="inline-flex p-3 mr-2 rounded sm:hidden text-black dark:text-white  hover:text-white outline-none"
@@ -62,15 +60,15 @@ const NavBarPublic = (props: NavbarProps) => {
             </svg>
           </button>
           <div>
-            <ReactSVG className="hidden dark:block" src={LOGO_DARK} />
-            <ReactSVG className="block dark:hidden" src={LOGO_LIGHT} />
+            <ReactSVG className="block" src={LOGO_LIGHT} />
           </div>
         </div>
-        <ButtonToolbar className="flex">
+        <ButtonToolbar className="flex mr-4">
           <Nav>
-            <Nav.Item eventKey="1" icon={<Icon icon="home" />}>
-              {t("publicHome.navbarLinksTitle.home")}
-            </Nav.Item>
+            <Nav.Item eventKey="1">Item 1</Nav.Item>
+            <Nav.Item eventKey="1">Item 2</Nav.Item>
+            <Nav.Item eventKey="1">Item 3</Nav.Item>
+            <Nav.Item eventKey="1">Item 4</Nav.Item>
             <Dropdown title={t("publicHome.navbarLinksTitle.aboutus")}>
               <Dropdown.Item eventKey="4">
                 {t("publicHome.navbarLinksTitle.company")}
@@ -89,8 +87,6 @@ const NavBarPublic = (props: NavbarProps) => {
               </Dropdown.Item>
             </Dropdown>
           </Nav>
-          <ToggleLang {...{ placement: "bottomStart" }} />
-          <ToggleTheme />
         </ButtonToolbar>
       </nav>
     </>

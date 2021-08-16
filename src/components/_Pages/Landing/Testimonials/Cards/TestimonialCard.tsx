@@ -23,8 +23,12 @@ export const TestimonialCard = ({
     <p className="text-lg font-medium text-gray-400 text-center w-2/4">
       {description}
     </p>
-    <Button appearance="primary" className="rs-btn-big w-2/4">
-      Call to action
+    <Button
+      appearance="ghost"
+      style={{ width: 300 }}
+      className="rs-btn-big bg-pink-500 bg-opacity-20"
+    >
+      <span className="font-bold text-pink-600"> Call to action</span>
     </Button>
   </div>
 );

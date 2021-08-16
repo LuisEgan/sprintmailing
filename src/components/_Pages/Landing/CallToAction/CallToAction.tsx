@@ -25,15 +25,15 @@ export const CallToAction = () => (
         <h2 className="text-2xl font-bold text-gray-400">
           Nullam lorem nibh, elementum
         </h2>
-        <p className="text-base text-gray-400">
+        <p className="text-base text-gray-400 w-3/4">
           estibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
         </p>
         <Button
-          appearance="primary"
-          style={{ width: 150 }}
-          className="rs-btn-big"
+          appearance="ghost"
+          style={{ width: 200 }}
+          className="rs-btn-big bg-pink-500 bg-opacity-20"
         >
-          Call to action
+          <span className="font-bold text-pink-600"> Call to action</span>
         </Button>
       </div>
     </div>

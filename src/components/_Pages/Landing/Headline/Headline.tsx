@@ -9,10 +9,12 @@ export const Headline = () => (
       <h1 className="text-4xl font-bold mt-64">
         Tristique leo mauris eget finibus nisl.
       </h1>
-      <p className="text-base font-light">
+      <p className="text-base font-light ">
         Vestibulum sagittis mollis leo et vestibulum
       </p>
-      <Button className="mb-6 w-36">Call tu action</Button>
+      <Button className="mb-6 border-8 border-pink-900 w-36">
+        Call to action
+      </Button>
     </div>
   </HeadlineWrapper>
 );

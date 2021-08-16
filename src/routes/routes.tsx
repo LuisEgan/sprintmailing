@@ -5,7 +5,7 @@ import { ELayout, ESystemRoles } from "settings/constants";
 export const PRIVATE_ROUTES = {
   home: {
     path: "/",
-    layout: ELayout.GENERAL,
+    layout: ELayout.LANDING,
   },
   contact: {
     path: "/contact",
