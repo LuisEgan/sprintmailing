@@ -77,7 +77,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="p-5 w-full">
+    <div className="w-full p-5 bg-white dark:bg-gray-900">
       <Header {...{ title: t("register.registerTitle"), description: "" }} />
       <form onSubmit={handleRegisterSubmit(handleRegister)}>
         <label className="font-bold" htmlFor="name">

@@ -19,7 +19,12 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "unused-imports"
+  ],
   "settings": {
     "import/resolver": {
       "node": {
@@ -33,6 +38,17 @@
     "React": "writable"
   },
   "rules": {
+    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "react-hooks/exhaustive-deps": "off",
     "no-nested-ternary": "off",
     "jsx-a11y/label-has-associated-control": "off",

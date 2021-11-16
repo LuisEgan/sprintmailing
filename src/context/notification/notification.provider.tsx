@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo } from "react";
-import { Notification } from "rsuite";
+import { Notification, toaster } from "rsuite";
 
 import { IOpenNotification, NotificationContext } from "./notification.context";
 
@@ -7,13 +7,20 @@ const NotificationProvider: FC = ({ children }) => {
   const value = useMemo(
     () => ({
       fireNotification: (params: IOpenNotification) => {
-        const { description, type, onOpen, ...notificationProps } = params;
-
-        Notification[type]({
+        const {
           description,
-          placement: "bottomEnd",
-          ...notificationProps,
-        });
+          title = "",
+          type,
+          // onOpen,
+          // ...notificationProps
+        } = params;
+
+        toaster.push(
+          <Notification type={type} duration={4500} header={title}>
+            {description}
+          </Notification>,
+          { placement: "bottomEnd" },
+        );
       },
     }),
     [],

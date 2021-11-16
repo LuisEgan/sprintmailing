@@ -21,11 +21,11 @@ const LandingLayout: FC = (props) => {
   return (
     <LayoutWrapper>
       <Drawer
-        show={showSideBar}
+        open={showSideBar}
         placement="left"
         size="xs"
         style={{ width: SIDEBAR_WIDTH }}
-        onHide={() => {
+        onClose={() => {
           setShowSideBar(!showSideBar);
         }}
       >

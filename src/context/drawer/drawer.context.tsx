@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { DrawerProps } from "rsuite/lib/Drawer/Drawer";
+import { DrawerProps } from "rsuite";
 
 export interface IOpenDrawer extends DrawerProps {
   drawerComponent: JSX.Element;

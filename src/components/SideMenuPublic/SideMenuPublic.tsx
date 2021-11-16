@@ -5,7 +5,7 @@ import { useProfile } from "context/profile/profile.context";
 import { useRouter } from "next/router";
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { Divider, Dropdown, Footer, Icon, Nav, Sidenav } from "rsuite";
+import { Divider, Dropdown, Footer, Nav, Sidenav } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
 
 import {
@@ -97,7 +97,7 @@ const SideMenu = (props: SideMenuProps) => {
                     eventKey={item.name}
                     key={`item ${item.name}`}
                     active={router.pathname === item.url}
-                    icon={<Icon icon={item.icon} />}
+                    icon={item.icon}
                     onClick={() => {
                       handleRedirect(item.url);
                     }}
@@ -110,7 +110,7 @@ const SideMenu = (props: SideMenuProps) => {
                 return (
                   <Dropdown
                     key={`dropdown ${item.name}`}
-                    icon={<Icon icon={item.icon} />}
+                    icon={item.icon}
                     title={item.name}
                   >
                     {item.children.map((route) =>
@@ -120,7 +120,7 @@ const SideMenu = (props: SideMenuProps) => {
                           className="ml-8"
                           key={route.url}
                           active={router.pathname === route.url}
-                          icon={<Icon icon={route.icon} />}
+                          icon={route.icon}
                           onClick={() => {
                             handleRedirect(route.url);
                           }}

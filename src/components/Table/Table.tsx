@@ -1,7 +1,6 @@
 import NoResult from "components/NoResult/NoResult";
 import React, { useEffect, useState } from "react";
-import { Table as RSTable, TableProps } from "rsuite";
-import TablePagination from "rsuite/lib/Table/TablePagination";
+import { Pagination, Table as RSTable, TableProps } from "rsuite";
 
 import { ButtonCell, CustomCell, NormalCell } from "./Cells";
 import { Container } from "./Table.styles";
@@ -180,22 +179,15 @@ const Table = <TData extends {}>(props: TTable<TData>) => {
         })}
       </RSTable>
 
-      <TablePagination
-        lengthMenu={[
-          {
-            value: 10,
-            label: 10,
-          },
-          {
-            value: 20,
-            label: 20,
-          },
-        ]}
+      <Pagination
+        size="xs"
+        className="mt-6"
+        limitOptions={[10, 20]}
         activePage={page}
-        displayLength={displayLength}
+        limit={displayLength}
         total={data?.length}
         onChangePage={setPage}
-        onChangeLength={handleChangeLength}
+        onChangeLimit={handleChangeLength}
       />
     </Container>
   );

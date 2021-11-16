@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ModalProps } from "rsuite/lib/Modal/Modal";
+import { ModalProps } from "rsuite";
 
 export interface IOpenModal extends ModalProps {
   modalComponent: JSX.Element;

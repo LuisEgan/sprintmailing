@@ -1,3 +1,5 @@
+import { ESystemRoles } from "settings/constants";
+
 import { IVendor } from "./Vendor.types";
 
 export interface IUser {
@@ -23,6 +25,7 @@ export interface IUser {
   active: boolean;
   profileImage: string;
   root: boolean;
+  systemRole: ESystemRoles;
 }
 
 export interface IAddress {

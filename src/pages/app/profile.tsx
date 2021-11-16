@@ -1,11 +1,12 @@
 import { useMutation } from "@apollo/client";
+import { Plus } from "@rsuite/icons";
 import CropImage, { CropImageType } from "components/Modal/CropImage";
 import {
   ProfileFormItem,
   ProfileImage,
-  ProfileImageContent,
   ProfileWrapper,
 } from "components/Styles/Profile/profile.style";
+import UserAvatar from "components/User/UserAvatar";
 import { useModal } from "context/modal/modal.provider";
 import { useNotification } from "context/notification/notification.provider";
 import { useProfile } from "context/profile/profile.context";
@@ -13,10 +14,10 @@ import { gqlUser } from "gql";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Col, Icon, Input, Loader, Panel, Row, Uploader } from "rsuite";
-import { FileType } from "rsuite/lib/Uploader";
+import { Button, Col, Input, Loader, Panel, Row, Uploader } from "rsuite";
+import { FileType } from "rsuite/esm/Uploader/Uploader";
 
-const Profile = () => {
+const ProfilePage = () => {
   const { fireNotification } = useNotification();
   const [updateProfile, { loading: updateProfileLoading }] = useMutation(
     gqlUser.mutations.UPDATE_USER_PROFILE,
@@ -70,7 +71,7 @@ const Profile = () => {
     reader.onloadend = () => {
       const base64Img = reader.result as string;
       openModal({
-        modalProps: { backdrop: "static" },
+        backdrop: "static",
         modalComponent: (
           <CropImage
             {...{
@@ -96,24 +97,19 @@ const Profile = () => {
                 onChange={handleProfileImageChange}
               >
                 <button
-                  className="rs-avatar-circle"
+                  className="rounded-full"
                   style={{
-                    width: "8rem",
-                    height: "8rem",
+                    width: 120,
+                    height: 120,
                     borderRadius: "50%",
                     padding: 0,
                   }}
                 >
                   {updateProfileLoading && <Loader backdrop center />}
                   {user?.profileImage ? (
-                    <ProfileImageContent
-                      style={{
-                        backgroundImage: `url(${user.profileImage})`,
-                      }}
-                      className="border-2 border-current-500"
-                    />
+                    <UserAvatar {...{ user, showName: false, size: 120 }} />
                   ) : (
-                    <Icon icon="avatar" size="5x" />
+                    <Plus style={{ fontSize: "5rem" }} />
                   )}
                 </button>
               </Uploader>
@@ -186,10 +182,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
-
-export async function getStaticProps() {
-  return {
-    props: {},
-  };
-}
+export default ProfilePage;

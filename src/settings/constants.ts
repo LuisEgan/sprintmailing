@@ -27,6 +27,7 @@ export enum ESystemRoles {
   "USER" = "USER",
   "ADMIN" = "ADMIN",
   "OTHER" = "OTHER",
+  "ROOT" = "ROOT",
 }
 
 export enum ELayout {

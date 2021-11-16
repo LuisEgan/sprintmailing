@@ -36,7 +36,7 @@ const ToggleVendor = () => {
           searchable={false}
           onChange={handleOnChangeVendor}
           style={{ width: 150 }}
-          defaultValue={user?.selectedVendorId}
+          defaultValue={user?.selectedVendor?.id || ""}
           placeholder="Seleccione"
         />
       )}

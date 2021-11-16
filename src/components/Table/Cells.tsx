@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon, Table } from "rsuite";
+import { Button, Table } from "rsuite";
 
 import {
   IButtonCell,
@@ -41,7 +41,7 @@ export const CustomCell = <TData extends {}>(params: ICustomCell<TData>) => {
   );
 
   return (
-    <Cell {...props} className={className} style={cellStyle}>
+    <Cell {...props} className={className} style={cellStyle} dataKey={dataKey}>
       <Component {...{ rowData }} />
     </Cell>
   );
@@ -49,7 +49,6 @@ export const CustomCell = <TData extends {}>(params: ICustomCell<TData>) => {
 
 export const ButtonCell = <TData extends {}>(params: IButtonCell<TData>) => {
   const {
-    formatter,
     dataKey,
     rowData,
     cellStyle,
@@ -70,13 +69,14 @@ export const ButtonCell = <TData extends {}>(params: IButtonCell<TData>) => {
   };
 
   return (
-    <Cell {...props} className={className} style={cellStyle}>
+    <Cell
+      {...props}
+      className={className}
+      style={cellStyle}
+      dataKey={dataKey as string}
+    >
       <Button appearance={buttonAppearance} {...defaultProps} onClick={onClick}>
-        {buttonIcon && (
-          <>
-            <Icon icon={buttonIcon} /> &nbsp;
-          </>
-        )}
+        {buttonIcon && <>&nbsp;</>}
         {buttonLabel}
       </Button>
     </Cell>
@@ -84,14 +84,8 @@ export const ButtonCell = <TData extends {}>(params: IButtonCell<TData>) => {
 };
 
 export const NormalCell = <TData extends {}>(params: INormalCell<TData>) => {
-  const {
-    formatter,
-    dataKey,
-    rowData,
-    cellStyle,
-    cellClassName,
-    ...props
-  } = params;
+  const { formatter, dataKey, rowData, cellStyle, cellClassName, ...props } =
+    params;
 
   const data = `${rowData[dataKey]}`;
 

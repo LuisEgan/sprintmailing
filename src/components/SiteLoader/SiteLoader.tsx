@@ -45,24 +45,20 @@ const SiteLoader = ({ children }) => {
 
   useEffect(() => {
     if (isAuthenticated() && user)
-      setTimeout(() => {
-        if (router.pathname === "/") {
-          router.push(PUBLIC_HOME).then(() => setShowLoader(false));
-        } else {
-          setShowLoader(false);
-        }
-      }, 2000);
+      if (router.pathname === "/") {
+        router.push(PUBLIC_HOME).then(() => setShowLoader(false));
+      } else {
+        setShowLoader(false);
+      }
 
     if (!isAuthenticated())
-      setTimeout(() => {
-        if (!isPublicRoute()) {
-          router
-            .push(PUBLIC_ROUTES.noRoute.path)
-            .then(() => setShowLoader(false));
-        } else {
-          setShowLoader(false);
-        }
-      }, 2000);
+      if (!isPublicRoute()) {
+        router
+          .push(PUBLIC_ROUTES.noRoute.path)
+          .then(() => setShowLoader(false));
+      } else {
+        setShowLoader(false);
+      }
   }, [isAuthenticated(), user]);
 
   if (showLoader)

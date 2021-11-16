@@ -26,11 +26,11 @@ const Login = () => {
       size: "sm",
     });
   };
-  
+
   const handleRecovery = () => {
     openModal({
       modalComponent: <Recovery />,
-      modalProps: { size: "sm" },
+      size: "sm",
     });
   };
 
@@ -38,7 +38,7 @@ const Login = () => {
     <div className="w-full h-full grid place-items-center">
       <div className="flex flex-col items-center">
         <div
-          style={{width: 368}}
+          style={{ width: 368 }}
           className="flex flex-col items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 shadow-sm rounded-2xl pt-12 pb-0 mx-auto"
         >
           <div className="flex">
@@ -60,18 +60,28 @@ const Login = () => {
             </div>
           </div>
 
-          <Button appearance="primary" style={{ width: 150 }} className="mt-10 mb-5" onClick={handleLogin}>
+          <Button
+            appearance="primary"
+            style={{ width: 150 }}
+            className="mt-10 mb-5"
+            onClick={handleLogin}
+          >
             {t("login.loginBtn")}
           </Button>
 
-          <Button appearance="primary" style={{ width: 150 }} onClick={handleRegister}>
+          <Button
+            appearance="primary"
+            style={{ width: 150 }}
+            onClick={handleRegister}
+            className="mt-3"
+          >
             {t("login.registerBtn")}
           </Button>
 
           <div
             style={{ color: "#d8d8d8" }}
             aria-hidden="true"
-            className="flex justify-end mt-3 font-bold mt-8 mb-8"
+            className="flex justify-end  font-bold mt-8 mb-8"
           >
             {t("login.forgotPassword")}
             <div
@@ -85,8 +95,8 @@ const Login = () => {
             </div>
           </div>
         </div>
-        
-        <p style={{color: "#8f8f8f"}} className="mt-5">
+
+        <p style={{ color: "#8f8f8f" }} className="mt-5">
           Boilerplate Made with ♥ by Clever Labs
         </p>
       </div>

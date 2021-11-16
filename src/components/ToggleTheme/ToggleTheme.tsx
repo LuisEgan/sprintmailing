@@ -1,46 +1,24 @@
-import { loadStyleSheet } from "components/Theme/Theme";
+import MoonOIcon from "@rsuite/icons/legacy/MoonO";
+import SunOIcon from "@rsuite/icons/legacy/SunO";
 import { useTheme } from "next-themes";
-import React, { useEffect, useState } from "react";
-import { Button, Icon } from "rsuite";
+import React from "react";
+import { Button } from "rsuite";
 
 const ToggleTheme = () => {
-  const [isToggleThemeEnable, setIsToggleThemeEnable] = useState<boolean>(true);
   const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsToggleThemeEnable(true);
-    }, 1000);
-  }, [theme]);
-
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
-    setIsToggleThemeEnable(false);
-    loadStyleSheet(newTheme, setTheme);
+    setTheme(newTheme);
   };
 
   return (
-    <Button
-      appearance="link"
-      disabled={!isToggleThemeEnable}
-      onClick={toggleTheme}
-    >
+    <Button appearance="subtle" onClick={toggleTheme}>
       <>
         {theme === "dark" && (
-          <Icon
-            icon="sun-o"
-            className="text-white animate__animated animate__slow animate__zoomIn"
-            componentClass="span"
-            size="lg"
-          />
+          <SunOIcon className="text-white animate__animated animate__zoomIn" />
         )}
         {theme === "light" && (
-          <Icon
-            icon="moon-o"
-            className="text-black animate__animated animate__slow animate__zoomIn"
-            componentClass="span"
-            size="lg"
-          />
+          <MoonOIcon className="text-black animate__animated animate__zoomIn" />
         )}
       </>
     </Button>

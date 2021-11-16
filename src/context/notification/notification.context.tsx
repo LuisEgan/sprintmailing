@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { NotificationProps } from "rsuite/lib/Notification/Notification";
+import { NotificationProps } from "rsuite";
 
 export type TNotificationTypeEnum = "success" | "info" | "warning" | "error";
 
@@ -16,6 +16,5 @@ interface INotificationMethods {
 const notificationMethods = {
   fireNotification: () => null,
 };
-export const NotificationContext = createContext<INotificationMethods>(
-  notificationMethods
-);
+export const NotificationContext =
+  createContext<INotificationMethods>(notificationMethods);

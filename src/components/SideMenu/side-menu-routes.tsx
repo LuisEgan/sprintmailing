@@ -1,5 +1,3 @@
-import { IconProps } from "rsuite";
-import { guardCheckUserRole } from "utils/guards";
 
 import { PRIVATE_ROUTES } from "../../routes/routes";
 
@@ -9,8 +7,7 @@ export enum EPrivateRouteType {
 }
 interface IPrivateRoute {
   name: string;
-  url?: string;
-  icon: IconProps["icon"];
+  path?: any;
   type: EPrivateRouteType;
   children?: Omit<IPrivateRoute, "children">[];
   hidden?: boolean; // * Use for hide item menu for some reason
@@ -20,43 +17,36 @@ interface IPrivateRoute {
 export const SIDE_MENU_ROUTES: IPrivateRoute[] = [
   {
     name: "Home",
-    url: PRIVATE_ROUTES.home.path,
-    icon: "home",
+    path: PRIVATE_ROUTES.home,
     type: EPrivateRouteType.ITEM,
     t: "home",
   },
   {
     name: "Profile",
-    url: PRIVATE_ROUTES.profile.path,
-    icon: "user",
+    path: PRIVATE_ROUTES.profile,
     type: EPrivateRouteType.ITEM,
     t: "profile",
   },
   {
     name: "Only admin",
-    url: PRIVATE_ROUTES.onlyAdmin.path,
-    icon: "key",
+    path: PRIVATE_ROUTES.onlyAdmin,
     type: EPrivateRouteType.ITEM,
-    hidden: !guardCheckUserRole(PRIVATE_ROUTES.onlyAdmin.roleGuards),
     t: "onlyAdmin",
   },
   {
     name: "Configuration",
-    icon: "cog",
     type: EPrivateRouteType.DROPDOWN,
     t: "configuration",
     children: [
       {
         name: "Site config",
-        url: PRIVATE_ROUTES.siteConfig.path,
-        icon: "cog",
+        path: PRIVATE_ROUTES.siteConfig,
         type: EPrivateRouteType.ITEM,
         t: "siteConfig",
       },
       {
         name: "Only admin",
-        url: PRIVATE_ROUTES.onlyAdmin.path,
-        icon: "key",
+        path: PRIVATE_ROUTES.onlyAdmin,
         type: EPrivateRouteType.ITEM,
         t: "onlyAdmin",
       },

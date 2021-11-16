@@ -1,5 +1,8 @@
-import { LAYOUTS } from "components/Layout/Layout.types";
+import GeneralLayout from "components/Layout/GeneralLayout";
+import LandingLayout from "components/Layout/LandingLayout";
+import ManagerLayout from "components/Layout/ManagerLayout";
 import { useNotification } from "context/notification/notification.provider";
+import { useProfile } from "context/profile/profile.context";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { ELayout, ESystemRoles } from "settings/constants";
@@ -10,17 +13,24 @@ interface IRouteLayout {
   roleGuards?: ESystemRoles[];
 }
 
+const LAYOUTS = {
+  [ELayout.GENERAL]: GeneralLayout,
+  [ELayout.MANAGER]: ManagerLayout,
+  [ELayout.LANDING]: LandingLayout,
+};
+
 export const RouteLayout: FC<IRouteLayout> = (props) => {
   const router = useRouter();
+  const { user } = useProfile();
   const { children } = props;
   const { layout = ELayout.GENERAL, roleGuards } = props;
   const { fireNotification } = useNotification();
   const Layout = LAYOUTS[layout];
 
-  if (!guardCheckUserRole(roleGuards)) {
+  if (!guardCheckUserRole(roleGuards, user?.systemRole)) {
     fireNotification({
       title: "Oops",
-      description: "No tienes permisos para acceder a esta ruta",
+      description: " No tienes permisos para acceder a esta ruta",
       type: "error",
     });
     router.back();

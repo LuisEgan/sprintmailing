@@ -2,7 +2,7 @@ import setLanguage from "next-translate/setLanguage";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { SelectPicker } from "rsuite";
-import { TypeAttributes } from "rsuite/lib/@types/common";
+import { TypeAttributes } from "rsuite/esm/@types/common";
 
 export enum EAvailableLanguages {
   es = "es",

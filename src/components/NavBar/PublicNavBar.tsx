@@ -7,7 +7,7 @@ import { useProfile } from "context/profile/profile.context";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { Button, ButtonToolbar, Dropdown, Icon } from "rsuite";
+import { Button, ButtonToolbar, Dropdown } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT } from "settings/constants";
 
 import { AvatarContainer, UserInfoContainer } from "./NavBar.style";
@@ -91,8 +91,7 @@ const PublicNavBar = (props: NavbarProps) => {
                     </div>
                   )}
                 >
-                  <Dropdown.Item onClick={signout}>
-                    <Icon icon="sign-out" className="text-red-500" />
+                  <Dropdown.Item onClick={() => signout()}>
                     <span className="text-red-500">
                       {t("publicHome.navbarLinksTitle.signout")}
                     </span>

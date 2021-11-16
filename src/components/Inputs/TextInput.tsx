@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import Input, { InputProps } from "rsuite/lib/Input/Input";
+import { Input, InputProps } from "rsuite";
 import { CSSProperties } from "styled-components";
 
 interface ITextInput extends InputProps {

@@ -31,7 +31,7 @@ export const Recovery = () => {
       onCompleted({ changePassword }) {
         openModal({
           modalComponent: <EmailSent {...changePassword} />,
-          modalProps: { size: "sm" },
+          size: "sm",
         });
       },
       onError() {},
@@ -56,7 +56,7 @@ export const Recovery = () => {
   };
 
   return (
-    <div className="w-full p-5">
+    <div className="w-full p-5 bg-white dark:bg-gray-900">
       <Header {...{ title: t("recovery.recoverTitle"), description: "" }} />
       <form onSubmit={handleLoginSubmit(handleRecovery)}>
         <label className="font-bold">{t("recovery.enterEmail")}</label>

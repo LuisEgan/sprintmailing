@@ -1,5 +1,6 @@
+import { Close } from "@rsuite/icons";
 import React, { CSSProperties } from "react";
-import { Icon, Modal, ModalProps } from "rsuite";
+import { Modal, ModalProps } from "rsuite";
 
 interface IModalProps extends ModalProps {
   isOpen: boolean;
@@ -37,14 +38,14 @@ const CenterModal: React.FC<IModalProps> = (props) => {
 
   return (
     <Modal
-      show={isOpen}
-      onHide={onRequestClose}
+      open={isOpen}
+      onClose={onRequestClose}
       style={{ padding: 0 }}
       className="fodtureModal"
       {...modalProps}
     >
       <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
-        <Icon icon="close" />
+        <Close />
       </button>
       {children}
     </Modal>

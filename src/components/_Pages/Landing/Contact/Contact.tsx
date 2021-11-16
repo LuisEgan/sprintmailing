@@ -94,8 +94,7 @@ export const Contact = () => {
                     {...field}
                     placeholder="Ingresa el comentario"
                     error={errors?.comment && "Debes ingresar el comentario"}
-                    rows={9}
-                    componentClass="textarea"
+                    as="textarea"
                   />
                 )}
               />

@@ -80,12 +80,12 @@ export const Login = () => {
   const handleRecovery = () => {
     openModal({
       modalComponent: <Recovery />,
-      modalProps: { size: "sm" },
+      size: "sm",
     });
   };
 
   return (
-    <div className="w-full p-5">
+    <div className="w-full p-5 bg-white dark:bg-gray-900">
       <Header {...{ title: t("login.welcomeMessage"), description: "" }} />
       <form onSubmit={handleLoginSubmit(handleLogin)} className="mt-3">
         <label className="font-bold mb-2">{t("login.enterEmail")}</label>

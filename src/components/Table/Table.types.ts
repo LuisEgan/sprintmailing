@@ -1,9 +1,9 @@
 import { CSSProperties } from "react";
 import {
   ButtonProps,
-  IconProps,
-  TableCellProps,
-  TableColumnProps,
+  CellProps,
+  ColumnProps,
+  TableLocaleType,
   TableProps,
 } from "rsuite";
 
@@ -17,7 +17,7 @@ export type TRowBuilder<TData, TRes> = ({
   rowData: TData;
 }) => TRes;
 
-interface ICell<TData> extends Omit<TableCellProps, "dataKey"> {
+interface ICell<TData> extends Omit<CellProps, "dataKey"> {
   dataKey: keyof TData;
   rowData?: TData;
   cellStyle?: CSSProperties;
@@ -33,7 +33,7 @@ interface IButton extends Omit<ButtonProps, "onClick"> {
 }
 export interface IButtonCell<TData> extends ICell<TData> {
   buttonProps?: IButton;
-  buttonIcon?: IconProps["icon"];
+  buttonIcon?: any;
   buttonAppearance?: ButtonProps["appearance"];
   buttonLabel?: string;
 }
@@ -42,7 +42,7 @@ export interface INormalCell<TData> extends ICell<TData> {
   formatter?: (data: string) => string;
 }
 
-export interface IColumn<TData> extends TableColumnProps {
+export interface IColumn<TData> extends ColumnProps {
   customCell?: TRowBuilder<TData, JSX.Element>;
   cellClassName?: TRowBuilder<TData, string> | string;
   formatter?: (data: string) => string;
@@ -52,17 +52,26 @@ export interface IColumn<TData> extends TableColumnProps {
   width?: number;
   isButton?: boolean;
   buttonProps?: IButton;
-  buttonIcon?: IconProps["icon"];
+  buttonIcon?: any;
   buttonAppearance?: ButtonProps["appearance"];
   buttonLabel?: string;
 }
 
-export interface TTable<TData> extends TableProps {
+export interface TTable<TData>
+  extends Omit<
+    TableProps,
+    "locale" | "minHeight" | "hover" | "headerHeight" | "rowHeight"
+  > {
   data: TData[];
   columns: IColumn<TData>[];
-  columnsSameProps?: TableColumnProps;
+  columnsSameProps?: ColumnProps;
   containerStyle?: CSSProperties;
   containerClassname?: string;
+  minHeight?: number;
+  hover?: boolean;
+  headerHeight?: number;
+  locale?: TableLocaleType;
+  rowHeight?: number;
 }
 
 export interface ITableData {

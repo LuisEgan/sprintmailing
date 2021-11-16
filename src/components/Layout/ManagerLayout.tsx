@@ -22,21 +22,21 @@ const ManagerLayout: FC = (props) => {
 
   return (
     <LayoutWrapper>
-      {wSize && wSize.width <= MOBILE_VIEW ? (
+      {wSize?.width <= MOBILE_VIEW ? (
         <Drawer
-          show={showSideBar}
+          open={showSideBar}
           placement="left"
           size="xs"
           style={{ width: SIDEBAR_WIDTH }}
-          onHide={() => {
+          onClose={() => {
             setShowSideBar(!showSideBar);
           }}
         >
-          <SideMenu {...{ showSideBar, setShowSideBar }} />
+          <SideMenu {...{ showSideBar, setShowSideBar, isManager: true }} />
         </Drawer>
       ) : (
         <SideMenuWrapper>
-          <SideMenu {...{ showSideBar, setShowSideBar }} />
+          <SideMenu {...{ showSideBar, setShowSideBar, isManager: true }} />
         </SideMenuWrapper>
       )}
       <LayoutMainContent

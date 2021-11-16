@@ -1,5 +1,6 @@
+import { Close } from "@rsuite/icons";
 import React from "react";
-import { Drawer, DrawerProps, Icon } from "rsuite";
+import { Drawer, DrawerProps } from "rsuite";
 
 interface IDrawerProps extends DrawerProps {
   isOpen: boolean;
@@ -37,9 +38,9 @@ const AdminDrawer: React.FC<IDrawerProps> = ({
   children,
   ...drawerProps
 }) => (
-  <Drawer show={isOpen} onHide={onRequestClose} {...drawerProps}>
+  <Drawer open={isOpen} onClose={onRequestClose} {...drawerProps}>
     <button type="button" onClick={onRequestClose} style={{ ...buttonStyle }}>
-      <Icon icon="close" />
+      <Close />
     </button>
     <div className="p-5 w-100">{children}</div>
   </Drawer>

@@ -1,16 +1,22 @@
+import { Gear } from "@rsuite/icons";
 import ToggleLang from "components/ToggleLang/ToggleLang";
 import ToggleTheme from "components/ToggleTheme/ToggleTheme";
-import UserAvatar from "components/User/UserAvatar";
 import { useProfile } from "context/profile/profile.context";
 import { useRouter } from "next/router";
-import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { Divider, Dropdown, Footer, Icon, Nav, Sidenav } from "rsuite";
+import { Divider, Dropdown, Footer, Nav, Sidenav } from "rsuite";
 import { LOGO_DARK, LOGO_LIGHT, SIDEBAR_WIDTH } from "settings/constants";
+import { guardCheckUserRole } from "utils/guards";
 
 import { EPrivateRouteType, SIDE_MENU_ROUTES } from "./side-menu-routes";
-import { AvatarContainer, SidebarWrapper } from "./SideMenu.style";
+import {
+  AvatarContainer,
+  AvatarImage,
+  SidebarWrapper,
+  UserInfo,
+  UserInfoContainer,
+} from "./SideMenu.style";
 
 interface SideMenuProps {
   showSideBar: boolean;
@@ -21,7 +27,6 @@ const SideMenu = (props: SideMenuProps) => {
   const router = useRouter();
   const { showSideBar, setShowSideBar } = props;
   const { user } = useProfile();
-  const { t } = useTranslation("common");
 
   const handleShowSideBar = () => {
     setShowSideBar(!showSideBar);
@@ -86,46 +91,74 @@ const SideMenu = (props: SideMenuProps) => {
         </Sidenav.Header>
         <Sidenav.Body className="pt-4">
           <AvatarContainer className="pl-4 pb-5 mt-3">
-            <UserAvatar {...{ user, showName: false, size: 100 }} />
+            <AvatarImage
+              className="bg-gray-900 dark:bg-white border-2 border-current-500"
+              style={{
+                backgroundImage: `url(${user?.profileImage})`,
+              }}
+            />
+            <UserInfoContainer>
+              <UserInfo>
+                {user?.name} {user?.lastname}
+              </UserInfo>
+            </UserInfoContainer>
           </AvatarContainer>
           <Nav>
             {SIDE_MENU_ROUTES.map((item) => {
-              if (item.type === EPrivateRouteType.ITEM && !item.hidden) {
+              if (
+                item.type === EPrivateRouteType.ITEM &&
+                !guardCheckUserRole(
+                  item.path.roleGuards || [],
+                  user?.systemRole,
+                )
+              ) {
                 return (
-                  <Nav.Item
+                  <Dropdown.Item
                     eventKey={item.name}
                     key={`item ${item.name}`}
-                    active={router.pathname === item.url}
-                    icon={<Icon icon={item.icon} />}
+                    active={router.pathname === item.path.path}
+                    icon={<Gear />}
                     onClick={() => {
-                      handleRedirect(item.url);
+                      handleRedirect(item.path.path);
                     }}
                   >
-                    {t(`routes.${item.t}`)}
-                  </Nav.Item>
+                    {item.name}
+                  </Dropdown.Item>
                 );
               }
-              if (item.type === EPrivateRouteType.DROPDOWN && !item.hidden) {
+
+              if (
+                item.type === EPrivateRouteType.DROPDOWN &&
+                item.children.some((item) =>
+                  guardCheckUserRole(
+                    item.path.roleGuards || [],
+                    user?.systemRole,
+                  ),
+                )
+              ) {
                 return (
                   <Dropdown
                     key={`dropdown ${item.name}`}
-                    icon={<Icon icon={item.icon} />}
-                    title={t(`routes.${item.t}`)}
+                    icon={<Gear />}
+                    title={item.name}
                   >
                     {item.children.map((route) =>
-                      !route.hidden ? (
-                        <Nav.Item
+                      guardCheckUserRole(
+                        route.path.roleGuards || [],
+                        user?.systemRole,
+                      ) ? (
+                        <Dropdown.Item
                           eventKey={item.name}
                           className="ml-8"
-                          key={route.url}
-                          active={router.pathname === route.url}
-                          icon={<Icon icon={route.icon} />}
+                          key={route.path.path}
+                          active={router.pathname === route.path.path}
+                          icon={<Gear />}
                           onClick={() => {
-                            handleRedirect(route.url);
+                            handleRedirect(route.path.path);
                           }}
                         >
-                          {t(`routes.${route.t}`)}
-                        </Nav.Item>
+                          {route.name}
+                        </Dropdown.Item>
                       ) : (
                         false
                       ),

@@ -1,6 +1,7 @@
+import "animate.css/animate.css";
+import "rsuite/dist/rsuite.min.css";
 import "styles/global.scss";
 import "styles/overwrite-rsuite.scss";
-import "animate.css/animate.css";
 
 import { ApolloProvider } from "@apollo/client";
 import SiteHead from "components/SiteHead/SiteHead";
@@ -23,7 +24,7 @@ export default function App(props: AppProps) {
   return (
     <>
       <ApolloProvider client={client}>
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <Theme>
             <SiteHead />
             <Tailwind />

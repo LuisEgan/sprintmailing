@@ -1,5 +1,6 @@
+import { Unvisible, Visible } from "@rsuite/icons";
 import React, { useState } from "react";
-import { Icon, Input, InputGroup, InputProps } from "rsuite";
+import { Input, InputGroup, InputProps } from "rsuite";
 
 const PasswordInput = React.forwardRef((props: InputProps, ref) => {
   const [passwordType, setPasswordType] = useState<boolean>(true);
@@ -15,12 +16,8 @@ const PasswordInput = React.forwardRef((props: InputProps, ref) => {
         type={`${passwordType ? "password" : "text"}`}
       />
       <InputGroup.Addon onClick={handleReveal} className="h-full">
-        {passwordType && (
-          <Icon className="text-gray-400 m-0  pr-4" icon="eye-slash" />
-        )}
-        {!passwordType && (
-          <Icon className="text-gray-400 m-0  pr-4" icon="eye" />
-        )}
+        {passwordType && <Unvisible className="text-white m-0 mr-4" />}
+        {!passwordType && <Visible className="text-white m-0 mr-4" />}
       </InputGroup.Addon>
     </InputGroup>
   );

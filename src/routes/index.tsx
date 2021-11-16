@@ -1,4 +1,5 @@
 import PrivateRoute from "components/PrivateRoute/PrivateRoute";
+import { useProfile } from "context/profile/profile.context";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
@@ -23,7 +24,7 @@ export const ROUTES: IRoutes = {
 
 const Routes = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
-
+  const { user } = useProfile();
   const getCurrentRoute = (
     routes: IRoutes["PRIVATE"] | IRoutes["PUBLIC"],
     isPrivate = false,
@@ -32,7 +33,7 @@ const Routes = ({ Component, pageProps }: AppProps) => {
     let isPrivatePath = false;
 
     Object.values(routes).some((route) => {
-      const isRoute = route.path === router.pathname;
+      const isRoute = route.path.includes(router.pathname);
       if (isRoute) {
         isPrivatePath = isPrivate;
         currentRoute = route;
@@ -54,7 +55,7 @@ const Routes = ({ Component, pageProps }: AppProps) => {
   }
 
   // * Don't render the route if it's private and the user's role is not allowed
-  if (!guardCheckUserRole(currentRoute?.roleGuards)) {
+  if (!guardCheckUserRole(currentRoute?.roleGuards, user?.systemRole)) {
     router.push("/404");
     return null;
   }
