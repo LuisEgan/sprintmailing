@@ -15,7 +15,6 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 ARG ENVIRONMENT_VARIABLES
 RUN echo -e ${ENVIRONMENT_VARIABLES} >> .env
-RUN yarn generate-styles
 RUN yarn build
 # Production image, copy all the files and run next
 FROM node:14-alpine AS runner
