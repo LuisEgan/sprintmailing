@@ -12,8 +12,9 @@
   "dependencies": {
     "@apollo/client": "^3.6.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@fortawesome/react-fontawesome": "^0.1.17",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@graphql-tools/load-files": "6.0.18",
     "@graphql-tools/merge": "6.0.18",
     "@graphql-tools/schema": "6.0.18",
