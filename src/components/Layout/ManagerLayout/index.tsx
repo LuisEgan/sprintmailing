@@ -1,14 +1,14 @@
-import dynamic from "next/dynamic";
 import React, { FC, useEffect, useState } from "react";
 import { ProSidebar } from "react-pro-sidebar";
 import { WIDTH_MD } from "settings/constants";
 import useWindowSize from "utils/hooks/useWindowSize";
 
+import NavBar from "../Components/NavBar/NavBar";
 import ManagerLayoutContent from "./ManagerLayoutContent";
 
-const NavBar = dynamic(() => import("../Components/NavBar/NavBar"), {
-  ssr: false,
-});
+// const NavBar = dynamic(() => import("../Components/NavBar/NavBar"), {
+//   ssr: false,
+// });
 
 const ManagerProLayout: FC = (props) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(
