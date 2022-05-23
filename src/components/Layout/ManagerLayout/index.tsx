@@ -6,12 +6,9 @@ import useWindowSize from "utils/hooks/useWindowSize";
 
 import ManagerLayoutContent from "./ManagerLayoutContent";
 
-const NavBar = dynamic(
-  () => import("components/Layout/Components/NavBar/NavBar"),
-  {
-    ssr: false,
-  },
-);
+const NavBar = dynamic(() => import("../Components/NavBar/NavBar"), {
+  ssr: false,
+});
 
 const ManagerProLayout: FC = (props) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(
