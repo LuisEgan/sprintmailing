@@ -1,39 +1,45 @@
 import React from "react";
+import { Col, Row } from "rsuite";
 import { BOTTLE_ICON, RECYCLING_ICON, TRASH_ICON } from "settings/icons";
 
 import { ServiceCard } from "./Cards/ServiceCard";
-import { ServicesWrapper } from "./Services.style";
 
 export const Services = () => (
-  <ServicesWrapper>
-    <div className="flex flex-col items-center gap-2">
-      <h2 className="text-3xl font-bold text-gray-500">
+  <div className="bg-white dark:bg-black pt-12 pb-16 container mx-auto">
+    <div className="flex flex-col items-center justify-center gap-2 p-6">
+      <span className="text-3xl font-bold text-center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </h2>
-      <p className="text-lg text-gray-400">
+      </span>
+      <p className="text-lg text-center">
         ed eros ante, facilisis accumsan vehicula eu, laoreet sed lacus.
         Curabitur a molestie arcu.
       </p>
     </div>
-    <div className="flex mt-10 justify-items-center">
-      <ServiceCard
-        icon={RECYCLING_ICON}
-        title="Nullam lacinia justo"
-        description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
+    <Row className="mt-12">
+      <Col xs={24} md={12} lg={8} className="mb-12">
+        <ServiceCard
+          icon={RECYCLING_ICON}
+          title="Nullam lacinia justo"
+          description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
           quis felis ullamcorper"
-      />
-      <ServiceCard
-        icon={BOTTLE_ICON}
-        title="Nullam lacinia justo"
-        description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
+        />
+      </Col>
+      <Col xs={24} md={12} lg={8} className="mb-12">
+        <ServiceCard
+          icon={BOTTLE_ICON}
+          title="Nullam lacinia justo"
+          description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
           quis felis ullamcorper"
-      />
-      <ServiceCard
-        icon={TRASH_ICON}
-        title="Nullam lacinia justo"
-        description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
+        />
+      </Col>
+      <Col xs={24} md={12} lg={8} className="mb-12">
+        <ServiceCard
+          icon={TRASH_ICON}
+          title="Nullam lacinia justo"
+          description="Vestibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
           quis felis ullamcorper"
-      />
-    </div>
-  </ServicesWrapper>
+        />
+      </Col>
+    </Row>
+  </div>
 );

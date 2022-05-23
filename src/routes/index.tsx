@@ -1,8 +1,8 @@
-import PrivateRoute from "components/PrivateRoute/PrivateRoute";
 import { useProfile } from "context/profile/profile.context";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
+import PrivateRoute from "routes/utils/PrivateRoute";
 import { guardCheckUserRole } from "utils/guards";
 
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "./routes";
@@ -56,7 +56,7 @@ const Routes = ({ Component, pageProps }: AppProps) => {
 
   // * Don't render the route if it's private and the user's role is not allowed
   if (!guardCheckUserRole(currentRoute?.roleGuards, user?.systemRole)) {
-    router.push("/404");
+    router.replace("/404");
     return null;
   }
 

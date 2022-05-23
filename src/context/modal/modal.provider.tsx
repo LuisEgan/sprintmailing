@@ -1,4 +1,4 @@
-import CenterModal from "components/Modal";
+import CenterModal from "components/Context/Modal";
 import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { ModalProps } from "rsuite";
 

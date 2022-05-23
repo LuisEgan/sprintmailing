@@ -66,5 +66,9 @@
     "configuration": "Configuración",
     "siteConfig": "Configuración del Sitio",
     "onlyAdmin": "Solo adminsitrador"
+  },
+  "DEMO": "DemoES",
+  "HOME": {
+    "text": "Este es el texto en español"
   }
 }

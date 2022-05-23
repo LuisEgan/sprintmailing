@@ -2,7 +2,7 @@ interface IBlobToBase {
   blob: Blob;
 }
 
-export const blobToBase64 = ({ blob }: IBlobToBase) =>
+export const blobToBase64 = ({ blob }: IBlobToBase): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = async () => {

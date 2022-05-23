@@ -4,7 +4,10 @@ export const guardCheckUserRole = (
   roleGuards: ESystemRoles[],
   userRole: ESystemRoles,
 ) => {
-  if (!roleGuards) return true;
+  if (!roleGuards || roleGuards.length === 0) return true;
 
-  return roleGuards.length && roleGuards.includes(userRole);
+  return (
+    roleGuards.length > 0 &&
+    roleGuards.some((roleGuard) => userRole?.includes(roleGuard))
+  );
 };

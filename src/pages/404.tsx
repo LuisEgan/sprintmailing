@@ -2,11 +2,10 @@ import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import React from "react";
 import Lottie from "react-lottie";
-import { ROUTES } from "routes";
+import { PUBLIC_ROUTES } from "routes/routes";
 import { Button } from "rsuite";
 import notFoundLight from "utils/lottie/404-dark.json";
 import notFoundDark from "utils/lottie/404-light.json";
-import probetAnim from "utils/lottie/probet.json";
 
 const LightLottieOptions = {
   loop: true,
@@ -26,15 +25,6 @@ const DarkLottieOptions = {
   },
 };
 
-const loader2LottieOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: probetAnim,
-  rendererSettings: {
-    preserveAspectRatio: "xMidYMid slice",
-  },
-};
-
 const NotFound = () => {
   const { theme } = useTheme();
   const router = useRouter();
@@ -43,7 +33,6 @@ const NotFound = () => {
     <div className="h-screen w-screen flex justify-center items-center">
       <div className="flex flex-col">
         <div className="mb-10 flex flex-col justify-center items-center">
-          <Lottie options={loader2LottieOptions} height={200} width={200} />
           <Lottie
             options={theme === "light" ? LightLottieOptions : DarkLottieOptions}
             height={130}
@@ -55,7 +44,7 @@ const NotFound = () => {
         <div className="text-center">
           <Button
             appearance="primary"
-            onClick={() => router.push(ROUTES.PRIVATE.home.path)}
+            onClick={() => router.push(PUBLIC_ROUTES.login.path)}
           >
             Volver al inicio
           </Button>

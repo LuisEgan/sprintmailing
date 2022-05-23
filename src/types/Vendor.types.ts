@@ -23,9 +23,21 @@ export interface IVendor {
   beneficiaryEmail: string;
   coordinates: ICoordinates;
   phone: string;
+  banners?: IVendorBanner[];
 }
 
 export interface ICoordinates {
   lat: number;
   lng: number;
+}
+
+export interface IVendorBanner {
+  title?: string;
+  description?: string;
+  bannerUrl?: string;
+  cta?: string;
+  btnColor?: string;
+  btnText?: string;
+  align?: string;
+  modal?: string;
 }

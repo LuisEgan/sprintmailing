@@ -82,7 +82,7 @@
         "enforceForRenamedProperties": false
       }
     ],
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     "react/jsx-filename-extension": [2, { "extensions": [".ts", ".tsx"] }],
     "import/extensions": [
       "error",

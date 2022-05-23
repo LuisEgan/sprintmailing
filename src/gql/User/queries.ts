@@ -11,7 +11,7 @@ export interface ILoginResponse {
 }
 
 const LOGIN = gql`
-  mutation Login($loginInput: LoginInput!) {
+  mutation login($loginInput: LoginInput!) {
     login(loginInput: $loginInput) {
       accessToken
       refreshToken
@@ -39,6 +39,10 @@ const GET_FULL_USER = gql`
       name
       lastname
       email
+      selectedVendor {
+        id
+        name
+      }
       vendorList {
         id
         name

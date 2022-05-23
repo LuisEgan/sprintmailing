@@ -1,6 +1,6 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import Header from "components/Header/Header";
-import PasswordInput from "components/PasswordInput";
+import Header from "components/_Custom/Header/Header";
+import PasswordInput from "components/_Custom/PasswordInput";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { useRouter } from "next/router";

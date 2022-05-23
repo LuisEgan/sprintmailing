@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import Header from "components/Header/Header";
+import Header from "components/_Custom/Header/Header";
 import { useModal } from "context/modal/modal.provider";
 import { gqlUser } from "gql";
 import { IChangePasswordRequestInput } from "gql/User/mutations";

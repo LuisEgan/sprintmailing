@@ -1,41 +1,29 @@
 import React from "react";
-import { Button } from "rsuite";
-
-import { CallToActionWrapper } from "./CallToAction.style";
 
 export const CallToAction = () => (
-  <CallToActionWrapper>
+  <div className="bg-white dark:bg-black py-12 px-3 w-full container mx-auto">
     <div className="flex flex-col items-center gap-2">
-      <h2 className="text-3xl font-bold text-gray-400">
+      <h2 className="text-3xl font-bold ">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </h2>
-      <p className="text-lg text-gray-400">
+      <p className="text-lg ">
         ed eros ante, facilisis accumsan vehicula eu, laoreet sed lacus.
         Curabitur a molestie arcu.
       </p>
     </div>
-    <div className="flex mt-10 justify-center">
+    <div className="flex mt-10 justify-center flex-col md:flex-row gap-3">
       <div
-        className="bg-gray-500 flex font-bold items-center justify-center text-4xl rounded-2xl"
-        style={{ height: 400, width: 500 }}
+        className="bg-gray-200 dark:bg-gray-700 flex font-bold items-center justify-center text-4xl rounded-2xl w-full md:w-2/5"
+        style={{ height: 400 }}
       >
-        500 x 400
+        Banner
       </div>
-      <div className="flex flex-col ml-10 gap-4">
-        <h2 className="text-2xl font-bold text-gray-400">
-          Nullam lorem nibh, elementum
-        </h2>
-        <p className="text-base text-gray-400 w-3/4">
-          estibulum sagittis mollis leo et vestibulum. Curabitur auctor felis
-        </p>
-        <Button
-          appearance="ghost"
-          style={{ width: 200 }}
-          className="rs-btn-big bg-pink-500 bg-opacity-20"
-        >
-          <span className="font-bold text-pink-600"> Call to action</span>
-        </Button>
+      <div
+        className="bg-gray-200 dark:bg-gray-700 flex font-bold items-center justify-center text-4xl rounded-2xl w-full md:w-2/5"
+        style={{ height: 400 }}
+      >
+        Banner
       </div>
     </div>
-  </CallToActionWrapper>
+  </div>
 );

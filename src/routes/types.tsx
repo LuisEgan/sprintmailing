@@ -1,4 +1,4 @@
-import GeneralLayout from "components/Layout/GeneralLayout";
+import CleanLayout from "components/Layout/CleanLayout";
 import LandingLayout from "components/Layout/LandingLayout";
 import ManagerLayout from "components/Layout/ManagerLayout";
 import { useNotification } from "context/notification/notification.provider";
@@ -14,7 +14,7 @@ interface IRouteLayout {
 }
 
 const LAYOUTS = {
-  [ELayout.GENERAL]: GeneralLayout,
+  [ELayout.CLEAN]: CleanLayout,
   [ELayout.MANAGER]: ManagerLayout,
   [ELayout.LANDING]: LandingLayout,
 };
@@ -23,7 +23,7 @@ export const RouteLayout: FC<IRouteLayout> = (props) => {
   const router = useRouter();
   const { user } = useProfile();
   const { children } = props;
-  const { layout = ELayout.GENERAL, roleGuards } = props;
+  const { layout = ELayout.CLEAN, roleGuards } = props;
   const { fireNotification } = useNotification();
   const Layout = LAYOUTS[layout];
 
@@ -39,9 +39,3 @@ export const RouteLayout: FC<IRouteLayout> = (props) => {
 
   return <Layout>{children}</Layout>;
 };
-
-export interface IRoute {
-  path: string;
-  layout?: ELayout;
-  roleGuards?: ESystemRoles[];
-}

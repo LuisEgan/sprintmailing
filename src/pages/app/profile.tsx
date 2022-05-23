@@ -1,12 +1,11 @@
 import { useMutation } from "@apollo/client";
-import { Plus } from "@rsuite/icons";
-import CropImage, { CropImageType } from "components/Modal/CropImage";
+import Icon from "components/_Custom/Icon/Icon";
+import UserAvatar from "components/_Custom/UserAvatar/UserAvatar";
+import CropImage, { CropImageType } from "components/Context/Modal/CropImage";
 import {
   ProfileFormItem,
   ProfileImage,
-  ProfileWrapper,
-} from "components/Styles/Profile/profile.style";
-import UserAvatar from "components/User/UserAvatar";
+} from "components/Site/Styles/Profile/profile.style";
 import { useModal } from "context/modal/modal.provider";
 import { useNotification } from "context/notification/notification.provider";
 import { useProfile } from "context/profile/profile.context";
@@ -14,7 +13,7 @@ import { gqlUser } from "gql";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Col, Input, Loader, Panel, Row, Uploader } from "rsuite";
+import { Button, Col, Input, Loader, Row, Uploader } from "rsuite";
 import { FileType } from "rsuite/esm/Uploader/Uploader";
 
 const ProfilePage = () => {
@@ -86,36 +85,39 @@ const ProfilePage = () => {
   };
 
   return (
-    <ProfileWrapper className="p-5">
-      <Row>
-        <Col md={12} lg={8}>
-          <Panel className="bg-gray-50 dark:bg-gray-900 shadow-sm">
-            <ProfileImage className=" rs-avatar-circle mb-4">
-              <Uploader
-                fileListVisible={false}
-                accept="image/png, image/jpeg"
-                onChange={handleProfileImageChange}
-              >
-                <button
-                  className="rounded-full"
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: "50%",
-                    padding: 0,
-                  }}
-                >
-                  {updateProfileLoading && <Loader backdrop center />}
-                  {user?.profileImage ? (
-                    <UserAvatar {...{ user, showName: false, size: 120 }} />
-                  ) : (
-                    <Plus style={{ fontSize: "5rem" }} />
-                  )}
-                </button>
-              </Uploader>
-            </ProfileImage>
+    <>
+      <div className="flex items-center justify-center flex-col">
+        <div className=" h-52 bg-gray-100 dark:bg-gray-900 w-full rounded-md" />
+        <ProfileImage className="rs-avatar-circle -mt-16 border">
+          <Uploader
+            fileListVisible={false}
+            accept="image/png, image/jpeg"
+            onChange={handleProfileImageChange}
+          >
+            <button
+              className="rounded-full"
+              style={{
+                width: 120,
+                height: 120,
+                borderRadius: "50%",
+                padding: 0,
+              }}
+            >
+              {updateProfileLoading && <Loader backdrop center />}
+              {user?.profileImage ? (
+                <UserAvatar {...{ user, showName: false, size: 120 }} />
+              ) : (
+                <Icon icon="plus" />
+              )}
+            </button>
+          </Uploader>
+        </ProfileImage>
+      </div>
+      <div className="p-5">
+        <Row>
+          <Col xs={24} lg={8}>
             {user && (
-              <form onSubmit={handleSubmit(handleUpdate)}>
+              <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-md">
                 <ProfileFormItem>
                   <label>{t("profile.name")}</label>
                   <Controller
@@ -169,16 +171,17 @@ const ProfilePage = () => {
                     appearance="primary"
                     disabled={updateProfileLoading}
                     loading={updateProfileLoading}
+                    onClick={handleSubmit(handleUpdate)}
                   >
                     {t("profile.updateBtn")}
                   </Button>
                 </ProfileFormItem>
-              </form>
+              </div>
             )}
-          </Panel>
-        </Col>
-      </Row>
-    </ProfileWrapper>
+          </Col>
+        </Row>
+      </div>
+    </>
   );
 };
 

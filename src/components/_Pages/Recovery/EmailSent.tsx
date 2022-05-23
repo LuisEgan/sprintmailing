@@ -1,4 +1,4 @@
-import Header from "components/Header/Header";
+import Header from "components/_Custom/Header/Header";
 import React from "react";
 
 interface EmailSentProps {

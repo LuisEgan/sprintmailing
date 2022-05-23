@@ -10,6 +10,9 @@ const config = {
     config.plugins.push(new webpack.EnvironmentPlugin(myEnv));
     return config;
   },
+  images: {
+    domains: ["storage.googleapis.com", "cdn.ndrz.io"],
+  },
 };
 
 module.exports = withPlugins([withImages, nextTranslate], config);

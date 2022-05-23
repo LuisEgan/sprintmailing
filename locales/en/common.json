@@ -63,5 +63,9 @@
     "configuration": "Configuration",
     "siteConfig": "Site config",
     "onlyAdmin": "Only admin"
+  },
+  "DEMO": "DemoEN",
+  "HOME": {
+    "text": "This is an english text"
   }
 }

@@ -10,25 +10,21 @@ export const TestimonialCard = ({
   title,
   description,
 }: TestimonialCardProps) => (
-  <div className="flex flex-col items-center gap-4">
+  <div className="flex flex-col items-center gap-4 w-full rounded-md">
     <div
-      className="bg-gray-500 flex font-bold items-center justify-center text-2xl"
-      style={{ height: 200, width: 333 }}
+      className="bg-gray-200 dark:bg-gray-700 flex font-bold items-center justify-center text-2xl w-full rounded-md"
+      style={{ height: 200 }}
     >
-      333 x 200
+      Image
     </div>
-    <h1 className="text-2xl font-bold text-gray-500 text-opacity-75">
-      {title}
-    </h1>
-    <p className="text-lg font-medium text-gray-400 text-center w-2/4">
-      {description}
-    </p>
+    <h1 className="text-2xl font-bold text-opacity-75">{title}</h1>
+    <p className="text-lg font-medium text-center w-2/4">{description}</p>
     <Button
       appearance="ghost"
       style={{ width: 300 }}
-      className="rs-btn-big bg-pink-500 bg-opacity-20"
+      className="rs-btn-big bg-curent-500 bg-opacity-20"
     >
-      <span className="font-bold text-pink-600"> Call to action</span>
+      <span className="font-bold text-curent-600"> Call to action</span>
     </Button>
   </div>
 );

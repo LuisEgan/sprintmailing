@@ -47,7 +47,9 @@ const UPDATE_USER_PROFILE = gql`
   }
 `;
 
-export interface IUpdateUserSelectedVendorInput {}
+export interface IUpdateUserSelectedVendorInput {
+  vendor: string;
+}
 
 const UPDATE_USER_SELECTED_VENDOR = gql`
   mutation updateUserSelectedVendor(
