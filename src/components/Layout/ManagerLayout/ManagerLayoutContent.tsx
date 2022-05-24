@@ -51,19 +51,20 @@ const ManagerLayoutContent = (props: ISideBar) => {
     }
   };
 
-  const checkSubRoutesRoleGuard = async (routes?: IRoute[]) => {
+  const checkSubRoutesRoleGuard = (routes?: IRoute[]) => {
     let isValid = true;
-    if (!user?.systemRole) {
+
+    if (!user?.vendorRoles) {
       return false;
     }
-    await Promise.all(
-      routes.map((route) => {
-        if (guardCheckUserRole(route.roleGuards || [], user?.systemRole)) {
-          isValid = false;
-        }
-        return null;
-      }),
-    );
+
+    // eslint-disable-next-line
+    for (const route of routes) {
+      if (guardCheckUserRole(route.roleGuards || [], user?.vendorRoles)) {
+        isValid = false;
+        break;
+      }
+    }
 
     return isValid;
   };

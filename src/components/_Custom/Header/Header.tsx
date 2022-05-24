@@ -1,9 +1,9 @@
 import Icon from "components/_Custom/Icon/Icon";
-import { PopupInfo } from "components/_Custom/PopupInfo/PopupInfo";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 import { Button, ButtonProps, Placeholder } from "rsuite";
 
+import PopupInfo from "../PopupInfo/PopupInfo";
 import { HeaderDescription, HeaderWrapper } from "./Header.style";
 
 export interface HeaderProps {

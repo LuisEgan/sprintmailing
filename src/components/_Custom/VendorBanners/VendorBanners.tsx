@@ -111,7 +111,7 @@ const VendorBanners = (props: ISiteBanners) => {
     <Popover className="rs-user-badge">
       <InputGroup>
         <InputGroup.Button style={{ fontSize: 12 }}>
-          <Icon icon={["far", "link"]} />
+          <Icon icon={["fas", "link"]} />
         </InputGroup.Button>
         <Input
           style={{ width: "20rem", fontSize: 12 }}

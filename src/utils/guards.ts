@@ -1,8 +1,8 @@
-import { ESystemRoles } from "../settings/constants";
+import { EUserRoleEnum } from "types/User/enum/EUserRoleEnum.enum";
 
 export const guardCheckUserRole = (
-  roleGuards: ESystemRoles[],
-  userRole: ESystemRoles,
+  roleGuards: EUserRoleEnum[],
+  userRole: EUserRoleEnum[],
 ) => {
   if (!roleGuards || roleGuards.length === 0) return true;
 

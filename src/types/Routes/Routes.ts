@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
-import { ELayout, ESystemRoles } from "settings/constants";
+import { ELayout } from "settings/constants";
+import { EUserRoleEnum } from "types/User/enum/EUserRoleEnum.enum";
 
 export const LAYOUT_STORED_MENU = "LAYOUT_STORED_MENU";
 export const LAYOUT_STORED_SUBMENU = "LAYOUT_STORED_SUBMENU";
@@ -12,7 +13,7 @@ export enum EMenuRouteType {
 export interface IRoute {
   path: string;
   layout?: ELayout;
-  roleGuards?: ESystemRoles[];
+  roleGuards?: EUserRoleEnum[];
 }
 
 export interface IMenuRoute {

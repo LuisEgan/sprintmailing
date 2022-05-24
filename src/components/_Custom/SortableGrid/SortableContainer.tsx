@@ -1,4 +1,3 @@
-import { Trash } from "@rsuite/icons";
 import React from "react";
 import {
   SortableContainer as SC,
@@ -8,6 +7,7 @@ import {
   SortableHandle as SH,
 } from "react-sortable-hoc";
 
+import Icon from "../Icon/Icon";
 import {
   DeleteItemContainer,
   Element,
@@ -55,7 +55,7 @@ const SortableElement = SE((props: ISortableElement) => {
       {shouldUseDragHandle && <SortableHandle tabIndex={currentIndex} />}
       {deletable && (
         <DeleteItemContainer onClick={deleteItem}>
-          <Trash />
+          <Icon icon={["fas", "trash"]} />
         </DeleteItemContainer>
       )}
       {renderItem ? renderItem({ item: item.item, currentIndex }) : item.item}

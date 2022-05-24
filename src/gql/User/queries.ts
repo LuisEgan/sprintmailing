@@ -36,6 +36,7 @@ const GET_FULL_USER = gql`
     user {
       id
       profileImage
+      vendorRoles
       name
       lastname
       email

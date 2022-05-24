@@ -27,13 +27,6 @@ export const PUBLIC_HOME = "/app/home";
 
 export const DEFAULT_THEME = process.env.NEXT_PUBLIC_DEFAULT_THEME || "dark";
 
-export enum ESystemRoles {
-  "USER" = "USER",
-  "ADMIN" = "ADMIN",
-  "OTHER" = "OTHER",
-  "ROOT" = "ROOT",
-}
-
 export enum ELayout {
   "MANAGER" = "MANAGER",
   "LANDING" = "LANDING",

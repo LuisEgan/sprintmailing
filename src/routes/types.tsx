@@ -5,12 +5,13 @@ import { useNotification } from "context/notification/notification.provider";
 import { useProfile } from "context/profile/profile.context";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-import { ELayout, ESystemRoles } from "settings/constants";
+import { ELayout } from "settings/constants";
+import { EUserRoleEnum } from "types/User/enum/EUserRoleEnum.enum";
 import { guardCheckUserRole } from "utils/guards";
 
 interface IRouteLayout {
   layout: ELayout;
-  roleGuards?: ESystemRoles[];
+  roleGuards?: EUserRoleEnum[];
 }
 
 const LAYOUTS = {
@@ -27,7 +28,7 @@ export const RouteLayout: FC<IRouteLayout> = (props) => {
   const { fireNotification } = useNotification();
   const Layout = LAYOUTS[layout];
 
-  if (!guardCheckUserRole(roleGuards, user?.systemRole)) {
+  if (!guardCheckUserRole(roleGuards, user?.vendorRoles)) {
     fireNotification({
       title: "Oops",
       description: " No tienes permisos para acceder a esta ruta",

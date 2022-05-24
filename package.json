@@ -52,7 +52,7 @@
     "next-translate": "^1.0.6",
     "node-sass": "^5.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
-    "react": "^16.13.1",
+    "react": "17.0.2",
     "react-adal": "^0.5.2",
     "react-color": "^2.19.3",
     "react-dom": "^16.13.1",
@@ -75,11 +75,12 @@
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.4",
     "@types/lodash": "^4.14.168",
-    "@types/react": "^16.9.46",
-    "@types/react-dom": "^16.9.8",
+    "@types/react": "16.9.46",
+    "@types/react-dom": "16.9.8",
     "@types/react-test-renderer": "16.9.3",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
+    "@typescript-eslint/typescript-estree": "^5.26.0",
     "autoprefixer": "^10.2.6",
     "babel-eslint": "^9.0.0",
     "babel-jest": "26.3.0",
@@ -102,10 +103,14 @@
     "prettier": "^2.2.1",
     "react-test-renderer": "16.13.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.2.4",
+    "typescript": "^4.6.4",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.6.0",
     "yaml-loader": "0.6.0"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   },
   "husky": {
     "hooks": {

@@ -1,9 +1,17 @@
-import arrayMove from "array-move";
+import { arrayMoveImmutable } from "array-move";
 import React, { useEffect, useState } from "react";
 
 import SortableContainer from "./SortableContainer";
 import { SortableGridContainer } from "./SortableGrid.style";
-import { ISortableGrid, ISortableItem } from "./types";
+import { IRenderItem, ISortableItem, TItem } from "./types";
+
+interface ISortableGrid {
+  style?: React.CSSProperties;
+  items: TItem[];
+  onChange?: (sortedItems: TItem[]) => void;
+  renderItem?: (params: IRenderItem) => JSX.Element;
+  deletable?: boolean;
+}
 
 const SortableGrid = (props: ISortableGrid) => {
   const {
@@ -31,7 +39,7 @@ const SortableGrid = (props: ISortableGrid) => {
   };
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    const newItems = arrayMove(items, oldIndex, newIndex);
+    const newItems = arrayMoveImmutable(items, oldIndex, newIndex);
     onChange(newItems);
   };
 

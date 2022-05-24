@@ -6,8 +6,7 @@ import {
   FontAwesomeIconProps,
 } from "@fortawesome/react-fontawesome";
 
-library.add(fab);
-library.add(fas);
+library.add(fab, fas);
 
 interface IIconProps extends FontAwesomeIconProps {}
 

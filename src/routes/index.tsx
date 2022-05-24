@@ -3,10 +3,11 @@ import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
 import PrivateRoute from "routes/utils/PrivateRoute";
+import { IRoute } from "types/Routes/Routes";
 import { guardCheckUserRole } from "utils/guards";
 
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "./routes";
-import { IRoute, RouteLayout } from "./types";
+import { RouteLayout } from "./types";
 
 type IRoutes = {
   PRIVATE: {
@@ -55,7 +56,7 @@ const Routes = ({ Component, pageProps }: AppProps) => {
   }
 
   // * Don't render the route if it's private and the user's role is not allowed
-  if (!guardCheckUserRole(currentRoute?.roleGuards, user?.systemRole)) {
+  if (!guardCheckUserRole(currentRoute?.roleGuards, user?.vendorRoles)) {
     router.replace("/404");
     return null;
   }

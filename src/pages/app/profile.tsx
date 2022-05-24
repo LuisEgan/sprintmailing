@@ -2,10 +2,6 @@ import { useMutation } from "@apollo/client";
 import Icon from "components/_Custom/Icon/Icon";
 import UserAvatar from "components/_Custom/UserAvatar/UserAvatar";
 import CropImage, { CropImageType } from "components/Context/Modal/CropImage";
-import {
-  ProfileFormItem,
-  ProfileImage,
-} from "components/Site/Styles/Profile/profile.style";
 import { useModal } from "context/modal/modal.provider";
 import { useNotification } from "context/notification/notification.provider";
 import { useProfile } from "context/profile/profile.context";
@@ -88,8 +84,9 @@ const ProfilePage = () => {
     <>
       <div className="flex items-center justify-center flex-col">
         <div className=" h-52 bg-gray-100 dark:bg-gray-900 w-full rounded-md" />
-        <ProfileImage className="rs-avatar-circle -mt-16 border">
+        <div className="rs-avatar-circle -mt-16 border">
           <Uploader
+            action=""
             fileListVisible={false}
             accept="image/png, image/jpeg"
             onChange={handleProfileImageChange}
@@ -111,14 +108,14 @@ const ProfilePage = () => {
               )}
             </button>
           </Uploader>
-        </ProfileImage>
+        </div>
       </div>
       <div className="p-5">
         <Row>
           <Col xs={24} lg={8}>
             {user && (
               <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-md">
-                <ProfileFormItem>
+                <div>
                   <label>{t("profile.name")}</label>
                   <Controller
                     name="name"
@@ -132,8 +129,8 @@ const ProfilePage = () => {
                     )}
                     rules={{ required: true }}
                   />
-                </ProfileFormItem>
-                <ProfileFormItem>
+                </div>
+                <div>
                   <label>{t("profile.lastname")}</label>
                   <Controller
                     name="lastname"
@@ -147,9 +144,9 @@ const ProfilePage = () => {
                     )}
                     rules={{ required: true }}
                   />
-                </ProfileFormItem>
+                </div>
 
-                <ProfileFormItem>
+                <div>
                   <label>{t("profile.email")}</label>
                   <Controller
                     name="email"
@@ -163,9 +160,9 @@ const ProfilePage = () => {
                     )}
                     rules={{ required: true }}
                   />
-                </ProfileFormItem>
+                </div>
 
-                <ProfileFormItem className="flex justify-end mt-4">
+                <div className="flex justify-end mt-4">
                   <Button
                     type="submit"
                     appearance="primary"
@@ -175,7 +172,7 @@ const ProfilePage = () => {
                   >
                     {t("profile.updateBtn")}
                   </Button>
-                </ProfileFormItem>
+                </div>
               </div>
             )}
           </Col>
