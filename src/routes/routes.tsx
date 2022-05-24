@@ -13,7 +13,6 @@ export const PRIVATE_ROUTES = {
 };
 
 export const PUBLIC_ROUTES = {
-  origin: { path: "/", layout: ELayout.LANDING },
   landing: { path: "/landing", layout: ELayout.LANDING },
   404: { path: "/404" },
   login: { path: "/login" },
