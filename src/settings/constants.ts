@@ -2,13 +2,13 @@ export const DEFAULT_INITIAL_ROUTE = "/login";
 export const LOGIN_REDIRECT_ROUTE = "/app/components";
 
 export const DEFAULT_PROFILE_IMAGE = "some-default-url-avatar-for-users";
-export const ICON = "/images/icon/isotipo.svg";
+export const ICON = "/images/svg/logo/isotipo.svg";
 
-export const LOGO_DARK = "/images/logo/dark/HorizontalLogo.svg";
-export const LOGO_LIGHT = "/images/logo/light/HorizontalLogo.svg";
+export const LOGO_DARK = "/images/svg/logo/dark/HorizontalLogo.svg";
+export const LOGO_LIGHT = "/images/svg/logo/light/HorizontalLogo.svg";
 
-export const VERTICAL_LOGO_DARK = "/images/logo/dark/VerticalLogo.svg";
-export const VERTICAL_LOGO_LIGHT = "/images/logo/light/VerticalLogo.svg";
+export const VERTICAL_LOGO_DARK = "/images/svg/logo/dark/VerticalLogo.svg";
+export const VERTICAL_LOGO_LIGHT = "/images/svg/logo/light/VerticalLogo.svg";
 
 export const SITE_LOADER_DARK = "utils/lottie/site-loader.json";
 export const SITE_LOADER_LIGHT = "utils/lottie/site-loader.json";

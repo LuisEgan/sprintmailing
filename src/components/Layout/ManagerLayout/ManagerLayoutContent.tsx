@@ -130,7 +130,7 @@ const ManagerLayoutContent = (props: ISideBar) => {
                   active={router.pathname === item.route.path}
                   icon={
                     <Image
-                      src={`/svg/menu/${item.icon}.svg`}
+                      src={`/images/svg/menu/${item.icon}.svg`}
                       width={25}
                       height={25}
                     />
@@ -152,7 +152,7 @@ const ManagerLayoutContent = (props: ISideBar) => {
                 key={`dropdown ${item.name}`}
                 icon={
                   <Image
-                    src={`/svg/menu/${item.icon}.svg`}
+                    src={`/images/svg/menu/${item.icon}.svg`}
                     width={item.iconSize || 25}
                     height={item.iconSize || 25}
                   />
@@ -166,7 +166,7 @@ const ManagerLayoutContent = (props: ISideBar) => {
                       active={router.pathname === route.route.path}
                       icon={
                         <Image
-                          src={`/svg/menu/${route.icon}.svg`}
+                          src={`/images/svg/menu/${route.icon}.svg`}
                           width={25}
                           height={25}
                         />
