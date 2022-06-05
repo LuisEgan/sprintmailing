@@ -21,6 +21,12 @@ export const MAIN_MENU_LISTS: IMenuList[] = [
     route: PRIVATE_ROUTES.profile,
     type: EPrivateRouteType.ITEM,
   },
+  {
+    name: "Templates",
+    icon: "profile",
+    route: PRIVATE_ROUTES.templates,
+    type: EPrivateRouteType.ITEM,
+  },
 
   {
     name: "Dropdown",

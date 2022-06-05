@@ -6,6 +6,7 @@ export const PRIVATE_ROUTES = {
     layout: ELayout.MANAGER,
   },
   profile: { path: "/app/profile", layout: ELayout.MANAGER },
+  templates: { path: "/app/templates", layout: ELayout.MANAGER },
   siteConfig: {
     path: "/app/config/site-config",
     layout: ELayout.MANAGER,

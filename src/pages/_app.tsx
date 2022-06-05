@@ -17,6 +17,8 @@ import { ProfileProvider } from "context/profile/profile.provider";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import React from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import Routes from "routes";
 import { isBrowser } from "settings/constants";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
@@ -35,19 +37,21 @@ export default function App(props: AppProps) {
           <Theme>
             <SiteHead />
             <Tailwind />
-            <NotificationProvider>
-              <ProfileProvider>
-                <AuthProvider>
-                  <SiteLoader>
-                    <ModalProvider>
-                      <DrawerProvider>
-                        <Routes {...props} />
-                      </DrawerProvider>
-                    </ModalProvider>
-                  </SiteLoader>
-                </AuthProvider>
-              </ProfileProvider>
-            </NotificationProvider>
+            <DndProvider backend={HTML5Backend}>
+              <NotificationProvider>
+                <ProfileProvider>
+                  <AuthProvider>
+                    <SiteLoader>
+                      <ModalProvider>
+                        <DrawerProvider>
+                          <Routes {...props} />
+                        </DrawerProvider>
+                      </ModalProvider>
+                    </SiteLoader>
+                  </AuthProvider>
+                </ProfileProvider>
+              </NotificationProvider>
+            </DndProvider>
           </Theme>
         </ThemeProvider>
       </ApolloProvider>

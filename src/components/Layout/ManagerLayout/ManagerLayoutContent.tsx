@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import React from "react";
+import { useDrag } from "react-dnd";
 import {
   Menu,
   MenuItem,
@@ -18,6 +19,7 @@ import { PRIVATE_ROUTES } from "routes/routes";
 import { Button, Tooltip, Whisper } from "rsuite";
 import { ICON, LOGO_DARK, LOGO_LIGHT, WIDTH_MD } from "settings/constants";
 import { EPrivateRouteType, IRoute } from "types/Routes/Routes";
+import { ITemplate } from "types/Template.types";
 import { guardCheckUserRole } from "utils/guards";
 import useWindowSize from "utils/hooks/useWindowSize";
 
@@ -31,6 +33,14 @@ interface ISideBar {
 }
 const ManagerLayoutContent = (props: ISideBar) => {
   const { user } = useProfile();
+  const [, drag] = useDrag<ITemplate>(() => ({
+    type: "template",
+    item: { name: "̿̿ ̿̿ ̿̿ ̿'̿'̵͇̿̿з= ( ▀ ͜͞ʖ▀) =ε/̵͇̿̿/’̿’̿ ̿ ̿̿ ̿̿ ̿̿", html: "<div>:p</div>" },
+  }));
+  const [, drag2] = useDrag<ITemplate>(() => ({
+    type: "template",
+    item: { name: "( ͡° ͜ʖ ͡°)", html: "<div>:p</div>" },
+  }));
 
   const router = useRouter();
   const {
@@ -157,7 +167,7 @@ const ManagerLayoutContent = (props: ISideBar) => {
                     height={item.iconSize || 25}
                   />
                 }
-                title={item.name}
+                title={`${item.name}`}
               >
                 {item.children.map((route) =>
                   !checkSubRoutesRoleGuard([route.route]) ? (
@@ -185,6 +195,9 @@ const ManagerLayoutContent = (props: ISideBar) => {
           return false;
         })}
       </Menu>
+
+      <div ref={drag}>Drag</div>
+      <div ref={drag2}>Drag 2</div>
       {isMd && !isCollapsed && (
         <SidebarFooter>
           <div className="flex p-6 items-center justify-center">
