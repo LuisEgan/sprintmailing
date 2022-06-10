@@ -696,8 +696,12 @@ input:-webkit-autofill {
 
 .dark {
   input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #1a1d24 inset; /* Change the color to your own background color */
+    -webkit-box-shadow: 0 0 0 1000px #202020 inset; /* Change the color to your own background color */
     -webkit-text-fill-color: #fff;
     -webkit-background-clip: text !important;
   }
+}
+
+.rs-theme-dark .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout {
+  overflow: unset !important;
 }

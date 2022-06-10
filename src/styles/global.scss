@@ -14,4 +14,15 @@ label {
   display: block;
   margin-bottom: 0.2rem;
 }
-//
+
+.cursor-grab {
+  &:hover {
+    cursor: grab;
+  }
+}
+
+.cursor-resize-w {
+  &:hover {
+    cursor: w-resize;
+  }
+}

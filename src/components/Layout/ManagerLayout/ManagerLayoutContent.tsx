@@ -2,24 +2,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Icon from "components/_Custom/Icon/Icon";
 import { useProfile } from "context/profile/profile.context";
 import moment from "moment";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useTheme } from "next-themes";
 import React from "react";
-import { useDrag } from "react-dnd";
 import {
   Menu,
   MenuItem,
   SidebarFooter,
   SidebarHeader,
-  SubMenu,
+  SubMenu
 } from "react-pro-sidebar";
 import { MAIN_MENU_LISTS } from "routes/manager.routes";
 import { PRIVATE_ROUTES } from "routes/routes";
 import { Button, Tooltip, Whisper } from "rsuite";
 import { ICON, LOGO_DARK, LOGO_LIGHT, WIDTH_MD } from "settings/constants";
 import { EPrivateRouteType, IRoute } from "types/Routes/Routes";
-import { ITemplate } from "types/Template.types";
 import { guardCheckUserRole } from "utils/guards";
 import useWindowSize from "utils/hooks/useWindowSize";
 
@@ -33,14 +31,6 @@ interface ISideBar {
 }
 const ManagerLayoutContent = (props: ISideBar) => {
   const { user } = useProfile();
-  const [, drag] = useDrag<ITemplate>(() => ({
-    type: "template",
-    item: { name: "̿̿ ̿̿ ̿̿ ̿'̿'̵͇̿̿з= ( ▀ ͜͞ʖ▀) =ε/̵͇̿̿/’̿’̿ ̿ ̿̿ ̿̿ ̿̿", html: "<div>:p</div>" },
-  }));
-  const [, drag2] = useDrag<ITemplate>(() => ({
-    type: "template",
-    item: { name: "( ͡° ͜ʖ ͡°)", html: "<div>:p</div>" },
-  }));
 
   const router = useRouter();
   const {
@@ -82,11 +72,10 @@ const ManagerLayoutContent = (props: ISideBar) => {
   return (
     <>
       <SidebarHeader
-        className={`py-6 px-3 flex  items-center ${
-          isCollapsed && isMd
-            ? "flex-col justify-center gap-2"
-            : "justify-between"
-        }`}
+        className={`py-6 px-3 flex  items-center ${isCollapsed && isMd
+          ? "flex-col justify-center gap-2"
+          : "justify-between"
+          }`}
       >
         {(!isCollapsed || !isMd) && (
           <Image
@@ -196,8 +185,7 @@ const ManagerLayoutContent = (props: ISideBar) => {
         })}
       </Menu>
 
-      <div ref={drag}>Drag</div>
-      <div ref={drag2}>Drag 2</div>
+
       {isMd && !isCollapsed && (
         <SidebarFooter>
           <div className="flex p-6 items-center justify-center">

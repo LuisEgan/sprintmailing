@@ -2,9 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import { ProSidebar } from "react-pro-sidebar";
 import { WIDTH_MD } from "settings/constants";
 import useWindowSize from "utils/hooks/useWindowSize";
-
 import NavBar from "../Components/NavBar/NavBar";
-import ManagerLayoutContent from "./ManagerLayoutContent";
+import DndSidebar from "./DndSidebar";
 
 // const NavBar = dynamic(() => import("../Components/NavBar/NavBar"), {
 //   ssr: false,
@@ -36,7 +35,7 @@ const ManagerProLayout: FC = (props) => {
         breakPoint="md"
         onToggle={() => setShowSideBar(false)}
       >
-        <ManagerLayoutContent
+        <DndSidebar
           {...{
             showSideBar,
             setShowSideBar,
@@ -55,7 +54,7 @@ const ManagerProLayout: FC = (props) => {
             setShowRightSideBar,
           }}
         />
-        <div className="p-3 md:p-6 bg-white dark:bg-black flex-1 overflow-y-auto">
+        <div className="bg-white dark:bg-black flex-1 overflow-y-auto">
           {children}
         </div>
       </div>

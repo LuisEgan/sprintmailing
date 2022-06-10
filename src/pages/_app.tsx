@@ -2,6 +2,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import "animate.css/animate.css";
 import "rsuite/dist/rsuite.min.css";
 import "styles/global.scss";
+import "styles/animate.scss";
 import "styles/overwrite-rsuite.scss";
 import "styles/react-pro-sidebar.scss";
 
